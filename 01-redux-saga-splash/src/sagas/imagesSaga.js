@@ -6,9 +6,9 @@ import { fetchImages } from '../api';
 import { IMAGES } from '../constants';
 
 //pobiera wartość ze store
-const getPage = state => state.nextPage;
+export const getPage = state => state.nextPage;
 
-function* handleImagesLoad() {
+export function* handleImagesLoad() {
     try {
         const page = yield select(getPage);
         const images = yield call(fetchImages, page); //wstrzymuję sage zanim call sie nie wykona
