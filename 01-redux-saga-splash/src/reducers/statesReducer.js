@@ -2,7 +2,7 @@ import { STATS } from '../constants';
 
 const statsReducer = (state = {}, action) => {
     switch (action.type) {
-        case STATS.LOAD: {
+        case STATS.LOAD:
             return {
                 ...state,
                 [action.id]: {
@@ -11,7 +11,6 @@ const statsReducer = (state = {}, action) => {
                     error: false,
                 },
             };
-        }
         case STATS.LOAD_SUCCESS:
             return {
                 ...state,

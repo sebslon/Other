@@ -1,10 +1,10 @@
 import { call, fork, put, take } from '@redux-saga/core/effects';
+
 import {
     loadImagesStats as loadImageStats,
     setImagesStats as setImageStats,
     setImageStatsError,
 } from '../actions';
-
 import { fetchImageStats } from '../api';
 import { IMAGES } from '../constants';
 

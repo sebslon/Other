@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import Button from '../Button';
+import Stats from '../Stats';
 import { loadImages } from '../../actions/';
 
 import './styles.css';
-import Stats from '../Stats';
 
 class ImageGrid extends Component {
     componentDidMount() {
