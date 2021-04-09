@@ -2,6 +2,6 @@ import React from 'react';
 
 import './styles.css';
 
-const Header = () => <header>What the Splash!</header>;
+const Header = () => <header>Splash!</header>;
 
 export default Header;
