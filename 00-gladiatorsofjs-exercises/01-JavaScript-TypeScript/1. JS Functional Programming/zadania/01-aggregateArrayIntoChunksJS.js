@@ -1,10 +1,24 @@
-const alphabet = "abcdefghijklmnoprstuwxyz".split("");
+const alphabet = "abcdefghijkmlnoprstuwxyz".split("");
 
 const randomNumberFourToSeven = () => {
   return 7 - Math.floor(Math.random() * 4);
 }
 
-const aggregateIntoChunks = (array) => {
+const validateInput = (input) => {
+  const inputIsNotAnArray = !Array.isArray(input)
+
+  if(inputIsNotAnArray) {
+    throw new Error('Input is not an array.')
+  }
+
+  if(input.length <= 7) {
+    throw new Error('To be chunked array must have more than 7 elements.')
+  }
+}
+
+export const aggregateIntoChunks = (array) => {
+  validateInput(array);
+
   const workArray = [...array];
   const chunkedArray = [];
 
@@ -25,9 +39,6 @@ const aggregateIntoChunks = (array) => {
 
   return chunkedArray;
 };
-
-const chunks = aggregateIntoChunks(alphabet);
-console.log(chunks);
 
 // example chunks:
 // [[a,b,c,d,e,f],[g,h,i,j,k],[l,m,n,o,p,r,s],[t,u,w,x,y,z]]
