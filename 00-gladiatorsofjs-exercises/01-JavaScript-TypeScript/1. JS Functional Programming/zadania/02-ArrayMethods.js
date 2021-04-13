@@ -20,9 +20,24 @@ const forEachFn = (array, callback) => {
   }
 };
 
-const mapFn = (array, callback) => {};
+const mapFn = (array, callback) => {
+  validateInput(array, callback);
 
-const entriesFn = (array) => {};
+  const workArray = [...array];
+  const result = [];
+  
+  for (const index in workArray) {
+    const id = parseInt(index);
+    result.push(callback(workArray[id], id, workArray));
+  }
+  return result;
+};
+
+const entriesFn = (array) => {
+  const workArray = [...array];
+
+  return  workArray[Symbol.iterator]();;
+};
 
 const filterFn = (array, callback) => {};
 
@@ -32,4 +47,8 @@ const everyFn = (array, callback) => {};
 
 const someFn = (array, callback) => {};
 
-forEachFn([1, 5, "s", "x"], (el) => console.log(el));
+const iterator = entriesFn([1, 4, 7, 8, "s", "a", {a: 5}]);
+console.log(iterator);
+for (const el of iterator) {
+  console.log(el);
+}
