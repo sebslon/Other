@@ -58,7 +58,20 @@ const filterFn = (array, callback) => {
 
 const reduceFn = (array, callback, initial) => {};
 
-const everyFn = (array, callback) => {};
+const everyFn = (array, callback) => {
+  validateInput(array, callback);
+
+  const workArray = [...array];
+  
+  for(const index in workArray) {
+    const id = parseInt(index);
+
+    if(!callback(workArray[id], id, workArray)) {
+      return false;
+    }
+  }
+
+  return true;
+};
 
 const someFn = (array, callback) => {};
-
