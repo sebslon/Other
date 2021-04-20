@@ -73,5 +73,5 @@ const everyFn = (array, callback) => {
 
   return true;
 };
-
+//
 const someFn = (array, callback) => {};
