@@ -29,7 +29,6 @@ const mapFn = (array, callback) => {
   for (const index in workArray) {
     const id = parseInt(index);
     result.push(callback(workArray[id], id, workArray));
-    console.log(workArray[id], id, workArray);
   }
   return result;
 };
@@ -56,22 +55,51 @@ const filterFn = (array, callback) => {
   return result;
 };
 
-const reduceFn = (array, callback, initial) => {};
-
 const everyFn = (array, callback) => {
   validateInput(array, callback);
 
   const workArray = [...array];
-  
-  for(const index in workArray) {
+
+  for (const index in workArray) {
     const id = parseInt(index);
 
-    if(!callback(workArray[id], id, workArray)) {
+    if (!callback(workArray[id], id, workArray)) {
       return false;
     }
   }
 
   return true;
 };
-//
-const someFn = (array, callback) => {};
+
+const someFn = (array, callback) => {
+  validateInput(array, callback);
+
+  const workArray = [...array];
+
+  for (const index in workArray) {
+    const id = parseInt(index);
+
+    if (callback(workArray[id], id, workArray)) {
+      return true;
+    }
+  }
+
+  return false;
+};
+
+const reduceFn = (array, callback, initial) => {
+  validateInput(array, callback);
+  
+  if (array.length === 0 && !initial)
+    throw new TypeError("Reduce of empty array with no initial value");
+
+  const workArray = [...array];
+  let accumulator = initial ? initial : workArray[0];
+
+  for (const index in workArray) {
+    let id = parseInt(index);
+    accumulator = callback(accumulator, workArray[id], id, workArray);
+  }
+
+  return accumulator;
+};
