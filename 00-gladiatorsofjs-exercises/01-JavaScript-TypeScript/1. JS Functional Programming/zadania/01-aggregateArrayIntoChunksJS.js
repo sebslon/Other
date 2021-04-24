@@ -1,8 +1,6 @@
-const alphabet = "abcdefghijkmlnoprstuwxyz".split("");
+const { randomNumberInRange } = require("./helpers");
 
-const randomNumberFourToSeven = () => {
-  return 7 - Math.floor(Math.random() * 4);
-}
+const alphabet = "abcdefghijkmlnoprstuwxyz".split("");
 
 const validateInput = (input) => {
   const inputIsNotAnArray = !Array.isArray(input)
@@ -16,14 +14,14 @@ const validateInput = (input) => {
   }
 }
 
-export const aggregateIntoChunks = (array) => {
+const aggregateIntoChunks = (array) => {
   validateInput(array);
 
   const workArray = [...array];
   const chunkedArray = [];
 
   while(workArray.length > 0) {
-    const chunkSize = randomNumberFourToSeven();
+    const chunkSize = randomNumberInRange(4, 7);
     let chunk = []
 
     for(let i = 0; i < chunkSize; i++) {
@@ -40,5 +38,6 @@ export const aggregateIntoChunks = (array) => {
   return chunkedArray;
 };
 
+console.log(aggregateIntoChunks(alphabet));
 // example chunks:
 // [[a,b,c,d,e,f],[g,h,i,j,k],[l,m,n,o,p,r,s],[t,u,w,x,y,z]]
