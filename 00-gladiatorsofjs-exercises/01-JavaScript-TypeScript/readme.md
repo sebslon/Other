@@ -1,4 +1,9 @@
-## My solutions
-Here i'm keeping solutions to Gladiators of JS - JavaScript and TypeScript exercises :)
+## Repository with my solutions 
+### https://gladiators-of-javascript.com/
 
-I'll try to keep on TS solutions.
+<hr>
+
+<p style="text-align: center">
+Programming exercises, to learn and have some fun solving different problems. 
+</p>
+
