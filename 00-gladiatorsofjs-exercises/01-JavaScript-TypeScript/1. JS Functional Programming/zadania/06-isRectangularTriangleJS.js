@@ -1,4 +1,8 @@
 function isRectangularTriangle(a, b, c) {
+  [a, b, c].forEach(input => {
+    if(typeof input !== 'number') throw new Error('isRectangularTriangle function accepts only numbers.');
+  })
+  
   if (a < 0 || b < 0 || c < 0) {
     throw new Error('The sides of the triangle should be greater than 0');
   };
@@ -25,3 +29,4 @@ const cond2 = isRectangularTriangle(4, 3, 5);
 const cond3 = isRectangularTriangle(4, 3, 2);
 const cond4 = isRectangularTriangle(4, 4, 4);
 // cond3 i cond4 to false
+console.log(cond1, cond2, cond3, cond4);

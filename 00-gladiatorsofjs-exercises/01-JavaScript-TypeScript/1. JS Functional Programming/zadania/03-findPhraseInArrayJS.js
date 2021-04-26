@@ -19,16 +19,23 @@ const inputData = [
 
 const findPhraseInArray = (array, phrase) => {
   const inputIsNotAnArray = !Array.isArray(array);
+  const arrayContainsOnlyStrings = array.every(el => typeof el === 'string');
 
-  if (inputIsNotAnArray) {
-    throw new TypeError(array + " is not an array.");
-  }
+  if (inputIsNotAnArray) throw new TypeError(array + " is not an array.");
+  if (array.length === 0) throw new Error('Array has no content');
+  if (!arrayContainsOnlyStrings) throw new TypeError('Every element in array has to be a string');
+  if (typeof phrase !== 'string') throw new TypeError('Phrase must be a string');
 
-  const index = array.indexOf(phrase);
+  const phraseRegExp = new RegExp(`\w*(${phrase})\w*`, 'ig');
+
+  const result = array.reduce((acc, element, id) => {
+    if(phraseRegExp.test(element)) acc.push([id, element]);
+    return acc;
+  }, [])
   
-  if (index === -1) {
-    return "There is no such phrase in this array.";
-  }
+  if (result.length === 0) throw new Error('Given phrase was not found in this array');
 
-  return [phrase, index];
+  return result;
 };
+
+findPhraseInArray(inputData, 'tut')
