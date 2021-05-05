@@ -79,6 +79,7 @@ class Validator {
     if (this.isNumber(this.value) && this.value <= max && this.value >= min) {
       return this;
     }
+    
     throw new Error(`${this.key} should be between ${min} and ${max}`);
   }
 }

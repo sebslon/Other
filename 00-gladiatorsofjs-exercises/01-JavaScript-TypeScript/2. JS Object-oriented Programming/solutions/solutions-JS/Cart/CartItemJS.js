@@ -18,7 +18,7 @@ class CartItem {
   }
 
   change(property, newValue) {
-    switch (property) {
+    switch (property.toLowerCase()) {
       case "name":
         Validator.check("Name", newValue).isNotEmpty().isString().min(5);
         return (this.name = newValue);
