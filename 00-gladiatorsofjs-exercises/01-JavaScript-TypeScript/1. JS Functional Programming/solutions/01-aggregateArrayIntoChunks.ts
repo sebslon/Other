@@ -1,10 +1,8 @@
+import { randomNumberInRange } from './helpers';
+
 type Chunk<T> = (T | null)[];
 
 const alphabet: string[] = "abcdefghijkmlnoprstuwxyz".split("");
-
-const randomNumberFourToSeven = (): number => {
-  return 7 - Math.floor(Math.random() * 4);
-}
 
 const validateInput = <T>(input: T[]) => {
   const inputIsNotAnArray = !Array.isArray(input)
@@ -25,7 +23,7 @@ export const aggregateIntoChunks = <T>(array: Array<T>): Chunk<T>[] => {
   const chunkedArray: Chunk<T>[] = [];
 
   while(workArray.length > 0) {
-    const chunkSize = randomNumberFourToSeven();
+    const chunkSize = randomNumberInRange(4, 7);
     let chunk: Chunk<T> = []
 
     for(let i = 0; i < chunkSize; i++) {
