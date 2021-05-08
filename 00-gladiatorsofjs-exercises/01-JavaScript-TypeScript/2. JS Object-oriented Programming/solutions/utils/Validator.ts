@@ -1,15 +1,18 @@
 class Validator {
-  key;
-  value;
+  private static key: string;
+  private static value: string | number | (string | number)[];
 
-  static check(key, value) {
+  static check(key: string, value: string | number | string[] | number[]) {
     this.key = key;
     this.value = value;
     return this;
   }
 
   static isNotEmpty() {
-    if (this.value.length === 0) {
+    if (
+      (typeof this.value === "string" || Array.isArray(this.value)) &&
+      this.value.length === 0
+    ) {
       throw new Error(this.key + " should not be empty.");
     }
     return this;
@@ -36,7 +39,7 @@ class Validator {
     return this;
   }
 
-  static min(minValue) {
+  static min(minValue: number) {
     if (typeof minValue !== "number") {
       throw new Error("Minimum value should be a number");
     }
@@ -49,11 +52,11 @@ class Validator {
     if (this.value < minValue) {
       throw new Error(`${this.key} should be greater than ${minValue}`);
     }
-    
+
     return this;
   }
 
-  static max(maxValue) {
+  static max(maxValue: number) {
     if (typeof maxValue !== "number") {
       throw new Error("Maximum value should be a number");
     }
@@ -66,11 +69,11 @@ class Validator {
     if (this.value > maxValue) {
       throw new Error(`${this.key} should be lower than ${maxValue}`);
     }
-    
-    return this;
+
+    return this
   }
 
-  static between(min, max) {
+  static between(min: number, max: number) {
     if (typeof this.value === "string" || Array.isArray(this.value)) {
       this.value = this.value.length;
       this.key = this.key + " length";
@@ -79,11 +82,9 @@ class Validator {
     if (this.value > max && this.value < min) {
       throw new Error(`${this.key} should be between ${min} and ${max}`);
     }
-    
+
     return this;
   }
 }
-
-Validator.check('Price', 'a').between(2, 5);
 
 module.exports = Validator;
