@@ -70,7 +70,7 @@ class Validator {
       throw new Error(`${this.key} should be lower than ${maxValue}`);
     }
 
-    return this
+    return this;
   }
 
   static between(min: number, max: number) {
@@ -87,4 +87,4 @@ class Validator {
   }
 }
 
-module.exports = Validator;
+export default Validator;
