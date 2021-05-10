@@ -2,7 +2,7 @@ const validateInput = (input: any[], callback: any) => {
   const inputIsNotAnArray = !Array.isArray(input);
 
   if (inputIsNotAnArray) {
-    throw new TypeError(input + " is not an array.");
+    throw new TypeError("Given input is not an array.");
   }
 
   if (typeof callback !== "function") {
@@ -10,7 +10,7 @@ const validateInput = (input: any[], callback: any) => {
   }
 };
 
-const forEachFn = <T>(
+export const forEachFn = <T>(
   array: T[],
   callback: (element: T, index: number, array: T[]) => void
 ) => {
@@ -23,7 +23,7 @@ const forEachFn = <T>(
   }
 };
 
-const mapFn = <T>(
+export const mapFn = <T>(
   array: T[],
   callback: (element: T, index: number, array: T[]) => unknown
 ): unknown[] => {
@@ -39,13 +39,13 @@ const mapFn = <T>(
   return result;
 };
 
-const entriesFn = <T>(array: T[]): IterableIterator<T> => {
+export const entriesFn = <T>(array: T[]): IterableIterator<T> => {
   const workArray = [...array];
 
   return workArray[Symbol.iterator]();
 };
 
-const filterFn = <T>(
+export const filterFn = <T>(
   array: T[],
   callback: (value: T, index: number, array: T[]) => T[]
 ): T[] => {
@@ -64,7 +64,7 @@ const filterFn = <T>(
   return result;
 };
 
-const everyFn = <T>(
+export const everyFn = <T>(
   array: T[],
   callback: (value: T, index: number, array: T[]) => boolean
 ): boolean => {
@@ -83,7 +83,7 @@ const everyFn = <T>(
   return true;
 };
 
-const someFn = <T>(
+export const someFn = <T>(
   array: T[],
   callback: (value: T, index: number, array: T[]) => boolean
 ): boolean => {
@@ -102,7 +102,7 @@ const someFn = <T>(
   return false;
 };
 
-const reduceFn = <T>(
+export const reduceFn = <T>(
   array: T[],
   callback: (accumulator: T, currentValue: T, index: number, array: T[]) => T,
   initial: T
