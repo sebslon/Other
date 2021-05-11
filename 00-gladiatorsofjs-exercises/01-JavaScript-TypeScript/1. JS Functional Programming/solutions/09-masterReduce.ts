@@ -1,5 +1,3 @@
-export {};
-
 const validateInput = (input: any[], callback: any) => {
   const inputIsNotAnArray = !Array.isArray(input);
 
