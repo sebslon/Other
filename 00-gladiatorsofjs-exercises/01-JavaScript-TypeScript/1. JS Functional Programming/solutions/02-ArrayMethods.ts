@@ -39,10 +39,14 @@ export const mapFn = <T>(
   return result;
 };
 
-export const entriesFn = <T>(array: T[]): IterableIterator<T> => {
-  const workArray = [...array];
+export const entriesFn = <T>(array: T[]): IterableIterator<[number, T]> => {
+  const iterator: Array<[number, T]> = [];
 
-  return workArray[Symbol.iterator]();
+  for(let index = 0; index < array.length; index++) {
+    iterator.push([index, array[index]]);
+  }
+
+  return iterator[Symbol.iterator]();
 };
 
 export const filterFn = <T>(
