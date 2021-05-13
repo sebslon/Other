@@ -42,7 +42,7 @@ export const mapFn = <T>(
 export const entriesFn = <T>(array: T[]): IterableIterator<[number, T]> => {
   const iterator: Array<[number, T]> = [];
 
-  for(let index = 0; index < array.length; index++) {
+  for (let index = 0; index < array.length; index++) {
     iterator.push([index, array[index]]);
   }
 
@@ -106,23 +106,32 @@ export const someFn = <T>(
   return false;
 };
 
-export const reduceFn = <T>(
+export const reduceFn = <T, U>(
   array: T[],
-  callback: (accumulator: T, currentValue: T, index: number, array: T[]) => T,
-  initial: T
-): T => {
+  callback: (accumulator: T | U, currentValue: T, index: number, array: T[]) => T | U,
+  initial?: U
+): T | U => {
   validateInput(array, callback);
 
-  if (array.length === 0 && !initial)
+  if (array.length === 0 && !initial) {
     throw new TypeError("Reduce of empty array with no initial value");
+  }
 
   const workArray = [...array];
   let accumulator = initial ? initial : workArray[0];
 
   for (const index in workArray) {
     let id = parseInt(index);
+
+    if(initial === undefined) id++;
+    if(workArray[id] === undefined) break;
+    
     accumulator = callback(accumulator, workArray[id], id, workArray);
   }
 
   return accumulator;
 };
+
+//@ts-ignore
+// console.log(reduceFn([], (a, b) => a + b));
+// console.log([].reduce((a, b) => a + b));
