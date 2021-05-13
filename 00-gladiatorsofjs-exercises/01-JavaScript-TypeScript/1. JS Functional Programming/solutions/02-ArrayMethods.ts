@@ -131,7 +131,3 @@ export const reduceFn = <T, U>(
 
   return accumulator;
 };
-
-//@ts-ignore
-// console.log(reduceFn([], (a, b) => a + b));
-// console.log([].reduce((a, b) => a + b));
