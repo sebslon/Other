@@ -11,6 +11,13 @@ describe("generateArrayWithRandomNumbers function", () => {
     expect(result.length).toBe(10);
   });
 
+  it("Works properly with proper arguments", () => {
+    const result = generateArrayWithRandomNumbers(5, 0, 5);
+
+    expect(result.length).toBe(5);
+    expect(result.every((num) => num >= 0 && num <= 5));
+  });
+
   it("Throws errors if any of arguments is not integer", () => {
     const notIntegerValue = 1.5;
 
@@ -42,6 +49,22 @@ describe("generateArrayOfArraysWithRandomNumbers function", () => {
       true
     );
     expect(result.length).toBe(10);
+  });
+
+  it("Works properly with proper arguments", () => {
+    const arraysAmount = 5;
+    const elemInArrayAmount = 5;
+    const minValue = 0;
+    const maxValue = 5;
+    const result = generateArrayOfArraysWithRandomNumbers(
+      arraysAmount,
+      elemInArrayAmount,
+      minValue,
+      maxValue
+    );
+
+    expect(result.length).toBe(5);
+    expect(result.every(arr => arr.every(num => num >= 0 && num <= 5)));
   });
 
   it("Throws error if howManyArrays argument is not integer", () => {
