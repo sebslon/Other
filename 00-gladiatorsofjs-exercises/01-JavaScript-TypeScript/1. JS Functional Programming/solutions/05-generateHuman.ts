@@ -7,7 +7,7 @@ const url = "https://random-data-api.com/api/users/random_user";
 
 type UserInfo = [string, string, string];
 
-interface User {
+export interface User {
   id: string;
   name: string;
   surname: string;
@@ -17,7 +17,7 @@ interface User {
   country: string;
 }
 
-async function generateHuman(): Promise<User> {
+export async function generateHuman(): Promise<User> {
   const personId = uuid();
   const [name, surname, country] = await getPerson();
   const email = `${name.toLowerCase()}${surname.toLowerCase()}@gmail.com`;
@@ -60,3 +60,6 @@ const generatePhoneNumber = (): string => {
   }
   return phoneNumber;
 };
+
+// const user = generateHuman().then(val => console.log(Object.keys(val)));
+// console.log(result);
