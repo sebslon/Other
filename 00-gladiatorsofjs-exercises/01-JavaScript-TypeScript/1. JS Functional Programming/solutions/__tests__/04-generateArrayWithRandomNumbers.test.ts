@@ -12,9 +12,17 @@ describe("generateArrayWithRandomNumbers function", () => {
   });
 
   it("Throws errors if any of arguments is not integer", () => {
-    expect(() => generateArrayWithRandomNumbers(1.5, 1, 1)).toThrowError();
-    expect(() => generateArrayWithRandomNumbers(1, 1.5, 1)).toThrowError();
-    expect(() => generateArrayWithRandomNumbers(1, 1, 1.5)).toThrowError();
+    const notIntegerValue = 1.5;
+
+    expect(() =>
+      generateArrayWithRandomNumbers(notIntegerValue, 1, 1)
+    ).toThrowError();
+    expect(() =>
+      generateArrayWithRandomNumbers(1, notIntegerValue, 1)
+    ).toThrowError();
+    expect(() =>
+      generateArrayWithRandomNumbers(1, 1, notIntegerValue)
+    ).toThrowError();
   });
 
   it("Throws error if argument howManyNumbers is less than 0", () => {
@@ -30,8 +38,9 @@ describe("generateArrayOfArraysWithRandomNumbers function", () => {
   it("Generates array with 10 arrays with random numbers between 1 and 10 if arguments are not passed", () => {
     const result = generateArrayOfArraysWithRandomNumbers();
 
-    expect(result.every((arr) => arr.every((el) => el >= 1 && el <= 10)))
-      .toBe(true);
+    expect(result.every((arr) => arr.every((el) => el >= 1 && el <= 10))).toBe(
+      true
+    );
     expect(result.length).toBe(10);
   });
 
