@@ -1,4 +1,4 @@
-function getMyAge(input: Date | string | number): (string | number) {
+export function getMyAge(input: Date | string | number): (string | number) {
   const actualYear = new Date().getFullYear();
 
   let myAge;
@@ -29,9 +29,3 @@ function getMyAge(input: Date | string | number): (string | number) {
 
   return myAge;
 }
-
-const result1 = getMyAge(new Date(1990, 1, 1));
-const result2 = getMyAge("19");
-const result3 = getMyAge(2100);
-
-console.log(result1, result2, result3);
