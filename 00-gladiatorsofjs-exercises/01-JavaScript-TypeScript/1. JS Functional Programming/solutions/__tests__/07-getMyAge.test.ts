@@ -13,13 +13,20 @@ describe("getMyAge function", () => {
     expect(() => getMyAge("a123")).toThrow(Error(errorMsg));
   });
 
+  it("Throws error if Date has invalid format", () => {
+    const invalidDate = new Date("foo");
+    const errorMsg = "Invalid date format";
+
+    expect(() => getMyAge(invalidDate)).toThrow(Error(errorMsg));
+  });
+
   it("Throws error if input is of any invalid type", () => {
     const invalidType = {};
     const errorMsg = "Enter proper input to calculate your age..";
 
     expect(() => getMyAge(invalidType)).toThrow(Error(errorMsg));
   });
-  
+
   it("Works properly - Date object as an argument", () => {
     const year = new Date(1990, 1, 1).getFullYear();
 
@@ -54,9 +61,10 @@ describe("getMyAge function", () => {
     const result3 = getMyAge(new Date(futureYear, 1, 1));
 
     const yearToBirth = -(actualYear - 2100);
+    const expectedResult = `You will be born in ${yearToBirth} years`;
 
-    expect(result).toBe(`You will be born in ${yearToBirth} years`);
-    expect(result2).toBe(`You will be born in ${yearToBirth} years`);
-    expect(result3).toBe(`You will be born in ${yearToBirth} years`);
+    expect(
+      [result, result2, result3].every((result) => result === expectedResult)
+    ).toBe(true);
   });
 });
