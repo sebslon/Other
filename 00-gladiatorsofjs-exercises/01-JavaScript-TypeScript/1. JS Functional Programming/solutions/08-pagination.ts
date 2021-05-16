@@ -1,4 +1,4 @@
-type Settings = { actualPageIndex: number; entriesOnPage: number };
+export type Settings = { actualPageIndex: number; entriesOnPage: number };
 
 const defaultSettings: Settings = {
   actualPageIndex: 0,
@@ -10,7 +10,7 @@ export const paginateArray = <T>(
   settings: Settings = defaultSettings
 ): T[] => {
   validateInput(dataEntries, settings);
-  
+
   const { actualPageIndex, entriesOnPage } = settings;
 
   const firstElement = actualPageIndex * entriesOnPage;
