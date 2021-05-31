@@ -1,6 +1,6 @@
 import { data } from './constants';
 
-function filterWith<T>(array: T[], phrase: string): T[] {
+export function filterWith<T>(array: T[], phrase: string): T[] {
   if (!Array.isArray(array)) throw new Error("First argument must be an array.");
   if (typeof phrase !== "string") throw new Error("Phrase must be a string");
   if (phrase.length <= 2) throw new Error('Phrase should have length greater than 2'); 
@@ -21,7 +21,7 @@ function filterWith<T>(array: T[], phrase: string): T[] {
   return elementsContainingPhrase;
 }
 
-function filterData<T>(array: T[], regexp: RegExp): T[] {
+export function filterData<T>(array: T[], regexp: RegExp): T[] {
   const result = array.filter((element) => {
 
     if (Object.prototype.toString.call(element) === "[object Object]") {
