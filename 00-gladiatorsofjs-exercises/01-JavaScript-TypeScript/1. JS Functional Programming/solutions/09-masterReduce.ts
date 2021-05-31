@@ -1,4 +1,4 @@
-const validateInput = (input: any[], callback: any) => {
+export const validateInput = (input: any[], callback: any) => {
   const inputIsNotAnArray = !Array.isArray(input);
 
   if (inputIsNotAnArray) {
@@ -16,7 +16,7 @@ type everyCallback<T> = (element: T, id: number, arr: T[]) => boolean;
 type someCallback<T> = (element: T, id: number, arr: T[]) => boolean;
 
 //Array methods with .reduce
-function mapFn<T, U>(array: T[], callback: mapCallback<T, U>): U[] {
+export function mapFn<T, U>(array: T[], callback: mapCallback<T, U>): U[] {
   validateInput(array, callback);
 
   return [...array].reduce((acc: U[], currentValue, index, array) => {
@@ -25,7 +25,7 @@ function mapFn<T, U>(array: T[], callback: mapCallback<T, U>): U[] {
   }, []);
 }
 
-function filterFn<T>(array: T[], callback: filterCallback<T>): T[] {
+export function filterFn<T>(array: T[], callback: filterCallback<T>): T[] {
   validateInput(array, callback);
 
   return [...array].reduce((acc: T[], currentValue, index, array) => {
@@ -36,7 +36,7 @@ function filterFn<T>(array: T[], callback: filterCallback<T>): T[] {
   }, []);
 }
 
-function everyFn<T>(array: T[], callback: everyCallback<T>): boolean {
+export function everyFn<T>(array: T[], callback: everyCallback<T>): boolean {
   validateInput(array, callback);
 
   return [...array].reduce((acc: boolean, currentValue, index, array) => {
@@ -47,7 +47,7 @@ function everyFn<T>(array: T[], callback: everyCallback<T>): boolean {
   }, true);
 }
 
-function someFn<T>(array: T[], callback: someCallback<T>): boolean {
+export function someFn<T>(array: T[], callback: someCallback<T>): boolean {
   validateInput(array, callback);
 
   return [...array].reduce((acc: boolean, currentValue, index, array) => {

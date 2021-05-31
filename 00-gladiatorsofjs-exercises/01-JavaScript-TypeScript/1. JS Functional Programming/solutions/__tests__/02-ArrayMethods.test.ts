@@ -7,6 +7,7 @@ import {
   filterFn,
   everyFn,
   reduceFn,
+  someFn
 } from "../02-ArrayMethods";
 
 describe("ArrayMethods", () => {
@@ -121,17 +122,18 @@ describe("ArrayMethods", () => {
 
   describe("someFn function", () => {
     it("Works properly - like native .some", () => {
-      let cb = (el) => el > 1;
-      let native = testArray.every(cb);
-      let tested = everyFn(testArray, cb);
+      const trueCondition = () => true;
 
+      let native = testArray.some(trueCondition);
+      let tested = someFn(testArray, trueCondition);
       expect(tested).toBe(native);
 
-      cb = (el) => el === 0;
-      native = testArray.every(cb);
-      tested = everyFn(testArray, cb);
+      //false
+      const falseCondition = (el) => false;
+      native = testArray.some(falseCondition);
+      tested = someFn(testArray, falseCondition);
 
-      expect(tested).toBe(native);
+      expect(tested).toBe(false);
     });
   });
 
@@ -152,15 +154,15 @@ describe("ArrayMethods", () => {
 
     it("Works properly - like native .reduce", () => {
       //flat array
-      const sumCb = (a, b) => a + b;
+      const sum = (a, b) => a + b;
 
-      const firstNativeFnResult = testArray.reduce(sumCb);
-      const secondNativeFnResult = testArray.reduce(sumCb, 25);
-      const thirdNativeFnResult = [].reduce(sumCb, 5);
+      const firstNativeFnResult = testArray.reduce(sum);
+      const secondNativeFnResult = testArray.reduce(sum, 25);
+      const thirdNativeFnResult = [].reduce(sum, 5);
 
-      const firstTestedFnResult = reduceFn(testArray, sumCb);
-      const secondTestedFnResult = reduceFn(testArray, sumCb, 25);
-      const thirdTestedFnResult = reduceFn([], sumCb, 5);
+      const firstTestedFnResult = reduceFn(testArray, sum);
+      const secondTestedFnResult = reduceFn(testArray, sum, 25);
+      const thirdTestedFnResult = reduceFn([], sum, 5);
 
       expect(firstTestedFnResult).toBe(firstNativeFnResult);
       expect(secondTestedFnResult).toBe(secondNativeFnResult);
