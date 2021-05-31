@@ -21,7 +21,7 @@ describe("getMyAge function", () => {
   });
 
   it("Throws error if input is of any invalid type", () => {
-    const invalidType = {};
+    const invalidType: any = {};
     const errorMsg = "Enter proper input to calculate your age..";
 
     expect(() => getMyAge(invalidType)).toThrow(Error(errorMsg));
