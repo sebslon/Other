@@ -47,5 +47,4 @@ export function filterData<T>(array: T[], regexp: RegExp): T[] {
   return result;
 }
 
-// console.log(filterWith(data, "nisi"));
-filterWith(data, "nisi");
+// console.log(filterWith(data, "aaa"))

@@ -7,9 +7,13 @@ describe("filterWith function", () => {
 
   it("Throws error if first argument is not an array", () => {
     const notAnArrayErr = "First argument must be an array.";
-    const data: any = "s";
+    const invalidInputs: any[] = [3, {}, true, "s"];
 
-    expect(() => filterWith(data, examplePhrase)).toThrow(Error(notAnArrayErr));
+    invalidInputs.forEach((input) => {
+      expect(() => filterWith(input, examplePhrase)).toThrow(
+        Error(notAnArrayErr)
+      );
+    });
   });
 
   it("Throws error if phrase is not a string", () => {
@@ -20,4 +24,24 @@ describe("filterWith function", () => {
       expect(() => filterWith(data, phrase)).toThrow(Error(errorMsg));
     });
   });
+
+  it("Throws error if phrase length is lower or equal to 2", () => {
+    const phrase = "aa";
+    const errorMsg = "Phrase should have length greater than 2";
+
+    expect(() => filterWith([], phrase)).toThrow(Error(errorMsg));
+  });
+
+  it("Throws error if array doesn't contain any object with given phrase", () => {
+    const phrase = "111111";
+    const errorMsg = "Array does not contain any object with that phrase.";
+
+    expect(() => filterWith(data, phrase)).toThrow(Error(errorMsg));
+  });
+
+  it("Returns objects containing given phrase", () => {
+    const expectedResult: any = [data[1]]
+
+    expect(filterWith(data, examplePhrase)).toEqual(expectedResult)
+  })
 });
