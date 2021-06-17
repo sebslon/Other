@@ -32,7 +32,7 @@
 
 ```javascript
 class Book {
-    // Ma miec: Tytuł, Autora, uuid, losowe zdjęcie oraz krótki opis
+    // Ma miec: Tytuł, Autora, uuid, losowe zdjęcie oraz krótki opis -- DONE
 }
 
 class Booking {

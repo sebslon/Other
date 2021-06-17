@@ -1,6 +1,16 @@
 class Validator {
+  private static instance: Validator;
   private static key: string;
   private static value: string | number | (string | number)[];
+
+  private constructor() {}
+
+  static getInstance() {
+    if(!Validator.instance) {
+      return Validator.instance = new Validator();
+    }
+    return Validator.instance;
+  }
 
   static check(key: string, value: string | number | string[] | number[]) {
     this.key = key;
@@ -36,6 +46,16 @@ class Validator {
     if (typeof this.value !== "number") {
       throw new Error(this.key + " should be a number.");
     }
+    return this;
+  }
+
+  static isValidEmail() {
+    const validEmailRegex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    const value = this.value.toString();
+
+    if(!validEmailRegex.test(value)) {
+      throw new Error("Invalid email format");
+    };
     return this;
   }
 
@@ -87,4 +107,4 @@ class Validator {
   }
 }
 
-export default Validator;
+Validator.check('Email', 'seba@x.co').isValidEmail();
