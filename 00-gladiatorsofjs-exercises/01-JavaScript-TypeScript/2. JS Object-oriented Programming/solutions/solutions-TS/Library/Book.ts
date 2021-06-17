@@ -6,8 +6,6 @@ interface IBook {
   author: string;
   picture: string;
   description: string;
-  setImage: (img: string) => void;
-  setDescription: (description: string) => void;
 }
 
 export class Book implements IBook {

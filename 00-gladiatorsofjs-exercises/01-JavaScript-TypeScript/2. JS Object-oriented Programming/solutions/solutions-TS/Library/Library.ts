@@ -1,8 +1,9 @@
 import { Book } from "./Book";
 import { Booking } from "./Booking";
-import { User } from "./User";
+import { LibraryUser } from "./LibraryUser";
 
 interface ILibrary {
+  libraryName: string;
   books: Book[];
   borrowedBooks: Book[];
   bookings: Booking[];
@@ -19,6 +20,14 @@ class Library implements ILibrary {
     this.books = [];
     this.bookings = [];
     this.borrowedBooks = [];
+  }
+
+  findBook(book: Book) {
+    const index = this.books.indexOf(book);
+    if(index === -1) {
+      throw new Error('Book not found');
+    }
+    return this.books[index];
   }
 
   addBook(book: Book) {
@@ -39,30 +48,35 @@ class Library implements ILibrary {
     return this.books.splice(bookIndex, 1);
   }
 
-  borrowBook(book: Book, user: User) {
+  createBooking(book: Book, user: LibraryUser) {
+    const bookInLibrary = this.findBook(book);
+
+    if(!bookInLibrary) {
+      throw new Error("Sorry, we don't have this book.")
+    }
+
     const booking = new Booking(user, book);
 
-    return this.bookings.push(booking);
+    this.borrowedBooks.push(book);
+    this.bookings.push(booking);
+    this.removeBook(book);
+
+    return booking;
+  }
+
+  finishBooking(booking: Booking, date: Date) {
+    const bookingIndex = this.bookings.indexOf(booking);
+    const penalty = this.bookings[bookingIndex].calculatePenalty(date);
+
+    if (penalty !== 0) {
+      throw new Error('You have to pay penalty: ' + penalty);
+    }
+
+    const [ returnedBook ] = this.borrowedBooks.filter(book => book._id === booking.bookId);
+    this.books.push(returnedBook);
+    this.bookings.splice(bookingIndex, 1)
+
+    return "Successfully returned";
   }
 }
 
-// Ma miec: listę książek, listę wypożyczeń oraz listę wypożyczonych książek -- DONE
-// Ma umożliwiać:
-// - dodawanie książek do listy
-// - usuwanie książek z listy
-// - wypożyczanie książki dla usera X
-// - oddanie wypożyczania książki
-
-const library = new Library('Krakowska')
-const book = new Book('Książka', 'autor');
-const book1 = new Book('Książkax', 'autor');
-const book2 = new Book('Książkaxy', 'autor');
-
-const seba = new User('seba', 'sloniec');
-
-library.addBook(book);
-library.addBook(book1);
-
-library.borrowBook(book1, seba);
-
-console.log(library.bookings);

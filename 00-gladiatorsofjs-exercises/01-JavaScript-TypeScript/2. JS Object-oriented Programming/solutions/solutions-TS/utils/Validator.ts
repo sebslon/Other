@@ -107,4 +107,4 @@ class Validator {
   }
 }
 
-Validator.check('Email', 'seba@x.co').isValidEmail();
+export default Validator;
