@@ -1,0 +1,8 @@
+.inputContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.textInput {
+  width: 200px;
+}
