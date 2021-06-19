@@ -82,27 +82,3 @@ class Library implements ILibrary {
     return this.books[index];
   }
 }
-
-// Ma miec: listę książek, listę wypożyczeń oraz listę wypożyczonych książek -- DONE
-// Ma umożliwiać:
-// - dodawanie książek do listy
-// - usuwanie książek z listy
-// - wypożyczanie książki dla usera X
-// - oddanie wypożyczania książki
-
-const library = new Library("Krakowska");
-const book = new Book("Książka", "autor");
-const book1 = new Book("Książkax", "autor");
-const book2 = new Book("Książkaxy", "autor");
-
-const seba = new LibraryUser("seba", "sloniec");
-
-library.addBook(book);
-library.addBook(book1);
-library.addBook(book2);
-
-const booking = library.createBooking(book, seba);
-library.finishBooking(booking, new Date(2020, 14, 14));
-
-console.log(library.bookings);
-console.log(library.books);
