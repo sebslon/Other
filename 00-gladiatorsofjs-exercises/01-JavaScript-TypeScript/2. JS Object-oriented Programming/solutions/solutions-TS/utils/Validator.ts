@@ -6,8 +6,8 @@ class Validator {
   private constructor() {}
 
   static getInstance() {
-    if(!Validator.instance) {
-      return Validator.instance = new Validator();
+    if (!Validator.instance) {
+      return (Validator.instance = new Validator());
     }
     return Validator.instance;
   }
@@ -50,27 +50,52 @@ class Validator {
   }
 
   static isValidEmail() {
-    const validEmailRegex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    const validEmailRegex =
+      /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     const value = this.value.toString();
 
-    if(!validEmailRegex.test(value)) {
+    if (!validEmailRegex.test(value)) {
       throw new Error("Invalid email format");
-    };
+    }
+    return this;
+  }
+
+  static isStrongPassword() {
+    if (!/[A-Z]/.test(this.value.toString())) {
+      throw new Error(
+        this.key + " should contain at lease one capital letter."
+      );
+    }
+
+    if (!/[0-9]/.test(this.value.toString())) {
+      throw new Error(this.key + " should contain at least one number.");
+    }
+
+    if (
+      !/(?=.*[ !"#$%&'()*+,-./:;<=>?@[\]^_`{|}~])/.test(this.value.toString())
+    ) {
+      throw new Error(
+        this.key + " should contain at least one special character."
+      );
+    }
+
     return this;
   }
 
   static min(minValue: number) {
+    let key = this.key;
+
     if (typeof minValue !== "number") {
       throw new Error("Minimum value should be a number");
     }
 
     if (typeof this.value === "string" || Array.isArray(this.value)) {
       this.value = this.value.length;
-      this.key = this.key + " length";
+      key = this.key + " length";
     }
 
     if (this.value < minValue) {
-      throw new Error(`${this.key} should be greater than ${minValue}`);
+      throw new Error(`${key} should be greater than ${minValue}`);
     }
 
     return this;
