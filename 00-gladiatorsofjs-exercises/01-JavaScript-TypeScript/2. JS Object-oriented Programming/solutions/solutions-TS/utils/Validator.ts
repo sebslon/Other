@@ -84,17 +84,18 @@ class Validator {
 
   static min(minValue: number) {
     let key = this.key;
+    let value = this.value;
 
     if (typeof minValue !== "number") {
       throw new Error("Minimum value should be a number");
     }
 
     if (typeof this.value === "string" || Array.isArray(this.value)) {
-      this.value = this.value.length;
       key = this.key + " length";
+      value = this.value.length;
     }
 
-    if (this.value < minValue) {
+    if (value < minValue) {
       throw new Error(`${key} should be greater than ${minValue}`);
     }
 
