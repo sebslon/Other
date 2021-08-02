@@ -21,4 +21,6 @@ Wykłady na temat architektury:
 1. https://drive.google.com/file/d/1_Z6iLhVTW1SIevRSm3n2k0_gU8UW5bA_/view
 2. https://drive.google.com/file/d/1lBFB1LgAIklAvjhsZ0NPl8ScVR8loQST/view
 
-Figma użyta w wykładach - https://www.figma.com/file/HNS45l5pieZIk9w66bp21C/Gladiatorzy?node-id=159%3A2
+Figma użyta w wykładach - https://www.figma.com/file/HNS45l5pieZIk9w66bp21C/Gladiatorzy?node-id=0%3A1
+
+Dobry artykuł na temat architektury plików - https://www.taniarascia.com/react-architecture-directory-structure/

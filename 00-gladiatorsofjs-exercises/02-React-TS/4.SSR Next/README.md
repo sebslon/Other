@@ -4,14 +4,12 @@ Gdy mówi się o Next.js, to zawsze wspomina się o Server Side Rendering, dlacz
 
 ## Lista Zadań
 
-Postanowiłem, że ocenię trudność każdego zadania i ustanowiłem listę które zadania moim zdaniem są łatwiejsze a które trudniejsze. Lista zaczyna się od najprostszych zadań a kończy się na najtrudniejszych:
+### Podstawowe zadania
 
 1. RefactorToNext
 2. LearnRichSnippets
 
-### Złożone zadania
-
-W złożonych zadaniach użyjesz wiedzy zdobytej z zadań powyżej, więc zalecam zrobić je jako pierwsze.
+### Zaawansowane zadania
 
 1. NewsPage
 2. NetflixPicker

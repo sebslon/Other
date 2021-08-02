@@ -4,11 +4,14 @@ Zanim wystawisz swoją aplikację musisz dokonać do niej refactoru, aby kod by�
 
 ## Lista Zadań
 
-Postanowiłem, że ocenię trudność każdego zadania i ustanowiłem listę które zadania moim zdaniem są łatwiejsze a które trudniejsze. Lista zaczyna się od najprostszych zadań a kończy się na najtrudniejszych:
+### Podstawowe zadania
 
 1. ChangeToPWA
 2. ProjectRefactor
-3. ExercisesTests
+
+### Zaawansowane zadania
+
+1. ExercisesTests
 
 ## Co można przepracować w praktyce w tym module:
 

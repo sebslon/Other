@@ -17,12 +17,15 @@
 - [ ] Stwórz formularz przy pomocy biblioteki formik w którym użytkownik strony wypełni informacje o:
 
 * Imieniu i nazwisku osoby
-* Miesiącu i dniu urodzin
-* Roku urodzenia
+* Dacie urodzenia
 
 - [ ] Pamiętaj o poprawnej walidacji formularza - do tego przyda ci się biblioteka Yup.
 
-- [ ] Pod formularzem będzie kalendarz w którym ukarzą się urodziny danej osoby oraz informację które są to urodziny. Dodaj do kalendarza 2 tygodnie przed urodzinami powiadomienie, że dana osoba ma za 2 tygodnie urodziny i należy zacząć myśleć o prezencie.
+- [ ] Stwórz kalendarz na którym wyświetlone będą wszystkie wydarzenia.
+
+- [ ] Dodaj do kalendarza 2 tygodnie przed urodzinami powiadomienie, że dana osoba ma za 2 tygodnie urodziny i należy zacząć myśleć o prezencie.
+
+- [ ] Utwórz widoki, które pokażą dane wydarzenia per tydzień i per miesiąc.
 
 ## Przydatne linki
 
