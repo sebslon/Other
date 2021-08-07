@@ -15,9 +15,9 @@
 * [ DONE ] Stwórz dwie klasy dla struktury danych związanych z użytkownikiem(wytyczne w kodzie poniżej)
 * [ DONE ] Klasa User ma dostępne dwa poziomy dostępu: normal i admin.
 * [ DONE ] Powinna umożliwiać zmianę hasła, emaila oraz poziomu dostępu.
-* [ ] User z poziomem dostępu = "admin" może zmieniać hasła,emaile oraz poziomy dostępu innych użytkowników.
-* [ ] Klasa App powinna zarządzać relacjami pomiędzy użytkownikami.
-* [ ] Zawiera listę użytkowników, pozwala tworzyć nowych użytkowników o różnych poziomach dostępu.
+* [ DONE ] User z poziomem dostępu = "admin" może zmieniać hasła,emaile oraz poziomy dostępu innych użytkowników.
+* [ DONE ] Klasa App powinna zarządzać relacjami pomiędzy użytkownikami.
+* [ DONE ] Zawiera listę użytkowników, pozwala tworzyć nowych użytkowników o różnych poziomach dostępu.
 
 ## Cele opcjonalne do wykonania
 

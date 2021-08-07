@@ -16,4 +16,14 @@ export class Admin extends User {
     super(name, surname, email, password, gender);
     this._id = uuid();
   }
+
+  changeOtherUserPassword(user: User, password: string) {
+    user.changePassword(password);
+    return;
+  }
+
+  changeOtherUserEmail(user: User, email: string) {
+    user.changeEmail(email);
+    return;
+  }
 }
