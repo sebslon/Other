@@ -14,7 +14,7 @@ Postanowiłem, że ocenię trudność każdego zadania i ustanowiłem listę kt�
 6. TableWithPagination
 7. Modal
 8. SearchWithDropdown
-9. PageAnimation
+9. PageAnimation [x]
 10. MasonryGrid
 11. PasswordInput
 12. InfiniteList

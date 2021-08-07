@@ -14,9 +14,9 @@ Postanowiłem, że ocenię trudność każdego zadania i ustanowiłem listę kt�
 W złożonych zadaniach użyjesz wiedzy zdobytej z zadań powyżej, więc zalecam zrobić je jako pierwsze.
 
 1. CurrencyConverter
-2. GoogleTrends
+2. GoogleTrends [x]
 3. BoringNightApp
-4. GeoGuessr Game
+4. GeoGuessr Game [x]
 5. Shop
 
 ## Co można przepracować w praktyce w tym module:
