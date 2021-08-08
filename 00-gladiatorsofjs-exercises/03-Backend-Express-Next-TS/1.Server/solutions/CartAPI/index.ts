@@ -1,11 +1,8 @@
-import express, { Application } from 'express';
+import { App } from "./app";
+import { CartController } from "./src/api/cart/CartController";
 
-const app: Application = express();
-const port = process.env.PORT || 3000;
+const server = new App([
+  new CartController()
+]);
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-
-app.listen(port, () => {
-  console.log(`Listening on port ${port}...`);
-})
+server.listen();
