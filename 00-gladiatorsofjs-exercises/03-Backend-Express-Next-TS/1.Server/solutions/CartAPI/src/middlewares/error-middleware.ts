@@ -6,5 +6,10 @@ export const errorMiddleware = (
   res: Response,
   next: NextFunction
 ) => {
-  return res.status(500).send(error.message);
+  if (process.env.NODE_ENV === "development") {
+    return res.status(500).send(error.message);
+  } else {
+    // + logging
+    return res.status(500).send("Something went wrong...");
+  }
 };
