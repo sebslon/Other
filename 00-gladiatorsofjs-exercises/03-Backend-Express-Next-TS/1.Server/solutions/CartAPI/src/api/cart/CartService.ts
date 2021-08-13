@@ -1,4 +1,4 @@
-import { NextFunction, Request, Response } from "express";
+import { Request, Response } from "express";
 
 import { Cart } from "../../models/memory/Cart";
 import { Product } from "../../models/memory/Product";
@@ -44,5 +44,23 @@ export class CartService {
     await this.repository.update(cart);
 
     return res.status(201).send("Product successfully added to cart.");
+  }
+
+  async removeProductFromCart(req: Request, res: Response) {
+    const { id: cartId } = req.params;
+    const { productId } = req.body;
+
+    const cart = await this.repository.getById(cartId);
+    if (!cart) return res.status(404).send("Cart not found");
+    
+    const productIndex = cart?.products.findIndex(product => product._id === productId);
+
+    if(productIndex === -1) {
+      throw new Error("Product with that id is not in the cart");
+    }
+    
+    cart?.products.splice(productIndex, 1);
+    await this.repository.update(cart);
+    return res.status(200).send("Product removed from the cart");
   }
 }

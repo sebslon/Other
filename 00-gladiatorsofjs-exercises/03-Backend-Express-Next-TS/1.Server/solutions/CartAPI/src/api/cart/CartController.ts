@@ -29,5 +29,9 @@ export class CartController implements Controller {
       "/:id",
       handleErrors(this.cartService.addProductToCart.bind(this.cartService))
     );
+    this.router.delete(
+      "/:id",
+      handleErrors(this.cartService.removeProductFromCart.bind(this.cartService))
+    );
   }
 }
