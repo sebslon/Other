@@ -26,11 +26,19 @@ export class CartController implements Controller {
       handleErrors(this.cartService.getCart.bind(this.cartService))
     );
     this.router.put(
-      "/:id",
+      "/:id/addProduct",
       handleErrors(this.cartService.addProductToCart.bind(this.cartService))
     );
+    this.router.put(
+      "/:id/changeQuantity",
+      handleErrors(this.cartService.changeCartProductAmount.bind(this.cartService))
+    ),
+    this.router.post(
+      "/:id/checkout",
+      handleErrors(this.cartService.checkoutCart.bind(this.cartService))
+    ),
     this.router.delete(
-      "/:id",
+      "/:id/deleteProduct",
       handleErrors(this.cartService.removeProductFromCart.bind(this.cartService))
     );
   }
