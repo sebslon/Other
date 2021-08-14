@@ -9,15 +9,15 @@
 
 ## Cele główne
 
-- [ ] Napisz kontroler Cart symulującą koszyk sklepowy.
-- [ ] Produkty na potrzeby zadania są trzymane tablicy.
-- [ ] Kontroler posiada własną tablicę do której może dodawać produkty i je z niej usuwać, a także zwiększać ich liczbę.
+- [ DONE ] Napisz kontroler Cart symulującą koszyk sklepowy.
+- [ DONE ] Produkty na potrzeby zadania są trzymane tablicy.
+- [ DONE ] Kontroler posiada własną tablicę do której może dodawać produkty i je z niej usuwać, a także zwiększać ich liczbę.
 - [ ] Kontroler wystawia endpointy:
-- [ ] - put: /addProductToCart
-- [ ] - delete: /deleteProductFromCart
-- [ ] - post: /changeProductAmount/:id
-- [ ] - get: /checkCart
-- [ ] - post: /buyCart (przekierowuje użytkownika na stronę, gdzie wyświetlany jest koszt jego zakupów, oraz przycisk zatwierdzający zakup. Po kliknięciu
+- [ DONE ] - put: /addProductToCart
+- [ DONE ] - delete: /deleteProductFromCart
+- [ DONE ] - post: /changeProductAmount/:id
+- [ DONE ] - get: /checkCart
+- [ DONE ] - post: /buyCart (przekierowuje użytkownika na stronę, gdzie wyświetlany jest koszt jego zakupów, oraz przycisk zatwierdzający zakup. Po kliknięciu
         go koszyk powinien zostać wyczyszczony)
 ## Cele opcjonalne do wykonania
 - [ ] dodaj logikę związaną z użytkownikami. Aplikacja może stworzyć użytkownika, określić ile ma pieniędzy, oraz przydziela odzielny koszyk dla każdego użytkownika.
