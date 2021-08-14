@@ -1,4 +1,5 @@
 import { Header } from "pages/TwitterClone/components";
+import { Navbar } from "./components/Navbar/Navbar";
 import { GlobalStyles } from "./GlobalStyles";
 
 export const TwitterClone = () => {
@@ -6,6 +7,7 @@ export const TwitterClone = () => {
     <>
       <GlobalStyles />
       <Header />
+      <Navbar />
     </>
   )
 }
