@@ -9,6 +9,7 @@ import Logo from "./logo.svg";
 import Magnifier from "./magnifier.svg";
 import Share from "./share.svg";
 import Star from "./star.svg";
+import ThreeDots from './three-dots.svg';
 import User from "./user.svg";
 
 export {
@@ -23,5 +24,6 @@ export {
   Magnifier,
   Share,
   Star,
+  ThreeDots,
   User,
 };
