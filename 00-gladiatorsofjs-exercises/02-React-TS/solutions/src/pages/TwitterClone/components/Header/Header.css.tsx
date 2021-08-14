@@ -5,6 +5,10 @@ export const StyledHeader = styled.header`
   display: flex;
   align-items: center;
   border-bottom: var(--section_border);
+  background-color: var(--twitter_primary);
+  position: sticky;
+  top: 0;
+  z-index: 10;
 `;
 
 export const PageTitle = styled.h2``;
