@@ -1,16 +1,11 @@
 import { Header } from "pages/TwitterClone/components";
+import { GlobalStyles } from "./GlobalStyles";
 
 export const TwitterClone = () => {
   return (
     <>
+      <GlobalStyles />
       <Header />
-      <h1>Twitter Clone1</h1>
-      <h1>Twitter Clone1</h1>
-      <h1>Twitter Clone1</h1>
-      <h1>Twitter Clone1</h1>
-      <h1>Twitter Clone1</h1>
-      <h1>Twitter Clone1</h1>
-      <h1>Twitter Clone1</h1>
     </>
   )
 }
