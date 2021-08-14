@@ -1,14 +1,12 @@
-import styled from 'styled-components';
-
-export const TwitterLogo = styled.img`
-  display: none;
-`;
+import styled from "styled-components";
 
 export const Nav = styled.nav`
   width: 100%;
   padding: 0.5em 0;
-  margin-top: auto;
   border-top: var(--section_border);
+  position: sticky;
+  bottom: 0;
+  background-color: var(--twitter_primary);
 `;
 
 export const NavItem = styled.a`
@@ -20,4 +18,8 @@ export const NavItem = styled.a`
   span {
     display: none;
   }
+`;
+
+export const TwitterLogo = styled.img`
+  display: none;
 `;

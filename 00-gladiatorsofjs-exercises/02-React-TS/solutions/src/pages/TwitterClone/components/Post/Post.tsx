@@ -9,7 +9,7 @@ import {
 } from "./Post.css";
 
 import { IPost } from "../../types";
-import { Comment, Download, Heart, Share, ThreeDots } from "pages/TwitterClone/images";
+import { Comment, Download, Heart, Share, ThreeDots } from "../../images";
 
 interface PostProps {
   data: IPost;

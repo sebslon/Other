@@ -11,8 +11,6 @@ export const StyledHeader = styled.header`
   z-index: 10;
 `;
 
-export const PageTitle = styled.h2``;
-
 export const UserImg = styled.img`
   height: 2.5em;
   width: 2.5em;
@@ -24,3 +22,5 @@ export const Stars = styled.img`
   margin-left: auto;
   margin-right: 1em;
 `;
+
+export const PageTitle = styled.h2``;
