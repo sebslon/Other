@@ -7,9 +7,8 @@ export const TwitterLogo = styled.img`
 export const Nav = styled.nav`
   width: 100%;
   padding: 0.5em 0;
-  position: absolute;
+  margin-top: auto;
   border-top: var(--section_border);
-  bottom: 0;
 `;
 
 export const NavItem = styled.a`
