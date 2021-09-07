@@ -1,13 +1,15 @@
 import { posts } from "../../data/data.json";
-import { Post } from "../Post/Post";
 
+import { Posts } from "./PostsSection.css";
+
+import { Post } from "../Post/Post";
 
 export const PostsSection = () => {
   return (
-    <>
+    <Posts>
       {posts.map((post) => (
         <Post data={post} />
       ))}
-    </>
+    </Posts>
   );
 };

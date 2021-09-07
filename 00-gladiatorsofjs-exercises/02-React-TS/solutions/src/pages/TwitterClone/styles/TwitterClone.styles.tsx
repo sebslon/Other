@@ -1,8 +1,20 @@
 import styled from "styled-components";
+import { breakpoints } from "./breakpoints";
 
 export const AppContainer = styled.main`
-  height: 100vh;
   display: flex;
   flex-direction: column;
-  overflow: scroll;
+
+  @media ${breakpoints.tablet} {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+`;
+
+export const Content = styled.div`
+  @media ${breakpoints.tablet} {
+    flex: 3;
+    border-left: var(--section_border);
+    border-right: var(--section_border);
+  }
 `;

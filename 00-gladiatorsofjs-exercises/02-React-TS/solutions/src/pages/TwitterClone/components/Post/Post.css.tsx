@@ -2,12 +2,10 @@ import styled from "styled-components";
 
 export const PostContainer = styled.article`
   display: flex;
-  border-bottom: var(--section_border);
   padding: 0.7em;
 `;
 
-export const UserAvatarContainer = styled.div`
-`;
+export const UserAvatarContainer = styled.div``;
 
 export const UserPost = styled.div`
   padding: 0.2em 0.5em;
