@@ -1,6 +1,6 @@
-import { Nav, NavItem, TwitterLogo } from "./Navbar.css";
+import { Feather, Nav, NavItem, TwitterLogo } from "./Navbar.css";
 
-import { House, Magnifier, Bell, Letter, Logo } from "../../images";
+import { Feather as FeatherImg, House, Magnifier, Bell, Letter, Logo } from "../../images";
 
 export const Navbar = () => {
   return (
@@ -12,6 +12,13 @@ export const Navbar = () => {
           <span>{name}</span>
         </NavItem>
       ))}
+      <Feather>
+        <img
+          src={FeatherImg}
+          alt="New twitt"
+          onClick={(e) => e.preventDefault()}
+        />
+      </Feather>
     </Nav>
   );
 };

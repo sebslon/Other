@@ -22,4 +22,25 @@ export const NavItem = styled.a`
 
 export const TwitterLogo = styled.img`
   display: none;
+
+  @media ${breakpoints.tablet} {
+    display: block;
+  }
+`;
+
+export const Feather = styled.a`
+  background-color: var(--twitter_blue);
+  border-radius: 50%;
+  position: absolute;
+  padding: 1em;
+  opacity: 0.5;
+  cursor: pointer;
+  transition: opacity 0.2s ease-in;
+
+  bottom: 4em;
+  right: 1em;
+
+  :hover {
+    opacity: 1;
+  }
 `;
