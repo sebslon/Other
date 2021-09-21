@@ -41,6 +41,7 @@ export const PostSummary = styled.div`
 export const PostStat = styled.div`
   display: flex;
   align-items: center;
+  cursor: pointer;
 
   span {
     font-size: 0.8em;

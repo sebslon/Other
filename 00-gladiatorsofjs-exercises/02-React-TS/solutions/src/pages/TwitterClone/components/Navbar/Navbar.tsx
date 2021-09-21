@@ -18,6 +18,7 @@ export const Navbar = () => {
           alt="New twitt"
           onClick={(e) => e.preventDefault()}
         />
+        <p>Tweet</p>
       </Feather>
     </Nav>
   );

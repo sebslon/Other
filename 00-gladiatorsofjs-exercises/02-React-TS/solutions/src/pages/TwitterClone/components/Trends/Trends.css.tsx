@@ -1,13 +1,13 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
-import { breakpoints } from 'pages/TwitterClone/styles/breakpoints';
+import { breakpoints } from "pages/TwitterClone/styles/breakpoints";
 
 export const TrendsSection = styled.section`
   display: none;
   margin-top: 1.5rem;
   background-color: var(--twitter_darkGray);
   border-radius: 25px;
-  
+
   @media ${breakpoints.bigTablet} {
     display: block;
   }
@@ -17,8 +17,9 @@ export const TrendsSection = styled.section`
     background: none;
     margin: 1em;
     color: var(--twitter_blue);
+    cursor: pointer;
   }
-  `;
+`;
 
 export const TrendsTitle = styled.p`
   font-weight: bold;

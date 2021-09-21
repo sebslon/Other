@@ -29,14 +29,34 @@ export const Nav = styled.nav`
     border: none;
 
     img {
-      margin: 0.7em;
+      margin: 0.4em;
     }
+  }
+
+  @media ${breakpoints.desktop} {
+    align-items: flex-start;
+    margin: 0 2rem;
   }
 `;
 
 export const NavItem = styled.a`
+  margin: 0.2em 0;
+  text-decoration: none;
+
   span {
     display: none;
+    font-weight: bold;
+  }
+
+  @media ${breakpoints.desktop} {
+    display: flex;
+    align-items: center;
+
+    span {
+      display: block;
+      color: white;
+      font-size: 1.1em;
+    }
   }
 `;
 
@@ -65,8 +85,29 @@ export const Feather = styled.a`
     opacity: 1;
   }
 
+  p {
+    display: none;
+  }
+
   @media ${breakpoints.tablet} {
+    margin-top: 0.5em;
     position: static;
     padding: 0;
+  }
+
+  @media ${breakpoints.desktop} {
+    width: 100%;
+    border-radius: 25px;
+    text-align: center;
+
+    img {
+      display: none;
+    }
+
+    p {
+      display: block;
+      font-weight: bold;
+      letter-spacing: 1.2px;
+    }
   }
 `;
