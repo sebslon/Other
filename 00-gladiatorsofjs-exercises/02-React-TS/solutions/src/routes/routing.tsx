@@ -1,5 +1,6 @@
 import { HomePage } from "pages";
-import { ExerciseModule } from "types";
+import { TwitterClone } from "pages/TwitterClone/TwitterClone";
+import { ExerciseModule, ExerciseRoute } from "types";
 
 const firstModuleExercises = [
   { pageName: "TwitterClone" },
@@ -29,12 +30,17 @@ const secondModuleExercises = [
   { pageName: "FormReducer" },
 ];
 
-export const routes = [
+export const routes: ExerciseRoute[] = [
     {
       path: "/",
       component: HomePage,
       exact: true,
-    }
+    },
+    {
+      path: "/TwitterClone",
+      component: TwitterClone,
+      exact: true,
+    },
   ];
 
 export const exercisesLinks: ExerciseModule[] = [

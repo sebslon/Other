@@ -1,0 +1,69 @@
+{
+  "posts": [
+    {
+      "userImage": "https://picsum.photos/100/100",
+      "username": "Jan",
+      "twitterName": "@JanK",
+      "date": "03/19/2021",
+      "content": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+      "comments": 25,
+      "retweets": 20,
+      "likes": 430,
+      "postId": "ff8031cc-b4ba-47fd-aaf7-8ef80b379a14"
+    },
+    {
+      "userImage": "https://picsum.photos/100/200",
+      "username": "Anna",
+      "twitterName": "@AnnaK",
+      "date": "01/22/2021",
+      "content": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
+      "comments": 53,
+      "retweets": 30,
+      "likes": 230,
+      "postId": "40f02540-2570-493e-8aee-baefd3587d82"
+    },
+    {
+      "userImage": "https://picsum.photos/100/300",
+      "username": "Robert",
+      "twitterName": "@RobertK",
+      "date": "01/22/2021",
+      "content": "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.",
+      "comments": 138,
+      "retweets": 45,
+      "likes": 482,
+      "postId": "539eba9f-d94d-4437-b171-66734a26c10e"
+    }
+  ],
+  "popularForYou": [
+    {
+      "header": "Najpopularniejsze w Polska",
+      "name": "Random thing",
+      "tweets": 204,
+      "titleId": "f7029f25-eeda-40eb-a26a-20e7549d8460"
+    },
+    {
+      "header": "Najpopularniejsze w Polska",
+      "name": "Random thing 1",
+      "tweets": 2783,
+      "titleId": "9e3ec4e5-10ab-4302-834b-ffd8e2c445ca"
+    },
+    {
+      "header": "Rozrywka - Trendy",
+      "name": "Random thing 2",
+      "tweets": 16580,
+      "titleId": "226f7d2f-89f6-4f23-9b33-e55930fc89bd"
+    },
+    {
+      "header": "Najpopularniejsze w Polska",
+      "name": "Random thing 3",
+      "tweets": 28194,
+      "titleId": "b447e8c2-a33e-4679-8598-174ac77eebb3"
+    },
+    {
+      "header": "Najpopularniejsze w Polska",
+      "name": "Random thing 4",
+      "tweets": 83824,
+      "titleId": "b0ac5703-a433-4977-bc38-1274eae2b809"
+    }
+  ]
+}
