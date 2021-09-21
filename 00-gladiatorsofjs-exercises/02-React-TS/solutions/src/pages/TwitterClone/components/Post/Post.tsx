@@ -38,7 +38,7 @@ export const Post = ({ data }: PostProps) => {
           <strong>{username}</strong>
           <span>{twitterName}</span> &#8231;
           <span>{new Date(date).toLocaleDateString()}</span>
-          <img src={ThreeDots} alt="more info" />
+          <img src={ThreeDots} alt="more information" />
         </UserInfo>
 
         <p>{content}</p>

@@ -7,6 +7,9 @@ export const GlobalStyles = createGlobalStyle`
   :root {
         --twitter_primary: #15202b;
         --twitter_blue: #1DA1F2;
+        --twitter_gray: #2c445a;
+        --twitter_lightGray: #a9a9a9;
+        --twitter_darkGray: #192837;
         --text_white: #fff;
         --border-color: #3d5466; 
 

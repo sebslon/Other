@@ -1,17 +1,21 @@
+import { ThreeDots } from "pages/TwitterClone/images";
 import { popularForYou as trends } from "../../data/data.json";
+
+import { Trend, TrendsSection, TrendsTitle } from "./Trends.css";
 
 export const Trends = () => {
   return (
-    <section>
-      <p>Popular For You</p>
+    <TrendsSection>
+      <TrendsTitle>Popular For You</TrendsTitle>
       {trends.map((trend) => (
-        <div key={trend.titleId}>
+        <Trend key={trend.titleId}>
           <span>{trend.header}</span>
+          <img src={ThreeDots} alt="more info" />
           <p>{trend.name}</p>
-          <span>{trend.tweets}</span>
-        </div>
+          <span>Tweets: {trend.tweets}</span>
+        </Trend>
       ))}
       <button>Show more</button>
-    </section>
+    </TrendsSection>
   );
 };

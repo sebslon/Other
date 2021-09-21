@@ -8,7 +8,7 @@ export const SearchForm = styled.form`
     display: flex;
     align-items: center;
     color: white;
-    background-color: #555;
+    background-color: var(--twitter_gray);
     border-radius: 25px;
     padding: 0.5em 0.3em;
   }
