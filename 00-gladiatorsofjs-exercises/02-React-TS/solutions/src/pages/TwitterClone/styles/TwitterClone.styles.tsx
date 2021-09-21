@@ -4,6 +4,7 @@ import { breakpoints } from "./breakpoints";
 export const AppContainer = styled.main`
   display: flex;
   flex-direction: column;
+  min-height: 100vh;
 
   @media ${breakpoints.tablet} {
     flex-direction: row;
