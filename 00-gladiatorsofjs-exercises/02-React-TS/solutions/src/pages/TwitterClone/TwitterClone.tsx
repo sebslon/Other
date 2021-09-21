@@ -1,10 +1,7 @@
-import { GlobalStyles } from "./GlobalStyles";
+import { GlobalStyles } from "./styles/GlobalStyles";
 import { AppContainer, Content } from "./styles/TwitterClone.styles";
 
-import { Header } from "./components/Header/Header";
-import { Sidebar } from "./components/Sidebar/Sidebar";
-import { Navbar } from "./components/Navbar/Navbar";
-import { PostsSection } from "./components/PostsSection/PostsSection";
+import { Header, Navbar, PostsSection, Sidebar } from "./components";
 
 export const TwitterClone = () => {
   return (
