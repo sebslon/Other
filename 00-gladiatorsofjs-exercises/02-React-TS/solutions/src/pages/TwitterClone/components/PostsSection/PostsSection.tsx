@@ -2,7 +2,7 @@ import { posts } from "../../data/data.json";
 
 import { Posts } from "./PostsSection.css";
 
-import { Post } from "../Post/Post";
+import { Post } from "../../components";
 
 export const PostsSection = () => {
   return (

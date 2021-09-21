@@ -1,7 +1,6 @@
 import { SidebarContainer } from "./Sidebar.css";
 
-import { Search } from "../Search/Search";
-import { Trends } from "../Trends/Trends";
+import { Search, Trends } from "../../components";
 
 export const Sidebar = () => {
   return (
