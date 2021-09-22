@@ -1,7 +1,9 @@
+import { ratings } from './data.json';
+
+import { RatingsList } from "./components/RatingsList"
+
 export const RatingStars = () => {
   return (
-    <div>
-      RATING STARS
-    </div>
+    <RatingsList ratings={ratings} />
   )
 }

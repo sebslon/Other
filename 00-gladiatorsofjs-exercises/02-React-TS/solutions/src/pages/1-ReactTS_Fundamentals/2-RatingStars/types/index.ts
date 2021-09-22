@@ -1,4 +1,4 @@
-export interface Rating {
+export interface IRating {
   recordId: string;
   name: string;
   score: number;
