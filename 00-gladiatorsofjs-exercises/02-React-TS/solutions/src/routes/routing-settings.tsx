@@ -1,6 +1,6 @@
 import { ExerciseModule, ExerciseRoute } from "types";
 
-import { HomePage, TwitterClone } from "pages";
+import { HomePage, RatingStars, TwitterClone } from "pages";
 
 export const routes: ExerciseRoute[] = [
   {
@@ -11,6 +11,11 @@ export const routes: ExerciseRoute[] = [
   {
     path: "/TwitterClone",
     component: TwitterClone,
+    exact: true,
+  },
+  {
+    path: "/RatingStars",
+    component: RatingStars,
     exact: true,
   },
 ];
