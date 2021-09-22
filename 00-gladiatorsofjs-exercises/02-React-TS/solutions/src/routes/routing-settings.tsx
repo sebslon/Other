@@ -43,13 +43,13 @@ const secondModuleExercises = [
   { pageName: "FormReducer" },
 ];
 
-export const exercisesLinks: ExerciseModule[] = [
+export const exercisesModules: ExerciseModule[] = [
   {
     title: "React TS Fundamentals",
-    linksArray: firstModuleExercises,
+    exercises: firstModuleExercises,
   },
   {
     title: "App State Handling",
-    linksArray: secondModuleExercises,
+    exercises: secondModuleExercises,
   },
 ];

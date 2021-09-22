@@ -4,21 +4,21 @@ import { ExerciseModule } from "types";
 import { ArrowDown, ArrowUp } from "pages/homepage/assets";
 
 interface SubMenuProps {
-  item: ExerciseModule;
+  module: ExerciseModule;
   isActive: boolean;
   onClick: () => void;
 }
 
-export const SubMenu = ({ item, onClick, isActive }: SubMenuProps) => {
+export const SubMenu = ({ module, onClick, isActive }: SubMenuProps) => {
   return (
     <>
       <SidebarLink to="/" onClick={onClick}>
-        <SidebarLabel>{item.title}</SidebarLabel>
+        <SidebarLabel>{module.title}</SidebarLabel>
         <Arrow src={isActive ? ArrowUp : ArrowDown} alt="arrow" />
       </SidebarLink>
       
       {isActive &&
-        item.linksArray.map(({ pageName }: { pageName: string }) => {
+        module.exercises.map(({ pageName }: { pageName: string }) => {
           return (
             <DropdownLink to={`/${pageName}`} key={pageName}>
               <SidebarLabel>{pageName}</SidebarLabel>

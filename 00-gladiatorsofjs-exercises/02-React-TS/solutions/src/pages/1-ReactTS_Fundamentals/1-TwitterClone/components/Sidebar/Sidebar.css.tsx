@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import { breakpoints } from "pages/TwitterClone/styles/breakpoints";
+import { breakpoints } from "../../styles/breakpoints";
 
 export const SidebarContainer = styled.div`
   padding: 1rem 3rem 0 2rem;

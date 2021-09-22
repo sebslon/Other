@@ -5,10 +5,10 @@ import { SidebarNav } from "./styles";
 import { SubMenu } from "pages/homepage/components";
 
 interface SidebarProps {
-  links: ExerciseModule[];
+  modules: ExerciseModule[];
 }
 
-export const Sidebar = ({ links }: SidebarProps) => {
+export const Sidebar = ({ modules }: SidebarProps) => {
   const [activeItem, setActiveItem] = useState<string>("");
 
   const handleClick = (title: string) => {
@@ -18,13 +18,13 @@ export const Sidebar = ({ links }: SidebarProps) => {
   return (
     <>
       <SidebarNav>
-          {links.map((link: any) => {
+          {modules.map((module: ExerciseModule) => {
             return (
               <SubMenu
-                item={link}
-                key={link.title}
-                onClick={() => handleClick(link.title)}
-                isActive={activeItem === link.title}
+                module={module}
+                key={module.title}
+                onClick={() => handleClick(module.title)}
+                isActive={activeItem === module.title}
               />
             );
           })}

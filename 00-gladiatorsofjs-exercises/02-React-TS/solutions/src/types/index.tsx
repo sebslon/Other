@@ -1,6 +1,6 @@
 export interface ExerciseModule {
   title: string;
-  linksArray: { pageName: string }[];
+  exercises: { pageName: string }[];
 }
 
 export interface ExerciseRoute {

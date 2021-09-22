@@ -1,4 +1,4 @@
-import { ThreeDots } from "pages/TwitterClone/images";
+import { ThreeDots } from "../../images";
 import { popularForYou as trends } from "../../data/data.json";
 
 import { Trend, TrendsSection, TrendsTitle } from "./Trends.css";

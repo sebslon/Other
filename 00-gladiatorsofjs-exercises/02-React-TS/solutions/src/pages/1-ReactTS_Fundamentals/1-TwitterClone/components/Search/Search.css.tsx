@@ -1,5 +1,6 @@
-import { breakpoints } from "pages/TwitterClone/styles/breakpoints";
 import styled from "styled-components";
+
+import { breakpoints } from "../../styles/breakpoints";
 
 export const SearchForm = styled.form`
   display: none;
