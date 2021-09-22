@@ -1,9 +1,9 @@
-import { ratings } from './data.json';
+import "./index.css";
 
-import { RatingsList } from "./components/RatingsList"
+import { ratings } from "./data.json";
+
+import { RatingsList } from "./components/RatingsList";
 
 export const RatingStars = () => {
-  return (
-    <RatingsList ratings={ratings} />
-  )
-}
+  return <RatingsList ratings={ratings} />;
+};
