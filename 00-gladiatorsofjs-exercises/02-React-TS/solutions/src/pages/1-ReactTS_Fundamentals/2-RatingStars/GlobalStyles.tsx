@@ -1,3 +1,6 @@
+import { createGlobalStyle } from "styled-components";
+
+export const GlobalStyles = createGlobalStyle`
 :root {
   --color__white: #f0f0f7;
   --color__gray: #21212a;
@@ -14,3 +17,4 @@ body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   color: var(--color__white);
 }
+`;
