@@ -8,13 +8,13 @@ export const AuthTokenApp = () => {
   const queryParams = useQueryParams();
   const token = queryParams.get("token");
 
-  console.log("Token: ", token);
-
-  if (!isTokenValid(token)) {
-    return <Redirect to="/AuthToken/login" />;
-  }
-
   return (
-    <Route path={`/AuthToken/secure-link?${token}`}>{ProtectedPage}</Route>
+    <>
+      {!isTokenValid(token) ? (
+        <Redirect to="/AuthToken/login" />
+      ) : (
+        <Route path={`/AuthToken/secure-link?${token}`}>{ProtectedPage}</Route>
+      )}
+    </>
   );
 };
