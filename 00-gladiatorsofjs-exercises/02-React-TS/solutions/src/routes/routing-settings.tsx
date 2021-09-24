@@ -1,6 +1,6 @@
 import { ExerciseModule, ExerciseRoute } from "types";
 
-import { AuthTokenApp, HomePage, RatingStars, TwitterClone } from "pages";
+import { HomePage, RatingStars, TwitterClone } from "pages";
 import { authTokenRoutes } from "pages/1-ReactTS_Fundamentals/3-AuthToken/routes";
 
 export const routes: ExerciseRoute[] = [

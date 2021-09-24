@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
 
 import { links } from "../../utils";
+import { LoginPageContainer } from "./LoginPage.styles";
 
 export const LoginPage = () => {
   return (
-    <div>
-      Here you can log in:
+    <LoginPageContainer>
       <ul>
         {links.map(({ name, link }) => (
           <li key={name}>
@@ -13,6 +13,6 @@ export const LoginPage = () => {
           </li>
         ))}
       </ul>
-    </div>
+    </LoginPageContainer>
   );
 };

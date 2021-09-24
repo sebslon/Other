@@ -1,7 +1,9 @@
+import { ProtectedPageContainer } from "./ProtectedPage.styles";
+
 export const ProtectedPage = () => {
   return (
-    <div>
-      It's a valid Token :)
-    </div>
-  )
-}
+    <ProtectedPageContainer>
+      You passed a valid token! 🚀👩🏻‍💻
+    </ProtectedPageContainer>
+  );
+};
