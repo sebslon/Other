@@ -5,4 +5,5 @@ export const SidebarNav = styled.nav`
   height: 100%;
   position: fixed;
   width: 350px;
+  width: 100%;
 `;
