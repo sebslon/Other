@@ -2,6 +2,7 @@ import { ExerciseModule, ExerciseRoute } from "types";
 
 import { HomePage, RatingStars, TwitterClone } from "pages";
 import { authTokenRoutes } from "pages/1-ReactTS_Fundamentals/3-AuthToken/routes";
+import { useMemoStateCheck } from "pages/1-ReactTS_Fundamentals/4-useMemoState";
 
 export const routes: ExerciseRoute[] = [
   {
@@ -20,6 +21,11 @@ export const routes: ExerciseRoute[] = [
     exact: true,
   },
   ...authTokenRoutes,
+  {
+    path: "/useMemoState",
+    component: useMemoStateCheck,
+    exact: true,
+  }
 ];
 
 const firstModuleExercises = [
