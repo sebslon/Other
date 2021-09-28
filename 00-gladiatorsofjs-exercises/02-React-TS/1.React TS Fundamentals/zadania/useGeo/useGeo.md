@@ -12,16 +12,16 @@
 
 ## Cele główne
 
-- [ ] Stwórz custom hook `useGeo`, który dodaje do komponentu poniższe właściwości:
+- [ ] Stwórz custom hook `useGeo`, która zwraca następujące wartości:
 
-* `geoData` - zwraca wszystkie informacje geolokalizacyjne z window
-* `toggleListening` - true/false - akcja, która przyjmuje true/false i włacza lub wyłącza nasłuch na geolokalizacji
+* `geoData` - obiekt który zawiera longitude i latitude (długość i szerokość geograficzna) zależny od danej lokalizacji
+* `toggleListening` - funkcja, która przyjmuje true/false i włącza lub wyłącza nasłuch na geolokalizację
 
 ## Przetestuj zadanie
 
 - [ ] Sprawdź czy Twój hook działa poprawnie:
 
-* zwraca poprawny typ danych = `[boolean, function]`
+* zwraca poprawny typ danych = `[object, function]`
 * włącza i wyłącza nasłuch na geolokalizacji
 * zwraca latitude i longitude
 
@@ -39,7 +39,7 @@
 ## Kawałek kodu na lepszy początek
 
 ```javascript
-const useGeo = (ref) => {
+const useGeo = () => {
   // return [geoData, toggleListening]
 };
 ```
