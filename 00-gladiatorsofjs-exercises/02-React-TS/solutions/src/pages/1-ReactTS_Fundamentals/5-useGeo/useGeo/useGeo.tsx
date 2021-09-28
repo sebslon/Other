@@ -3,7 +3,13 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { GeoData, useGeoReturnType } from "./types";
 
 export const useGeo = (): useGeoReturnType => {
-  const [geoData, setGeoData] = useState<GeoData>(null);
+  const [geoData, setGeoData] = useState<GeoData>({
+    coords: {
+      latitude: null,
+      longitude: null,
+    },
+    error: null,
+  });
   const [listening, setListening] = useState<boolean>(false);
   const geoId = useRef<number>(0);
 
@@ -15,15 +21,20 @@ export const useGeo = (): useGeoReturnType => {
   );
 
   const onSuccess = (position: GeolocationPosition) => {
-    const { latitude, longitude } = position.coords;
-
-    setGeoData({ latitude: latitude, longitude: longitude, error: "" });
+    setGeoData({ coords: position.coords, error: null });
   };
 
-  const onError = (err: GeolocationPositionError) => setGeoData({ latitude: 0, longitude: 0, error: err.message });
+  const onError = (err: GeolocationPositionError) => {
+    setGeoData({ coords: null, error: err.message });
+  };
 
   useEffect(() => {
-    if (!geo) throw new Error("Geolocation is not supported!");
+    if (!geo) {
+      setGeoData({
+        coords: null,
+        error: "Geolocation is not supported",
+      });
+    }
 
     if (listening) {
       geoId.current = geo.watchPosition(onSuccess, onError, {
@@ -31,7 +42,7 @@ export const useGeo = (): useGeoReturnType => {
       });
     } else {
       geo.clearWatch(geoId.current);
-      setGeoData(null);
+      setGeoData({ coords: null, error: null });
     }
 
     return () => geo.clearWatch(geoId.current);

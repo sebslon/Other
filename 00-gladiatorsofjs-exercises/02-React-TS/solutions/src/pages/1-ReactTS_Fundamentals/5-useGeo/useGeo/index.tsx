@@ -7,22 +7,20 @@ export const useGeoVisualization = () => {
   return (
     <UseGeoContainer>
       <button onClick={toggleListening}>
-        {geoData ? "Stop tracking" : "Start tracking"}
+        {geoData.coords ? "Stop tracking" : "Start tracking"}
       </button>
       <TrackingData>
-        {geoData ? (
-          <>
-            {geoData.error ? (
-              <p>{geoData.error}</p>
-            ) : (
-              <>
-                <p>Latitude: {geoData?.latitude}</p>
-                <p>Longitude: {geoData?.longitude}</p>
-              </>
-            )}
-          </>
-        ) : (
+        {!geoData.error && !geoData.coords && (
           <p>If you want to check your coordinates - start tracking.</p>
+        )}
+
+        {geoData.error && <p>{geoData.error}</p>}
+
+        {geoData.coords && (
+          <>
+            <p>Latitude: {geoData?.coords?.latitude}</p>
+            <p>Longitude: {geoData?.coords?.longitude}</p>
+          </>
         )}
       </TrackingData>
     </UseGeoContainer>
