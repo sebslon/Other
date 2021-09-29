@@ -1,8 +1,20 @@
-import data from './data.json';
+import data from "./data.json";
 
-import { PaginatedTable } from "./components/PaginatedTable"
+import { Table } from "./styles";
 
+import { usePagination } from "./hooks/usePagination";
+import { PaginatedTable } from "./components/PaginatedTable";
+import { Pagination } from "./components/Pagination";
 
 export const TableWithPagination = () => {
-  return <PaginatedTable data={data} />
-}
+  const [paginationState, paginationActions] = usePagination(data);
+
+  const { entriesOnSelectedPage } = paginationState;
+
+  return (
+    <Table>
+      <PaginatedTable data={entriesOnSelectedPage} />
+      <Pagination paginationActions={paginationActions} />
+    </Table>
+  );
+};

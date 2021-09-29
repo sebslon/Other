@@ -1,4 +1,4 @@
-import { Table, TableHeader } from "./PaginatedTable.styles";
+import { TableHeader } from "./PaginatedTable.styles";
 
 import { User } from "../../types";
 import { TableRow } from "../TableRow";
@@ -9,7 +9,7 @@ interface DataEntries {
 
 export const PaginatedTable = ({ data }: DataEntries) => {
   return (
-    <Table>
+    <>
       <TableHeader>
         <span>No.</span>
         <span>Name</span>
@@ -17,6 +17,6 @@ export const PaginatedTable = ({ data }: DataEntries) => {
       {data.map((user) => (
         <TableRow user={user} />
       ))}
-    </Table>
+    </>
   );
 };
