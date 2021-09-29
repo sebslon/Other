@@ -14,7 +14,10 @@ export const TableWithPagination = () => {
   return (
     <Table>
       <PaginatedTable data={entriesOnSelectedPage} />
-      <Pagination paginationActions={paginationActions} />
+      <Pagination
+        paginationActions={paginationActions}
+        paginationState={paginationState}
+      />
     </Table>
   );
 };
