@@ -4,6 +4,7 @@ import { HomePage, RatingStars, TwitterClone } from "pages";
 import { authTokenRoutes } from "pages/1-ReactTS_Fundamentals/3-AuthToken/routes";
 import { useMemoStateCheck } from "pages/1-ReactTS_Fundamentals/4-useMemoState";
 import { useGeoVisualization } from "pages/1-ReactTS_Fundamentals/5-useGeo/useGeo";
+import { TableWithPagination } from "pages/1-ReactTS_Fundamentals/6-TableWithPagination";
 
 export const routes: ExerciseRoute[] = [
   {
@@ -31,7 +32,12 @@ export const routes: ExerciseRoute[] = [
     path: "/useGeo",
     component: useGeoVisualization,
     exact: true,
-  }
+  },
+  {
+    path: "/TableWithPagination",
+    component: TableWithPagination,
+    exact: true,
+  },
 ];
 
 const firstModuleExercises = [
