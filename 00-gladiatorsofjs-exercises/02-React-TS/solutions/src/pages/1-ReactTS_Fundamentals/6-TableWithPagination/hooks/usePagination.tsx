@@ -1,17 +1,14 @@
 import { useCallback, useEffect, useState } from "react";
-import { User } from "../types";
 
-type usePaginationType = (data: User[], elementsOnPage: number) => void;
+import { usePaginationType } from "../types";
 
-export const usePagination: usePaginationType = (data, elementsOnPage = 50) => {
-  const [actualPageIndex, setActualPageIndex] = useState<number>(0);
+export const usePagination: usePaginationType = (data, elementsOnPage = 10) => {
+  const [actualPageIndex, setActualPageIndex] = useState(0);
   const [isBusy, setIsBusy] = useState(false);
 
-  const lastPageIndex = Math.ceil(data.length / elementsOnPage);
-
+  const lastPageIndex = Math.ceil(data.length / elementsOnPage) - 1;
   const firstEntry = actualPageIndex * elementsOnPage;
   const lastEntry = firstEntry + elementsOnPage;
-
   const entriesOnSelectedPage = data.slice(firstEntry, lastEntry);
 
   const goToFirstPage = useCallback(() => {
@@ -19,20 +16,20 @@ export const usePagination: usePaginationType = (data, elementsOnPage = 50) => {
   }, []);
 
   const goToPrevPage = useCallback(() => {
-    setActualPageIndex(
-      actualPageIndex === 0 ? actualPageIndex : actualPageIndex - 1
+    setActualPageIndex((actualPage) =>
+      actualPage === 0 ? actualPage : actualPage - 1
     );
   }, []);
 
   const goToNextPage = useCallback(() => {
-    setActualPageIndex(
-      actualPageIndex === lastPageIndex ? lastPageIndex : actualPageIndex + 1
+    setActualPageIndex((actualPage) =>
+      actualPage === lastPageIndex ? lastPageIndex : actualPage + 1
     );
-  }, []);
+  }, [setActualPageIndex, lastPageIndex]);
 
   const goToLastPage = useCallback(() => {
     setActualPageIndex(lastPageIndex);
-  }, []);
+  }, [lastPageIndex]);
 
   const goToPage = useCallback((page: number) => {
     setActualPageIndex(page);
@@ -65,8 +62,3 @@ export const usePagination: usePaginationType = (data, elementsOnPage = 50) => {
 
   return [paginationState, paginationActions];
 };
-
-// const [
-//   { actualPageIdx, lastPageIdx, entriesOnSelectedPage, isBusy },
-//   { goToFirstPage, goToPrevPage, goToPage, goToNextPage, goToLastPage },
-// ] = usePagination(dataEntries);
