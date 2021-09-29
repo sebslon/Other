@@ -11,25 +11,36 @@ export const PageSwitcher = ({
   lastPageIndex,
   goToPage,
 }: PageSwitcherProps) => {
-  const firstButtonIndex = actualPageIndex >= 2 ? actualPageIndex - 2 : 0;
+  const sideButtonsAmount = 2;
+
+  const firstButtonIndex =
+    actualPageIndex >= sideButtonsAmount
+      ? actualPageIndex - sideButtonsAmount
+      : 0;
+
   const lastButtonIndex =
-    lastPageIndex - actualPageIndex > 2 ? actualPageIndex + 2 : lastPageIndex;
+    lastPageIndex - actualPageIndex > sideButtonsAmount
+      ? actualPageIndex + sideButtonsAmount
+      : lastPageIndex;
+
   const buttons = new Array(lastButtonIndex - firstButtonIndex + 1).fill(0);
 
   return (
     <div>
+      {actualPageIndex > sideButtonsAmount && <span>...</span>}
       {buttons.map((button, id) => {
-        const page = firstButtonIndex + id;
+        const pageIndex = firstButtonIndex + id;
 
         return (
           <PageButton
-            onClick={() => goToPage(page)}
-            isActive={actualPageIndex === page}  
+            onClick={() => goToPage(pageIndex)}
+            isActive={actualPageIndex === pageIndex}
           >
-            {page + 1}
+            {pageIndex + 1}
           </PageButton>
         );
       })}
+      {actualPageIndex < lastPageIndex - sideButtonsAmount && <span>...</span>}
     </div>
   );
 };
