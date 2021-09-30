@@ -10,9 +10,12 @@ export const PaginationContainer = styled.div`
   display: flex;
   margin: 0 auto;
   justify-content: space-between;
-  width: 60%;
   align-items: center;
-  padding: 1em;
+  padding: 1em 0;
+
+  @media (min-width: 800px) {
+    width: 55%;
+  }
 `;
 
 export const SwitchPageButton = styled.button<SwitchPageButtonProps>`
