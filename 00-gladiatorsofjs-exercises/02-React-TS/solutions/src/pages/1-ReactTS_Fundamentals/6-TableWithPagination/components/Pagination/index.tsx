@@ -23,14 +23,12 @@ export const Pagination = ({
 
   return (
     <PaginationContainer>
-      {
-        <SwitchPageButton
-          onClick={() => goToPrevPage()}
-          disabled={actualPageIndex === 0}
-        >
-          &#8249; Previous
-        </SwitchPageButton>
-      }
+      <SwitchPageButton
+        onClick={() => goToPrevPage()}
+        disabled={actualPageIndex === 0}
+      >
+        &#8249; Previous
+      </SwitchPageButton>
 
       <PageSwitcher
         actualPageIndex={actualPageIndex}

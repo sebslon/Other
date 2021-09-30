@@ -36,7 +36,7 @@ export const usePagination: usePaginationType = (data, elementsOnPage = 10) => {
   }, []);
 
   useEffect(() => {
-    const fakeTimer = 330;
+    const fakeTimer = 350;
 
     setIsBusy(true);
     const timer = setTimeout(() => {
