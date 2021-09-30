@@ -15,7 +15,7 @@ export const PaginatedTable = ({ data }: DataEntries) => {
         <span>Name</span>
       </TableHeader>
       {data.map((user) => (
-        <TableRow user={user} />
+        <TableRow user={user} key={user.id} />
       ))}
     </>
   );

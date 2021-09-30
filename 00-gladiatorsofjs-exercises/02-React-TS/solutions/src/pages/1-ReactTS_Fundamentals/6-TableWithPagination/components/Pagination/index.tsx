@@ -1,6 +1,11 @@
 import { PaginationActions, PaginationState } from "../../types";
 
 import { PageSwitcher } from "../PageSwitcher";
+import {
+  NextPageButton,
+  PaginationContainer,
+  SwitchPageButton,
+} from "./Pagination.styles";
 
 interface PaginationProps {
   paginationActions: PaginationActions;
@@ -17,18 +22,30 @@ export const Pagination = ({
   const { actualPageIndex, lastPageIndex } = paginationState;
 
   return (
-    <div>
-      <button onClick={() => goToFirstPage()}>Go to first page</button>
-      <button onClick={() => goToPrevPage()}>Previous</button>
+    <PaginationContainer>
+      {
+        <SwitchPageButton
+          onClick={() => goToPrevPage()}
+          disabled={actualPageIndex === 0}
+        >
+          &#8249; Previous
+        </SwitchPageButton>
+      }
 
       <PageSwitcher
         actualPageIndex={actualPageIndex}
         lastPageIndex={lastPageIndex}
         goToPage={goToPage}
+        goToFirstPage={goToFirstPage}
+        goToLastPage={goToLastPage}
       />
 
-      <button onClick={() => goToNextPage()}>Next</button>
-      <button onClick={() => goToLastPage()}>Go to last page</button>
-    </div>
+      <NextPageButton
+        onClick={() => goToNextPage()}
+        disabled={actualPageIndex === lastPageIndex}
+      >
+        Next &#8250;
+      </NextPageButton>
+    </PaginationContainer>
   );
 };

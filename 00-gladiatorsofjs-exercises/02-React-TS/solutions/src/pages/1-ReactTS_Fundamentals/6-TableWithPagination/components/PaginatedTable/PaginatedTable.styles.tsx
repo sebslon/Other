@@ -1,7 +1,9 @@
 import styled from "styled-components";
 
+import { table_primary } from "../../styles/constants";
+
 export const TableHeader = styled.div`
-  background-color: #888;
+  background-color: ${table_primary};
   display: flex;
   justify-content: space-between;
   padding: 1em;

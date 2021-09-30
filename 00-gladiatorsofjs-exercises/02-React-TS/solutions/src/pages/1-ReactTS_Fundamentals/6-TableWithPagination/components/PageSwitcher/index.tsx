@@ -1,15 +1,19 @@
-import { PageButton } from "./PageSwitcher.styles";
+import { PageButton, PageSwitcherContainer } from "./PageSwitcher.styles";
 
 interface PageSwitcherProps {
   actualPageIndex: number;
   lastPageIndex: number;
   goToPage: (page: number) => void;
+  goToFirstPage: () => void;
+  goToLastPage: () => void;
 }
 
 export const PageSwitcher = ({
   actualPageIndex,
   lastPageIndex,
   goToPage,
+  goToFirstPage,
+  goToLastPage,
 }: PageSwitcherProps) => {
   const sideButtonsAmount = 2;
 
@@ -26,13 +30,25 @@ export const PageSwitcher = ({
   const buttons = new Array(lastButtonIndex - firstButtonIndex + 1).fill(0);
 
   return (
-    <div>
-      {actualPageIndex > sideButtonsAmount && <span>...</span>}
+    <PageSwitcherContainer>
+      {actualPageIndex > sideButtonsAmount && (
+        <>
+          <PageButton
+            isActive={actualPageIndex === 1}
+            onClick={() => goToFirstPage()}
+          >
+            1
+          </PageButton>
+          <span>...</span>
+        </>
+      )}
+
       {buttons.map((button, id) => {
         const pageIndex = firstButtonIndex + id;
 
         return (
           <PageButton
+            key={pageIndex}
             onClick={() => goToPage(pageIndex)}
             isActive={actualPageIndex === pageIndex}
           >
@@ -40,7 +56,18 @@ export const PageSwitcher = ({
           </PageButton>
         );
       })}
-      {actualPageIndex < lastPageIndex - sideButtonsAmount && <span>...</span>}
-    </div>
+
+      {actualPageIndex < lastPageIndex - sideButtonsAmount && (
+        <>
+          <span>...</span>
+          <PageButton
+            isActive={actualPageIndex === lastPageIndex}
+            onClick={() => goToLastPage()}
+          >
+            {lastPageIndex + 1}
+          </PageButton>
+        </>
+      )}
+    </PageSwitcherContainer>
   );
 };
