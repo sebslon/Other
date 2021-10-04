@@ -1,7 +1,21 @@
 import { Component } from "react";
 
-export class ModalHeader extends Component {
+interface ModalHeaderProps {
+  title: string;
+  toggle?: () => void;
+}
+export class ModalHeader extends Component<ModalHeaderProps> {
+  closeModal = () => {
+    const { toggle } = this.props;
+    if (toggle) toggle();
+  };
+
   render() {
-    return null;
+    return (
+      <div>
+        <span>{this.props.title}</span>
+        <button onClick={() => this.closeModal()}>Close Modal</button>
+      </div>
+    );
   }
 }
