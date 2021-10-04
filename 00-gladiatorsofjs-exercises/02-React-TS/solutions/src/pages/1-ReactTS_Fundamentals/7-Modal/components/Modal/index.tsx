@@ -1,4 +1,6 @@
-import { Component } from "react";
+import React, { Component, ReactElement } from "react";
+
+import { Background, ModalContainer } from "./Modal.styles";
 
 import { ModalContent } from "./Content";
 import { ModalFooter } from "./Footer";
@@ -21,11 +23,25 @@ export class Modal extends Component<ModalProps, ModalState> {
     isOpen: this.props.isOpen || false,
   };
 
-  toggle() {
+  toggle = () => {
     this.setState((state) => ({ isOpen: !this.state.isOpen }));
-  }
+  };
 
   render() {
-    return <div></div>;
+    const children = React.Children.map(this.props.children, (child) =>
+      React.cloneElement(child as ReactElement<any>, { toggle: this.toggle })
+    );
+
+    return (
+      <>
+        <button onClick={this.toggle}>Open modal</button>
+        {this.state.isOpen ? (
+          <>
+            <Background onClick={this.toggle} />
+            <ModalContainer>{children}</ModalContainer>
+          </>
+        ) : null}
+      </>
+    );
   }
 }
