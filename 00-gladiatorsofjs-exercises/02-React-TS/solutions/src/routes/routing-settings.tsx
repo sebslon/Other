@@ -5,6 +5,7 @@ import { authTokenRoutes } from "pages/1-ReactTS_Fundamentals/3-AuthToken/routes
 import { useMemoStateCheck } from "pages/1-ReactTS_Fundamentals/4-useMemoState";
 import { useGeoVisualization } from "pages/1-ReactTS_Fundamentals/5-useGeo/useGeo";
 import { TableWithPagination } from "pages/1-ReactTS_Fundamentals/6-TableWithPagination";
+import { ModalVisualization } from "pages/1-ReactTS_Fundamentals/7-Modal";
 
 export const routes: ExerciseRoute[] = [
   {
@@ -36,6 +37,11 @@ export const routes: ExerciseRoute[] = [
   {
     path: "/TableWithPagination",
     component: TableWithPagination,
+    exact: true,
+  },
+  {
+    path: "/Modal",
+    component: ModalVisualization,
     exact: true,
   },
 ];
