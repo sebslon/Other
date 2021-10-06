@@ -1,8 +1,9 @@
 import { useState } from "react";
 
-import { ExerciseModule } from "types";
 import { SidebarNav } from "./styles";
-import { SubMenu } from "pages/homepage/components";
+import { ExerciseModule } from "types";
+
+import { SubMenu } from "pages/0-Homepage/components";
 
 interface SidebarProps {
   modules: ExerciseModule[];

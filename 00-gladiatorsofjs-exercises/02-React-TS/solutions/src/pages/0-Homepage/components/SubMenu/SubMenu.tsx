@@ -1,7 +1,7 @@
 import { SidebarLink, SidebarLabel, Arrow, DropdownLink } from "./styles";
 
 import { ExerciseModule } from "types";
-import { ArrowDown, ArrowUp } from "pages/homepage/assets";
+import { ArrowDown, ArrowUp } from "pages/0-Homepage/assets";
 
 interface SubMenuProps {
   module: ExerciseModule;
