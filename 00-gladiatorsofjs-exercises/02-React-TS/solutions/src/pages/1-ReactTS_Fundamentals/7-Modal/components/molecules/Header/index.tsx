@@ -1,5 +1,7 @@
 import { Component } from "react";
 
+import { CloseButton, HeaderContainer } from "./Header.styles";
+
 interface ModalHeaderProps {
   title: string;
   toggle?: () => void;
@@ -11,11 +13,13 @@ export class ModalHeader extends Component<ModalHeaderProps> {
   };
 
   render() {
+    if(!this.props.toggle) return null;
+    
     return (
-      <div>
-        <span>{this.props.title}</span>
-        <button onClick={() => this.closeModal()}>Close Modal</button>
-      </div>
+      <HeaderContainer>
+        <h3>{this.props.title}</h3>
+        <CloseButton onClick={() => this.closeModal()}>Close</CloseButton>
+      </HeaderContainer>
     );
   }
 }

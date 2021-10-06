@@ -2,9 +2,9 @@ import React, { Component, ReactElement } from "react";
 
 import { Background, ModalContainer } from "./Modal.styles";
 
-import { ModalContent } from "./Content";
-import { ModalFooter } from "./Footer";
-import { ModalHeader } from "./Header";
+import { ModalContent } from "../../molecules/Content";
+import { ModalFooter } from "../../molecules/Footer";
+import { ModalHeader } from "../../molecules//Header";
 
 interface ModalProps {
   isOpen?: boolean;

@@ -1,11 +1,11 @@
-import { Modal } from "./components/Modal";
+import { Modal } from "./components/organisms/Modal";
 
 export const ModalVisualization = () => {
   return (
-    <Modal>
-      <Modal.Header title={"MODAL TITLE"} />
+    <Modal isOpen>
+      <Modal.Header title={"Modal Title"} />
       <Modal.Content>
-        <h1>Modal Content Title</h1>
+        <h4>Modal Content Title</h4>
         <p>
           Modal content ... Lorem, ipsum dolor sit amet consectetur adipisicing
           elit. Eos ratione provident ea sunt earum quidem cupiditate velit
