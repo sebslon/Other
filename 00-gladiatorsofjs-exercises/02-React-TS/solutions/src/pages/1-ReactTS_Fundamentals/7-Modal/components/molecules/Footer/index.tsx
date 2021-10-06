@@ -1,5 +1,9 @@
 import { Component } from "react";
 
+import { CTAButton, FooterContainer } from "./Footer.styles";
+
+import { CloseButton } from "../../atoms/CloseButton";
+
 interface ModalFooterProps {
   callToActionLabel: string;
   toggle?: () => void;
@@ -17,12 +21,12 @@ export class ModalFooter extends Component<ModalFooterProps> {
 
   render() {
     return (
-      <div>
-        <button onClick={this.closeModal}>Cancel</button>
-        <button onClick={this.handleCallToAction}>
+      <FooterContainer>
+        <CloseButton onClick={this.closeModal}>Cancel</CloseButton>
+        <CTAButton onClick={this.handleCallToAction}>
           {this.props.callToActionLabel}
-        </button>
-      </div>
+        </CTAButton>
+      </FooterContainer>
     );
   }
 }

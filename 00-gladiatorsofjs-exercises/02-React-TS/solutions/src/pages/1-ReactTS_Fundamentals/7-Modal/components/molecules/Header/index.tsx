@@ -1,6 +1,8 @@
 import { Component } from "react";
 
-import { CloseButton, HeaderContainer } from "./Header.styles";
+import { HeaderContainer } from "./Header.styles";
+
+import { CloseButton } from "../../atoms/CloseButton";
 
 interface ModalHeaderProps {
   title: string;
@@ -13,8 +15,8 @@ export class ModalHeader extends Component<ModalHeaderProps> {
   };
 
   render() {
-    if(!this.props.toggle) return null;
-    
+    if (!this.props.toggle) return null;
+
     return (
       <HeaderContainer>
         <h3>{this.props.title}</h3>

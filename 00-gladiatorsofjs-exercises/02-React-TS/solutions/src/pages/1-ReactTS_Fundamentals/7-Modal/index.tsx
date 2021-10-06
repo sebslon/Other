@@ -2,7 +2,7 @@ import { Modal } from "./components/organisms/Modal";
 
 export const ModalVisualization = () => {
   return (
-    <Modal isOpen>
+    <Modal>
       <Modal.Header title={"Modal Title"} />
       <Modal.Content>
         <h4>Modal Content Title</h4>

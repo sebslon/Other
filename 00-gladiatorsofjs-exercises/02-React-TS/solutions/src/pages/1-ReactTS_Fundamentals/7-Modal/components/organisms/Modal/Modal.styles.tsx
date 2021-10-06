@@ -6,7 +6,7 @@ export const Background = styled.div`
   top: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0,0,0,0.5);
+  background: rgba(0, 0, 0, 0.5);
   z-index: 10;
 `;
 
@@ -17,7 +17,13 @@ export const ModalContainer = styled.div`
   transform: translate(-50%, -50%);
 
   background: white;
-  width: 500px;
+  overflow-y: auto;
+  max-height: 550px;
+  width: 85%;
   padding: 1rem;
   z-index: 15;
+
+  @media (min-width: 800px) {
+    width: 550px;
+  }
 `;
