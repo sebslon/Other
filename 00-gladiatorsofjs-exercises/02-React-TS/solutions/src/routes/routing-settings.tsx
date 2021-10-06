@@ -42,6 +42,11 @@ export const routes: ExerciseRoute[] = [
     component: TableWithPagination,
     exact: true,
   },
+  {
+    path: "/Modal",
+    component: ModalVisualization,
+    exact: true,
+  },
 ];
 
 const firstModuleExercises = [
