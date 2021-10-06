@@ -1,11 +1,14 @@
 import { ExerciseModule, ExerciseRoute } from "types";
 
-import { HomePage, RatingStars, TwitterClone } from "pages";
-import { authTokenRoutes } from "pages/1-ReactTS_Fundamentals/3-AuthToken/routes";
-import { useMemoStateCheck } from "pages/1-ReactTS_Fundamentals/4-useMemoState";
-import { useGeoVisualization } from "pages/1-ReactTS_Fundamentals/5-useGeo/useGeo";
-import { TableWithPagination } from "pages/1-ReactTS_Fundamentals/6-TableWithPagination";
-import { ModalVisualization } from "pages/1-ReactTS_Fundamentals/7-Modal";
+import {
+  HomePage,
+  RatingStars,
+  TwitterClone,
+  authTokenRoutes,
+  useMemoStateCheck,
+  useGeoVisualization,
+  TableWithPagination,
+} from "pages";
 
 export const routes: ExerciseRoute[] = [
   {
