@@ -8,6 +8,8 @@ import {
   useMemoStateCheck,
   useGeoVisualization,
   TableWithPagination,
+  ModalVisualization,
+  SearchWithDropdownVis
 } from "pages";
 
 export const routes: ExerciseRoute[] = [
@@ -45,6 +47,11 @@ export const routes: ExerciseRoute[] = [
   {
     path: "/Modal",
     component: ModalVisualization,
+    exact: true,
+  },
+  {
+    path: "/SearchWithDropdown",
+    component: SearchWithDropdownVis,
     exact: true,
   },
 ];
