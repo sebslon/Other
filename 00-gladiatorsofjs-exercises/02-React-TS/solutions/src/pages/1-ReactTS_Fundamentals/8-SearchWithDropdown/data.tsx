@@ -1,4 +1,10 @@
-export const searchData = [
+export interface ISearchData {
+  name: string;
+  regularPrice: number;
+  salePrice: number;
+}
+
+export const searchData: ISearchData[] = [
   {
       name:"Fixed TOC - table of contents for WordPress plugin",
       regularPrice: 20,
