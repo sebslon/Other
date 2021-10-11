@@ -1,8 +1,8 @@
-import { MasonryGrid } from "./components/MasonryGrid"
+import { GridWrapper } from "./components/GridWrapper";
+import { useWindowWidth } from "./hooks/useWindowWidth";
 
 export const MasonryGridVis = () => {
-  return (
-    <MasonryGrid>
-    </MasonryGrid>
-  )
-}
+  const windowWidth = useWindowWidth();
+
+  return <GridWrapper width={windowWidth} />;
+};

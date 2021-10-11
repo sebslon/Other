@@ -1,3 +1,10 @@
-export const GridWrapper: React.FC<{width: number}> = ({ width, children }) => {
-  return (<div></div>);
+import { MasonryGrid } from "../MasonryGrid";
+
+export const GridWrapper = ({ width }: { width: number }) => {
+  return (
+    <>
+      <h1 style={{ textAlign: "center" }}>Masonry Grid</h1>
+      <MasonryGrid width={width} />
+    </>
+  );
 };

@@ -9,7 +9,8 @@ import {
   useGeoVisualization,
   TableWithPagination,
   ModalVisualization,
-  SearchWithDropdownVis
+  SearchWithDropdownVis,
+  MasonryGridVis
 } from "pages";
 
 export const routes: ExerciseRoute[] = [
@@ -52,6 +53,11 @@ export const routes: ExerciseRoute[] = [
   {
     path: "/SearchWithDropdown",
     component: SearchWithDropdownVis,
+    exact: true,
+  },
+  {
+    path: "/MasonryGrid",
+    component: MasonryGridVis,
     exact: true,
   },
 ];

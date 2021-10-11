@@ -7,3 +7,4 @@ export { useGeoVisualization } from "./1-ReactTS_Fundamentals/5-useGeo/useGeo";
 export { TableWithPagination } from "./1-ReactTS_Fundamentals/6-TableWithPagination";
 export { ModalVisualization } from './1-ReactTS_Fundamentals/7-Modal';
 export { SearchWithDropdownVis } from './1-ReactTS_Fundamentals/8-SearchWithDropdown';
+export { MasonryGridVis } from './1-ReactTS_Fundamentals/9-MasonryGrid';
