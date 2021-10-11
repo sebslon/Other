@@ -19,5 +19,20 @@ export const searchData: ISearchData[] = [
       name:"Lorem ipsum",
       regularPrice: 99,
       salePrice: 21,
+  },
+  {
+      name:"Lorem ipsum dolor sit amet",
+      regularPrice: 19,
+      salePrice: 2,
+  },
+  {
+      name:"Dropdown item",
+      regularPrice: 50,
+      salePrice: 21,
+  },
+  {
+      name:"World of Wordpress",
+      regularPrice: 99,
+      salePrice: 21,
   }
 ]

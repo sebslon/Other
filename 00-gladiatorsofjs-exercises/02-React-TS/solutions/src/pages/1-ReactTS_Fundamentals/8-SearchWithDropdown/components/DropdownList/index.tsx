@@ -1,6 +1,8 @@
 import { ISearchData } from "../../data";
 import { DropdownItem } from "../DropdownItem";
 
+import { List } from "./DropdownList.styles";
+
 interface DropdownListProps {
   data: ISearchData[];
   searchPhrase: string;
@@ -14,12 +16,12 @@ export const DropdownList = ({ data, searchPhrase }: DropdownListProps) => {
   });
 
   return (
-    <ul>
+    <List>
       {matchingData.map((data, idx) => (
-        <li>
-          <DropdownItem key={idx} data={data} />
+        <li key={idx}>
+          <DropdownItem data={data} searchPhrase={searchPhrase} />
         </li>
       ))}
-    </ul>
+    </List>
   );
 };
