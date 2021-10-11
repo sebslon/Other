@@ -22,7 +22,7 @@ export const MasonryGrid = ({ width }: { width: number }) => {
       {Array(columnsAmount)
         .fill(0)
         .map((el, idx) => {
-          const elementsInColumn = imagesLinks.length / columnsAmount;
+          const elementsInColumn = Math.floor(imagesLinks.length / columnsAmount);
           const firstElementInColumn = idx * elementsInColumn;
 
           return (
