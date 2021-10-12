@@ -1,6 +1,9 @@
-import { useCallback, useState } from "react";
-import styled from "styled-components";
+import { useState } from "react";
+
+import { Checkbox, InputsList, PasswordHint, StyledForm } from "./PasswordInput.styles";
+
 import { usePassword } from "../../hooks/usePassword";
+
 import { Input } from "../Input";
 
 interface PasswordInputProps {
@@ -9,42 +12,44 @@ interface PasswordInputProps {
 }
 
 export const PasswordInput = ({ password, onSuccess }: PasswordInputProps) => {
-  const [isPasswordHidden, setIsPasswordHidden] = useState(true);
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
   const { state, inputChangeHandler } = usePassword(password, onSuccess);
-  const { allInputs, randomIndexes } = state;
+  
+  const { allInputs, passwordIndexes, message } = state;
 
-  const handleToggleCheckbox = useCallback(
-    () => setIsPasswordHidden((isHidden) => !isHidden),
-    []
-  );
+  const handleToggleCheckbox = () => {
+    setIsPasswordVisible((isHidden) => !isHidden);
+  };
 
   return (
-    <form>
+    <StyledForm>
       <InputsList>
         {allInputs.map((input, index) => (
           <Input
             key={index}
-            disabled={!randomIndexes.includes(index)}
-            onChange={inputChangeHandler}
             index={index}
-            type={isPasswordHidden ? "password" : "text"}
+            disabled={!passwordIndexes.includes(index)}
+            onChange={inputChangeHandler}
+            type={isPasswordVisible ? "text" : "password"}
           />
         ))}
       </InputsList>
+
       <label>
-        Hide password
-        <input
+        <Checkbox
           type="checkbox"
-          checked={isPasswordHidden}
+          checked={isPasswordVisible}
           onChange={handleToggleCheckbox}
         />
+        Show password
       </label>
-    </form>
+
+      {message ? <p>{message}</p> : null}
+
+      <PasswordHint>
+        <span>HINT! </span>Try typing in: {password}
+      </PasswordHint>
+    </StyledForm>
   );
 };
-
-const InputsList = styled.ul`
-  display: flex;
-  padding: 0;
-`;

@@ -1,11 +1,12 @@
 import { useCallback, useEffect, useState } from "react";
-import { randomNumberInRange } from "../helpers/randomNumberInRange";
 
-// interface;
+import { generatePlaceholdersIndexes } from "../helpers/generatePlaceholdersIndexes";
+import { randomNumberInRange } from "../helpers/randomNumberInRange";
 
 export const usePassword = (password: string, onSuccess: () => void) => {
   const [allInputs, setAllInputs] = useState<(null | string)[]>([]);
-  const [passwordPlaceholders, setPasswordPlaceholders] = useState<number[]>([]);
+  const [passwordIndexes, setPasswordIndexes] = useState<number[]>([]);
+  const [message, setMessage] = useState("");
 
   function inputChangeHandler(inputIndex: number, value: string) {
     setAllInputs(
@@ -16,53 +17,41 @@ export const usePassword = (password: string, onSuccess: () => void) => {
   }
 
   const allInputsFilled = useCallback(() => {
-    return passwordPlaceholders.every((index) => allInputs[index]);
-  }, [allInputs, passwordPlaceholders]);
+    return passwordIndexes.every((index) => Boolean(allInputs[index]));
+  }, [allInputs, passwordIndexes]);
 
   const isPasswordMatching = useCallback(() => {
-    if (passwordPlaceholders.length) {
-      const charsCorrect = passwordPlaceholders.every((idx) => {
+    if (passwordIndexes.length) {
+      const charsCorrect = passwordIndexes.every((idx) => {
         return allInputs[idx] === password[idx];
       });
 
       return charsCorrect;
     }
     return false;
-  }, [allInputs, password, passwordPlaceholders]);
+  }, [allInputs, passwordIndexes, password]);
 
   useEffect(() => {
     setAllInputs(Array(password.length + randomNumberInRange(2, 5)).fill(null));
-    setPasswordPlaceholders(generateRandomInputIndexes(password.length));
+    setPasswordIndexes(generatePlaceholdersIndexes(password.length));
   }, [password]);
 
   useEffect(() => {
-    if (isPasswordMatching()) {
+    if (isPasswordMatching() && allInputsFilled()) {
+      setMessage("Success !");
       onSuccess();
+    } else if (allInputsFilled()) {
+      setMessage("Wrong password!");
     } else {
-      console.log("Not yet");
+      setMessage("Fill in the gaps with password.");
     }
-  }, [isPasswordMatching, onSuccess]);
+  }, [isPasswordMatching, onSuccess, allInputsFilled]);
 
   const state = {
     allInputs,
-    randomIndexes: passwordPlaceholders,
+    passwordIndexes,
+    message,
   };
 
   return { state, inputChangeHandler };
 };
-
-//todo
-function generateRandomInputIndexes(length: number) {
-  const maxAvailableInputs = randomNumberInRange(5, length - 1);
-  const randomIndexes: number[] = [];
-
-  while (randomIndexes.length < maxAvailableInputs) {
-    const randomIndex = randomNumberInRange(0, length - 1);
-    if (!randomIndexes.includes(randomIndex)) {
-      randomIndexes.push(randomIndex);
-    }
-  }
-
-  const sortedArr = randomIndexes.sort((a, b) => a - b);
-  return sortedArr;
-}

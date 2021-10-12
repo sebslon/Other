@@ -1,6 +1,6 @@
 import { PasswordInput } from "./components/PasswordInput"
 
-const password = "password"
+const password = "Example"
 const onSuccess = () => alert("success");
 
 export const PasswordInputVis = () => {
