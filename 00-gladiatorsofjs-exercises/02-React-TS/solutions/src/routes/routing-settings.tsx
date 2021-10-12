@@ -10,7 +10,8 @@ import {
   TableWithPagination,
   ModalVisualization,
   SearchWithDropdownVis,
-  MasonryGridVis
+  MasonryGridVis,
+  PasswordInputVis
 } from "pages";
 
 export const routes: ExerciseRoute[] = [
@@ -58,6 +59,11 @@ export const routes: ExerciseRoute[] = [
   {
     path: "/MasonryGrid",
     component: MasonryGridVis,
+    exact: true,
+  },
+  {
+    path: "/PasswordInput",
+    component: PasswordInputVis,
     exact: true,
   },
 ];

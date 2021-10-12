@@ -8,3 +8,4 @@ export { TableWithPagination } from "./1-ReactTS_Fundamentals/6-TableWithPaginat
 export { ModalVisualization } from './1-ReactTS_Fundamentals/7-Modal';
 export { SearchWithDropdownVis } from './1-ReactTS_Fundamentals/8-SearchWithDropdown';
 export { MasonryGridVis } from './1-ReactTS_Fundamentals/9-MasonryGrid';
+export { PasswordInputVis } from './1-ReactTS_Fundamentals/10-PasswordInput';
