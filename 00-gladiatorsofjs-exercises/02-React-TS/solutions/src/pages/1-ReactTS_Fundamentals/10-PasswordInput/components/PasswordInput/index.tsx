@@ -11,7 +11,7 @@ interface PasswordInputProps {
 export const PasswordInput = ({ password, onSuccess }: PasswordInputProps) => {
   const [isPasswordHidden, setIsPasswordHidden] = useState(true);
 
-  const { state } = usePassword(password, onSuccess);
+  const { state, inputChangeHandler } = usePassword(password, onSuccess);
   const { allInputs, randomIndexes } = state;
 
   const handleToggleCheckbox = useCallback(
@@ -26,6 +26,7 @@ export const PasswordInput = ({ password, onSuccess }: PasswordInputProps) => {
           <Input
             key={index}
             disabled={!randomIndexes.includes(index)}
+            onChange={inputChangeHandler}
             index={index}
             type={isPasswordHidden ? "password" : "text"}
           />

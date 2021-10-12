@@ -5,9 +5,11 @@ export const Input = (props: any) => {
     <InputItem>
       <StyledInput
         type={props.type}
+        onChange={(e: any) => props.onChange(props.index, e.target.value)}
         disabled={props.disabled}
         minLength={1}
         maxLength={1}
+        required
       />
       <span>{props.index + 1}</span>
     </InputItem>
