@@ -2,7 +2,7 @@ import { MasonryGridCell } from "../MasonryGridCell";
 
 interface MasonryGridColumnProps {
   photosAmount: number;
-  photos: any
+  photos: string[]
 }
 
 export const MasonryGridColumn = ({

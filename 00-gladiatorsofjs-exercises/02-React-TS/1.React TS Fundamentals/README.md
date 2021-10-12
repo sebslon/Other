@@ -14,12 +14,11 @@ Postanowiłem, że ocenię trudność każdego zadania i ustanowiłem listę kt�
 6. TableWithPagination
 7. Modal
 8. SearchWithDropdown
-9. PageAnimation [x]
-10. MasonryGrid
-11. PasswordInput
-12. InfiniteList
-13. useIntersectionObserver
-14. MultistepForm
+9. MasonryGrid
+10. PasswordInput
+11. InfiniteList
+12. useIntersectionObserver
+13. MultistepForm
 
 ## Co można przepracować w praktyce w tym module:
 
