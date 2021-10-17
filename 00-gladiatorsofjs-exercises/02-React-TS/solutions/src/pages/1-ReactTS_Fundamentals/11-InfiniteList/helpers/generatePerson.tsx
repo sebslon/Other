@@ -1,4 +1,7 @@
-function generatePerson() {
+import { Person } from "./types";
+import { femaleNames, genders, maleNames, surnames } from "./data";
+
+export function generatePerson(): Person {
   const sex = randomArrayElement(genders);
   const surname = randomArrayElement(surnames);
   const age = Math.round(Math.random() * 50) + 10;
@@ -19,8 +22,8 @@ function generatePerson() {
   }
 }
 
-function randomArrayElement(array: string[]) {
-  if (!array.length) throw new Error("Invalid array");
+function randomArrayElement(array: unknown[]) {
+  if (!array.length || !Array.isArray(array)) throw new Error("Invalid array");
 
   const lastIndex = array.length - 1;
   const randomIndex = Math.round(Math.random() * lastIndex);
@@ -28,18 +31,4 @@ function randomArrayElement(array: string[]) {
   return array[randomIndex];
 }
 
-const maleNames = [
-  "Liam", "Noah", "Oliver", "Elijah", "William", "Sebastian",  "James", "Benjamin", "Lucas", "Henry", "Alexander", "Mason", "Michael", "Ethan", "Daniel"
-];
-
-const femaleNames = [
-  "Olivia", "Emma", "Ava", "Charlotte", "Sophia", "Amelia", "Isabella", "Mia", "Evelyn", "Harper", "Camila", "Gianna", "Abigail", "Luna", "Ella"
-];
-
-const surnames = [
-  "Smith", "Johnson", "Williams", "Brown", "Jones", "Garcia", "Miller", "Davis", "Rodriguez", "Martinez", "Hernandez", "Lopez", "Gonzales", "Jackson", "Martin", "Lee", "White", "Sanchez"
-];
-
-const genders = ["Male", "Female"];
-
-export const persons = Array(100).map(() => generatePerson());
+export const persons = Array(100).fill("").map(() => generatePerson());
