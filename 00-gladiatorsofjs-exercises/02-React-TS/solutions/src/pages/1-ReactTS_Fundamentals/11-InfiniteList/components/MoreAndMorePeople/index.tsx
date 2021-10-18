@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { debounce } from "../../helpers/debounce";
 import { generatePerson } from "../../helpers/generatePerson";
 
 import { Person } from "../../helpers/types";
@@ -10,10 +11,10 @@ export const MoreAndMorePeople = ({ data }: { data: Person[] }) => {
   const [size, setSize] = useState(0);
   const [displayedPersons, setDisplayedPersons] = useState(data.slice(0, DISPLAY_AMOUNT));
 
-  function handleScroll(e: React.UIEvent<HTMLDivElement>) {
-    const containerHeight = e.currentTarget.clientHeight;
-    const scrollHeight = e.currentTarget.scrollHeight;
-    const scrollTop = e.currentTarget.scrollTop;
+  const debouncedHandleScroll = debounce((target: EventTarget & HTMLDivElement) => {
+    const containerHeight = target.clientHeight;
+    const scrollHeight = target.scrollHeight;
+    const scrollTop = target.scrollTop;
 
     const isBottom = scrollHeight - containerHeight === scrollTop;
 
@@ -30,6 +31,10 @@ export const MoreAndMorePeople = ({ data }: { data: Person[] }) => {
 
       setSize(size => size + 1);
     }
+  }, 50);
+
+  function handleScroll(e: React.UIEvent<HTMLDivElement>) {
+    debouncedHandleScroll(e.currentTarget);
   }
 
   return (
