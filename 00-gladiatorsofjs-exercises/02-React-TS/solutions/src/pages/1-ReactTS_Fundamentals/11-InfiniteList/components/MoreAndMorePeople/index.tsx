@@ -38,7 +38,7 @@ export const MoreAndMorePeople = ({ data }: { data: Person[] }) => {
   }
 
   return (
-    <div className="container" onScroll={e => handleScroll(e)}>
+    <div className="list" onScroll={e => handleScroll(e)}>
       {displayedPersons.map((person) => (
         <SinglePerson person={person} />
       ))}

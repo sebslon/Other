@@ -1,4 +1,4 @@
-import { Person } from "../../helpers/types"
+import { Person } from "../../helpers/types";
 
 interface SinglePersonProps {
   person: Person;
@@ -6,9 +6,15 @@ interface SinglePersonProps {
 
 export const SinglePerson = ({ person }: SinglePersonProps) => {
   return (
-    <div>
-      {person.name} {person.surname}
-      <img src={person.photo} alt="avatar" className="avatar" />
+    <div className="list__person">
+      <img src={person.photo} alt="avatar" className="list__person__avatar" />
+      <div className="list__person__data">
+        <span className="list__person__name">
+          {person.name} {person.surname}
+        </span>
+        <span>Age: {person.age}</span>
+        <span>Sex: {person.sex}</span>
+      </div>
     </div>
-  )
-}
+  );
+};
