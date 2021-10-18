@@ -5,7 +5,7 @@ export function generatePerson(): Person {
   const sex = randomArrayElement(genders);
   const surname = randomArrayElement(surnames);
   const age = Math.round(Math.random() * 50) + 10;
-  const photo = "https://www.thispersondoesnotexist.com/";
+  const photo = "https://icon-library.com/images/no-user-image-icon/no-user-image-icon-27.jpg";
 
   if (sex === "Male") {
     var name = randomArrayElement(maleNames);
