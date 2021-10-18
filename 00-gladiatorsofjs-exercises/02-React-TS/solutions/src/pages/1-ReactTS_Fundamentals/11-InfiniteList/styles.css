@@ -28,3 +28,8 @@
 .list__person__name {
   font-weight: bold;
 }
+
+.list__loading {
+  text-align: center;
+  font-weight: bold;
+}
