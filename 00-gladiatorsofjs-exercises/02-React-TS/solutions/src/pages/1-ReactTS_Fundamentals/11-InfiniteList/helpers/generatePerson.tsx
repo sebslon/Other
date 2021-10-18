@@ -1,16 +1,19 @@
-import { Person } from "./types";
-import { femaleNames, genders, maleNames, surnames } from "./data";
+import { Person } from "../types";
+import { femaleNames, genders, maleNames, surnames } from "../data";
 
 export function generatePerson(): Person {
   const sex = randomArrayElement(genders);
   const surname = randomArrayElement(surnames);
   const age = Math.round(Math.random() * 50) + 10;
-  const photo = "https://icon-library.com/images/no-user-image-icon/no-user-image-icon-27.jpg";
+  let photo = "";
+  let name = "";
 
   if (sex === "Male") {
-    var name = randomArrayElement(maleNames);
+    name = randomArrayElement(maleNames);
+    photo = `https://randomuser.me/api/portraits/men/${Math.round(Math.random() * 90)}.jpg`
   } else {
-    var name = randomArrayElement(femaleNames);
+    name = randomArrayElement(femaleNames);
+    photo = `https://randomuser.me/api/portraits/women/${Math.round(Math.random() * 90)}.jpg`
   }
 
   return {

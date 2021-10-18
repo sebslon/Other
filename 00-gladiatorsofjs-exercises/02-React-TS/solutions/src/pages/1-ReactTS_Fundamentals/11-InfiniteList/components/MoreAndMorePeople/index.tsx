@@ -1,8 +1,9 @@
 import { useState } from "react";
+
+import { Person } from "../../types";
 import { debounce } from "../../helpers/debounce";
 import { generatePerson } from "../../helpers/generatePerson";
 
-import { Person } from "../../helpers/types";
 import { SinglePerson } from "../SinglePerson";
 
 const DISPLAY_AMOUNT = 10;
@@ -10,7 +11,9 @@ const DISPLAY_AMOUNT = 10;
 export const MoreAndMorePeople = ({ data }: { data: Person[] }) => {
   const [size, setSize] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
-  const [displayedPersons, setDisplayedPersons] = useState(data.slice(0, DISPLAY_AMOUNT));
+  const [displayedPersons, setDisplayedPersons] = useState(
+    data.slice(0, DISPLAY_AMOUNT)
+  );
 
   const debouncedHandleScroll = debounce((target: HTMLDivElement) => {
     const containerHeight = target.clientHeight;
@@ -19,24 +22,27 @@ export const MoreAndMorePeople = ({ data }: { data: Person[] }) => {
 
     const isBottom = scrollHeight - containerHeight === scrollTop;
 
-    if(isBottom) {
+    if (isBottom) {
       const base = size * DISPLAY_AMOUNT;
 
       setIsLoading(true);
 
       setTimeout(() => {
-        setDisplayedPersons((dispPersons) => {
+        setDisplayedPersons((persons) => {
           if (displayedPersons.length < data.length) {
-            return [...dispPersons, ...data.slice(base, base + DISPLAY_AMOUNT)]
+            return [...persons, ...data.slice(base, base + DISPLAY_AMOUNT)];
           } else {
-            return [...dispPersons, ...Array(DISPLAY_AMOUNT).fill("").map(() => generatePerson())]
+            const newPersons = Array(DISPLAY_AMOUNT)
+              .fill("")
+              .map(() => generatePerson());
+
+            return [...persons, ...newPersons];
           }
         });
-  
-        setSize(size => size + 1);
-        setIsLoading(false);
-      }, 2000)
 
+        setSize((size) => size + 1);
+        setIsLoading(false);
+      }, 2000);
     }
   }, 50);
 
@@ -45,11 +51,12 @@ export const MoreAndMorePeople = ({ data }: { data: Person[] }) => {
   }
 
   return (
-    <div className="list" onScroll={e => handleScroll(e)}>
-      {displayedPersons.map((person) => (
-        <SinglePerson person={person} />
+    <div className="list" onScroll={(e) => handleScroll(e)}>
+      {displayedPersons.map((person, idx) => (
+        <SinglePerson person={person} key={idx} />
       ))}
-      {isLoading ? <p className="list__loading">Loading...</p> : null}
+      {isLoading ? <div className="list__loader"></div> : null}
+      {/* {isLoading ? <p className="list__loading">Loading...</p> : null} */}
     </div>
   );
 };

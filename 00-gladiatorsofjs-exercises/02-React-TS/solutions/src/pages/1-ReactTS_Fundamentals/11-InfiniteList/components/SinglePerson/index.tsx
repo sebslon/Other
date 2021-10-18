@@ -1,10 +1,12 @@
-import { Person } from "../../helpers/types";
+import { memo } from "react";
+
+import { Person } from "../../types";
 
 interface SinglePersonProps {
   person: Person;
 }
 
-export const SinglePerson = ({ person }: SinglePersonProps) => {
+export const SinglePerson = memo(({ person }: SinglePersonProps) => {
   return (
     <div className="list__person">
       <img src={person.photo} alt="avatar" className="list__person__avatar" />
@@ -17,4 +19,4 @@ export const SinglePerson = ({ person }: SinglePersonProps) => {
       </div>
     </div>
   );
-};
+});
