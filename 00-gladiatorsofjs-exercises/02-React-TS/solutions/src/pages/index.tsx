@@ -9,3 +9,4 @@ export { ModalVisualization } from './1-ReactTS_Fundamentals/7-Modal';
 export { SearchWithDropdownVis } from './1-ReactTS_Fundamentals/8-SearchWithDropdown';
 export { MasonryGridVis } from './1-ReactTS_Fundamentals/9-MasonryGrid';
 export { PasswordInputVis } from './1-ReactTS_Fundamentals/10-PasswordInput';
+export { InfiniteList } from './1-ReactTS_Fundamentals/11-InfiniteList';

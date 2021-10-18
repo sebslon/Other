@@ -11,7 +11,8 @@ import {
   ModalVisualization,
   SearchWithDropdownVis,
   MasonryGridVis,
-  PasswordInputVis
+  PasswordInputVis,
+  InfiniteList
 } from "pages";
 
 export const routes: ExerciseRoute[] = [
@@ -64,6 +65,11 @@ export const routes: ExerciseRoute[] = [
   {
     path: "/PasswordInput",
     component: PasswordInputVis,
+    exact: true,
+  },
+  {
+    path: "/InfiniteList",
+    component: InfiniteList,
     exact: true,
   },
 ];
