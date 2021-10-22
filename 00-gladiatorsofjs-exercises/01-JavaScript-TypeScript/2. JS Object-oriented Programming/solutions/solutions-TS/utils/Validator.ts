@@ -120,12 +120,13 @@ class Validator {
   }
 
   static between(min: number, max: number) {
+    // converting for nicer error message
     if (typeof this.value === "string" || Array.isArray(this.value)) {
       this.value = this.value.length;
       this.key = this.key + " length";
     }
 
-    if (this.value > max && this.value < min) {
+    if (this.value > max || this.value < min) {
       throw new Error(`${this.key} should be between ${min} and ${max}`);
     }
 

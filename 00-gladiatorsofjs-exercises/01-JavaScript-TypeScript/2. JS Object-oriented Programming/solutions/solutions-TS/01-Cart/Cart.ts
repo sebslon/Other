@@ -1,7 +1,7 @@
 import { v4 as uuid } from 'uuid';
 
 import Validator from '../utils/Validator';
-import CartItem from './CartItem';
+import { CartItem } from './CartItem';
 
 const discounts = {
   halfPrice: 0.5,
@@ -9,7 +9,7 @@ const discounts = {
   tiny: 0.1,
 };
 
-class Cart {
+export class Cart {
   private readonly _id: string;
   private discount: number;
   private discountCode: string;

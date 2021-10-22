@@ -2,7 +2,7 @@ import { v4 as uuid } from "uuid";
 
 import Validator from "../utils/Validator";
 
-class CartItem {
+export class CartItem {
   readonly _id: string;
 
   constructor(
@@ -10,7 +10,7 @@ class CartItem {
     public category: string,
     public price: number,
     public discount: number = 0,
-    public quantity: number
+    public quantity: number = 1,
   ) {
     this._id = uuid();
 
@@ -23,7 +23,7 @@ class CartItem {
     this.category = category;
     this.price = price;
     this.discount = discount;
-    this.quantity = 0;
+    this.quantity = quantity;
   }
 
   change(property: string, newValue: string | number) {
@@ -49,8 +49,6 @@ class CartItem {
     }
   }
 }
-
-export default CartItem;
 
 // Ma miec: Nazwę, Kategorię, Cenę, Rabat % na przedmiot, uuid
 // Ma umożliwiać:
