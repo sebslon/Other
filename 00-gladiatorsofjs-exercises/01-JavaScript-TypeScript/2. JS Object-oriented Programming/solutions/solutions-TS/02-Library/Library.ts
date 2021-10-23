@@ -9,7 +9,7 @@ interface ILibrary {
   bookings: Booking[];
 }
 
-class Library implements ILibrary {
+export class Library implements ILibrary {
   libraryName: string;
   books: Book[];
   borrowedBooks: Book[];
