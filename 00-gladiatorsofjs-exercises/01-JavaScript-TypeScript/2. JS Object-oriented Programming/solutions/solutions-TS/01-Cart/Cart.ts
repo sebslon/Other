@@ -23,7 +23,7 @@ export class Cart {
   }
 
   findItem(itemId: string) {
-    return this.items.filter((item) => item._id === itemId);
+    return this.items.find((item) => item._id === itemId);
   }
 
   addItem(item: CartItem) {
@@ -33,7 +33,7 @@ export class Cart {
 
     item.quantity++;
 
-    if (this.findItem(item._id).length === 0) {
+    if (!this.findItem(item._id)) {
       this.items.push(item);
       return `${item} has been added to the cart.`;
     }
@@ -52,37 +52,20 @@ export class Cart {
     return `${item.name} has been removed from the cart.`;
   }
 
-  decreaseAmountOfItem(item: CartItem) {
-    if (!(item instanceof CartItem)) {
-      throw new Error("This item can't be added to the cart");
-    }
+  decreaseAmountOfItem(itemId: string) {
+    const cartItem = this.findItem(itemId);
 
-    const [cartItem] = this.findItem(item._id);
+    if(!cartItem) throw new Error("Something went wrong..")
+
     cartItem.quantity--;
 
-    return;
+    return cartItem;
   }
 
   addDiscountCode(code: string) {
     Validator.check("Discount code", code).isString();
 
     return (this.discountCode = code);
-  }
-
-  calculateDiscount() {
-    const { discountCode } = this;
-
-    if (discountCode === "half") {
-      this.discount = discounts.halfPrice;
-    } else if (discountCode === "quarter") {
-      this.discount = discounts.quarter;
-    } else if (discountCode === "tiny") {
-      this.discount = discounts.tiny;
-    } else {
-      this.discount = 0;
-    }
-
-    return this.discount;
   }
 
   calculatePrice() {
@@ -100,6 +83,22 @@ export class Cart {
     }
 
     return totalItemsPrice;
+  }
+
+  private calculateDiscount() {
+    const { discountCode } = this;
+
+    if (discountCode === "half") {
+      this.discount = discounts.halfPrice;
+    } else if (discountCode === "quarter") {
+      this.discount = discounts.quarter;
+    } else if (discountCode === "tiny") {
+      this.discount = discounts.tiny;
+    } else {
+      this.discount = 0;
+    }
+
+    return this.discount;
   }
 }
 

@@ -10,7 +10,7 @@ export class CartItem {
     public category: string,
     public price: number,
     public discount: number = 0,
-    public quantity: number = 1,
+    public quantity: number = 0,
   ) {
     this._id = uuid();
 
@@ -23,7 +23,6 @@ export class CartItem {
     this.category = category;
     this.price = price;
     this.discount = discount;
-    this.quantity = quantity;
   }
 
   change(property: string, newValue: string | number) {

@@ -4,7 +4,7 @@ import { CartItem } from "../01-Cart/CartItem";
 describe("Cart Item", () => {
   let cartItem: CartItem;
 
-  beforeEach(() => {
+  beforeAll(() => {
     cartItem = new CartItem("T-shirt", "shirts", 30);
   });
 
@@ -13,7 +13,7 @@ describe("Cart Item", () => {
     expect(cartItem).toHaveProperty("category", "shirts");
     expect(cartItem).toHaveProperty("price", 30);
     expect(cartItem).toHaveProperty("discount", 0);
-    expect(cartItem).toHaveProperty("quantity", 1);
+    expect(cartItem).toHaveProperty("quantity", 0);
   });
 
   it("Allows to change given properties", () => {
@@ -49,6 +49,61 @@ describe("Cart Item", () => {
   });
 });
 
-// describe("Cart", () => {
-//   it("")
-// })
+describe("Cart", () => {
+  let cartItem: CartItem;
+  let cartItem2: CartItem;
+  let cart: Cart;
+
+  beforeEach(() => {
+    cartItem = new CartItem("T-shirt", "shirts", 30, 0, 5);
+    cartItem2 = new CartItem("T-shirt2", "shirts", 50, 0, 5);
+    cart = new Cart();
+    cart.addItem(cartItem);
+  })
+
+  it("Allows to add cart item to the cart", () => {
+    cart.addItem(cartItem2);
+
+    expect(cart.items.length).toBe(2);
+  });
+
+  it("Allows to find item by its id", () => {
+    const foundCartItem = cart.findItem(cartItem._id);
+
+    expect(foundCartItem).toBe(cartItem)
+  })
+
+  it("Allows to remove item from cart", () => {
+    cart.removeItem(cartItem);
+
+    expect(cart.items.length).toBe(0);
+  })
+
+  it("Allows to decrease amount of specified item in cart", () => {
+    const newItem = new CartItem("testtest", "test", 10);
+
+    cart.addItem(newItem);
+    cart.addItem(newItem); // Added two times - quantity: 2
+
+    cart.decreaseAmountOfItem(newItem._id);
+
+    expect(newItem.quantity).toBe(1);
+  })
+
+  it("Properly calculates price for cart", () => {
+    cart.addItem(cartItem2);
+
+    const total = cart.calculatePrice();
+
+    expect(total).toBe(80);
+  })
+
+  it("Properly calculates price for cart if discount is applied", () => {
+    cart.addItem(cartItem2);
+    cart.addDiscountCode("half");
+
+    const total = cart.calculatePrice();
+
+    expect(total).toBe(40);
+  })
+})
