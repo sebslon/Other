@@ -1,3 +1,5 @@
+// Performance Agent -- web vitals
+
 (function (ready) {
   if (document.readyState === "complete" || document.readyState === "interactive") {
     ready();
@@ -43,7 +45,7 @@
   var clsObserver = new PerformanceObserver(function handleCLS(entryList) {
     var entries = entryList.getEntries() || [];
     entries.forEach(function(entry) {
-      if (!entry.hadRecentInput) {
+      if (!entry.hadRecentInput) { // not touched element (for example expanding navbar or video)
         data.cls += entry.value;
         console.log("Increased CLS Performance: " + data.cls);
       }
@@ -64,7 +66,7 @@
     data.load = navEntry.loadEventStart;
 
     var payload = JSON.stringify(data);
-    navigator.sendBeacon("/api/perf", payload);
+    navigator.sendBeacon("/api/perf", payload); // small chunk of data
     console.log("Sending performance:", payload);
   });
 
