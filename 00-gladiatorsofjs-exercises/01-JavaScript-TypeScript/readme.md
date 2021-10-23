@@ -1,11 +1,55 @@
-## Repository with my solutions 
-### https://gladiators-of-javascript.com/
+## JavaScript / TypeScript Fundamentals
 
-<hr>
+JS/TS Exercises, below are short descriptions, longer descriptions are in `"zadania"` (eng: exercises) directories in each folder.
 
-<p style="text-align: center">
-Programming exercises, to learn and have some fun solving different problems.
+Almost every exercise has written tests for it in `"__tests__"` directories.
 
-  - <b>JavaScript / TypeScript</b> solutions + <b>Tests</b> - in javascript solutions i've added some input/type checking etc.
-</p>
+To run tests install dependencies (yarn) and then run yarn test.
 
+### 1. Functional programming
+
+Functional programming - recursion, regexps, higher order functions, inputs validating.
+
+- **01 - aggregateArrayIntoChunks** - Aggregate array in random length (in range 4, 7) chunks.
+- **02 - Array Methods** - Implement built in array methods (forEach, map, entries, filter, every, some, reduce) by using for/while loops.
+- **03 - findPhraseInArray** - Return elements that match given phrase.
+- **04 - generateArrayWithRandomNumbers** - Create a function to generate array of given length with arrays (also given length) with random numbers.
+- **05 - generateHuman** - Create random person, use external API to generate names and surnames.
+- **06 - isRectangularTriangle** - Check if it's possible to build rectangular triangle from given values.
+- **07 - getMyAge** - Accepts birth year and returns age independently if argument is a string, number or date.
+- **08 - pagination** - Array pagination.
+- **09 - masterReduce** - with .reduce - create built in array methods (map, filter, every, some).
+- **10 - filterWith** - with .filter - create a filtering function that will filter out an array of objects with nested objects and arrays - use recursion and regexp.
+
+### 2. Object-oriented programming
+
+SOLID, Separation of Concerns, extracting abstractions
+
+- **01 - Cart** - Cart, CartItem classes
+- **02 - Library** - Library which allows to create bookings
+- **03 - User** - App class with possibility to create User and Admin objects
+- **04 - EmailBuilder** - Design pattern: Builder
+- **05 - DynamicSwitch** - Validating class which accepts multiple cases
+- **06 - AddressBook**
+
+* **Validator** - Helper class with static methods, which has been used to validate multiple properties in exercises above.
+
+### 3. TS in Node & Async
+
+Asynchronous JS, API, Communication, Promises
+
+**[IN PROGRESS]**
+
+- **01 - serveFromCache**
+- **02 - recursivePromise**
+- **03 - PromiseMethods**
+- **04 - mailWithHook**
+- **05 - autoTranslator**
+
+### 4. TS in HTML
+
+**[IN PROGRESS]**
+
+### 5. TS in Tests
+
+**[IN PROGRESS]**
