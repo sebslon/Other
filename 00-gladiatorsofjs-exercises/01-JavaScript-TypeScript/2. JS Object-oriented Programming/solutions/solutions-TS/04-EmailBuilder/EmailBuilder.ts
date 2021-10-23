@@ -1,7 +1,7 @@
 import { Email } from "./types";
 import Validator from "../utils/Validator";
 
-class EmailBuilder {
+export class EmailBuilder {
   private mail: Email;
 
   constructor(from: string, to: string) {
