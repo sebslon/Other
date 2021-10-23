@@ -1,7 +1,7 @@
 import { Gender, User } from "./User";
 import { Admin } from "./Admin";
 
-class App {
+export class App {
   public listOfUsers: (User | Admin)[] = [];
 
   createUser(
@@ -31,7 +31,7 @@ class App {
   }
 
   getUserById(id: string) {
-    const user = this.listOfUsers.find(user => user._id === id);
+    const user = this.listOfUsers.find((user) => user._id === id);
 
     if (!user) {
       throw new Error("User not found");
@@ -40,5 +40,3 @@ class App {
     return user;
   }
 }
-
-

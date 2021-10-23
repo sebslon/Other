@@ -59,7 +59,7 @@ describe("Cart", () => {
     cartItem2 = new CartItem("T-shirt2", "shirts", 50, 0, 5);
     cart = new Cart();
     cart.addItem(cartItem);
-  })
+  });
 
   it("Allows to add cart item to the cart", () => {
     cart.addItem(cartItem2);
@@ -70,14 +70,14 @@ describe("Cart", () => {
   it("Allows to find item by its id", () => {
     const foundCartItem = cart.findItem(cartItem._id);
 
-    expect(foundCartItem).toBe(cartItem)
-  })
+    expect(foundCartItem).toBe(cartItem);
+  });
 
   it("Allows to remove item from cart", () => {
     cart.removeItem(cartItem);
 
     expect(cart.items.length).toBe(0);
-  })
+  });
 
   it("Allows to decrease amount of specified item in cart", () => {
     const newItem = new CartItem("testtest", "test", 10);
@@ -88,7 +88,7 @@ describe("Cart", () => {
     cart.decreaseAmountOfItem(newItem._id);
 
     expect(newItem.quantity).toBe(1);
-  })
+  });
 
   it("Properly calculates price for cart", () => {
     cart.addItem(cartItem2);
@@ -96,7 +96,7 @@ describe("Cart", () => {
     const total = cart.calculatePrice();
 
     expect(total).toBe(80);
-  })
+  });
 
   it("Properly calculates price for cart if discount is applied", () => {
     cart.addItem(cartItem2);
@@ -105,5 +105,5 @@ describe("Cart", () => {
     const total = cart.calculatePrice();
 
     expect(total).toBe(40);
-  })
-})
+  });
+});

@@ -63,4 +63,8 @@ export class User implements IUser {
       throw new Error("You don't have enough permission.");
     }
   }
+
+  getAccess() {
+    return this.access;
+  }
 }
