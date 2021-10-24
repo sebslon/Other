@@ -1,7 +1,7 @@
 class Validator {
   private static instance: Validator;
   private static key: string;
-  private static value: string | number | (string | number)[];
+  private static value: string | number | object | (string | number)[];
 
   private constructor() {}
 
@@ -12,7 +12,10 @@ class Validator {
     return Validator.instance;
   }
 
-  static check(key: string, value: string | number | string[] | number[]) {
+  static check(
+    key: string,
+    value: string | number | object | string[] | number[]
+  ) {
     this.key = key;
     this.value = value;
     return this;
@@ -120,12 +123,13 @@ class Validator {
   }
 
   static between(min: number, max: number) {
+    // converting for nicer error message
     if (typeof this.value === "string" || Array.isArray(this.value)) {
       this.value = this.value.length;
       this.key = this.key + " length";
     }
 
-    if (this.value > max && this.value < min) {
+    if (this.value > max || this.value < min) {
       throw new Error(`${this.key} should be between ${min} and ${max}`);
     }
 
