@@ -1,7 +1,7 @@
 class Validator {
   private static instance: Validator;
   private static key: string;
-  private static value: string | number | (string | number)[];
+  private static value: string | number | object | (string | number)[];
 
   private constructor() {}
 
@@ -12,7 +12,10 @@ class Validator {
     return Validator.instance;
   }
 
-  static check(key: string, value: string | number | string[] | number[]) {
+  static check(
+    key: string,
+    value: string | number | object | string[] | number[]
+  ) {
     this.key = key;
     this.value = value;
     return this;
