@@ -1,7 +1,7 @@
 import { Contact } from "./Contact";
 import { Group } from "./Group";
 
-class AddressBook {
+export class AddressBook {
   public contacts: Contact[] = [];
   public groups: Group[] = [];
 
@@ -44,6 +44,10 @@ class AddressBook {
     if(this.groups.find(gr => gr.id === group.id)) {
       throw new Error(`Group with ${group.name} is already in this address book.`);
     }
+
+    this.groups.push(group);
+
+    return;
   }
 
   removeGroup(id: string) {

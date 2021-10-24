@@ -12,6 +12,8 @@ export class EmailBuilder {
   }
 
   setTitle(title: string) {
+    Validator.check("Title", title).isNotEmpty();
+
     this.mail.title = title;
     return this;
   }

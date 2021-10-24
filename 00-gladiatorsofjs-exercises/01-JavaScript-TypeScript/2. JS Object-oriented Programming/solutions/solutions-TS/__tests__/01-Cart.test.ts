@@ -16,7 +16,7 @@ describe("Cart Item", () => {
     expect(cartItem).toHaveProperty("quantity", 0);
   });
 
-  it("Allows to change given properties", () => {
+  it("Allows to change given (name, category, price) properties", () => {
     cartItem.change("name", "testtest");
     cartItem.change("category", "test");
     cartItem.change("price", 50);

@@ -3,11 +3,11 @@ interface Case {
   callback: () => void;
 }
 
-class Switch {
+export class Switch {
   cases: Case[] = [];
 
   add(condition: boolean, callback: () => void) {
-    this.cases.push({condition, callback});
+    this.cases.push({ condition, callback });
   }
 
   isValid(): boolean {
@@ -16,13 +16,12 @@ class Switch {
     for (let i = 0; i < this.cases.length; i++) {
       const isConditionFilled = this.cases[i].condition;
 
-      if(!isConditionFilled) {
+      if (isConditionFilled) {
         this.cases[i].callback();
-      };
-
-      isValid = false;
+        isValid = false;
+      }
     }
-    
+
     this.cases = [];
     return isValid;
   }

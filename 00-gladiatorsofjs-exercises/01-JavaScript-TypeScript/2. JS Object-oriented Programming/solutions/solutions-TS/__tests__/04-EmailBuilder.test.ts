@@ -16,7 +16,18 @@ describe("Email Builder", () => {
   });
 
   it("Should throw error if sender or receiver is not valid email", () => {
-    expect(() => new EmailBuilder("sender", "receiver@gmail.com").build()).toThrowError();
-    expect(() => new EmailBuilder("sender@gmail.com", "receiver").build()).toThrowError();
+    expect(() =>
+      new EmailBuilder("sender", "receiver@gmail.com").build()
+    ).toThrowError();
+    
+    expect(() =>
+      new EmailBuilder("sender@gmail.com", "receiver").build()
+    ).toThrowError();
+  });
+
+  it("Should throw error if title is empty", () => {
+    expect(() =>
+      new EmailBuilder("from@gmail.com", "to@gmail.com").setTitle("").build()
+    ).toThrowError();
   });
 });
