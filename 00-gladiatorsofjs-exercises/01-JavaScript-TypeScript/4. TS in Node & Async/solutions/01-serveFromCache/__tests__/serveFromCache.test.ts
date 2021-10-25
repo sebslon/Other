@@ -31,11 +31,9 @@ describe("ServeFromCache with Node/Axios", () => {
     });
   }
 
-  clearFiles();
-
   // ACTUAL TESTS
 
-  it("Handles response properly - as normal fetching", async () => {
+  it("Handles fetching correctly - as native only fetching function", async () => {
     for (const query of queries) {
       const queryWithoutSpaces = trimQuery(query);
       const urlParams = `?q=${queryWithoutSpaces}&maxResults=1`;
@@ -52,10 +50,26 @@ describe("ServeFromCache with Node/Axios", () => {
         queryWithoutSpaces
       );
 
-      expect(nodeFetchResult!.description).toEqual(expectedResult!.description);
-      expect(axiosFetchResult!.description).toEqual(expectedResult!.description);
+      expect(nodeFetchResult!.description).toEqual(expectedResult.description);
+      expect(axiosFetchResult!.description).toEqual(expectedResult.description);
 
       clearFiles();
     }
+  });
+
+  it("Returns from cache if it exists", async () => {
+    const spy = jest.spyOn(fs, "readFileSync");
+    const queryString = "test-cache";
+    const filepath = path.join(absolutePath, queryString + ".json");
+
+    const axiosFetchResult = await axiosFetcher.fetchAPIWithQueryString(
+      queryString
+    );
+
+    expect(spy).toBeCalledWith(filepath, "utf-8");
+    expect(axiosFetchResult!.description).toBe("test");
+
+    clearFiles();
+    spy.mockClear();
   });
 });

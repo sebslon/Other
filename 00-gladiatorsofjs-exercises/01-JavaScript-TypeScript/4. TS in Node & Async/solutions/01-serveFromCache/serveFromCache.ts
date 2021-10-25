@@ -11,10 +11,11 @@ abstract class CacheHandler {
 
   protected getDataFromCache(filepath: string): DataFromCache {
     if (fs.existsSync(filepath)) {
-      const responseFromCache = fs.readFileSync(filepath, "utf8");
-      const response: DataFromGoogleAPI = JSON.parse(responseFromCache);
+      const responseFromCache = fs.readFileSync(filepath, "utf-8");
 
-      return { cacheExists: true, data: response };
+      return responseFromCache
+        ? { cacheExists: true, data: JSON.parse(responseFromCache) }
+        : { cacheExists: false };
     } else {
       return { cacheExists: false };
     }
