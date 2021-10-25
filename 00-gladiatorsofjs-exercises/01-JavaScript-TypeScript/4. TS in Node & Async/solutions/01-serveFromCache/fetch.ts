@@ -3,7 +3,7 @@ import nodeFetch from "node-fetch";
 
 import { HTTPRequestsWrapper } from "./types";
 
-class NodeFetch implements HTTPRequestsWrapper {
+export class NodeFetch implements HTTPRequestsWrapper {
   async fetchURL(url: string) {
     try {
       const result = await nodeFetch(url);
@@ -12,19 +12,21 @@ class NodeFetch implements HTTPRequestsWrapper {
 
       return { response, status };
     } catch (err) {
-      console.log(err);
+      console.log(err.message);
+      return { response: null, status: false }
     }
   }
 }
 
-class AxiosFetch implements HTTPRequestsWrapper {
+export class AxiosFetch implements HTTPRequestsWrapper {
   async fetchURL(url: string) {
     try {
       const result = await axios(url);
 
       return { response: result.data, status: true }
     } catch(err) {
-      console.log(err);
+      console.log(err.message);
+      return { response: null, status: false }
     }
   }
 }

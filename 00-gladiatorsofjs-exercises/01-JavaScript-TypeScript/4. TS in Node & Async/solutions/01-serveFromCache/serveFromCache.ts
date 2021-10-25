@@ -3,11 +3,11 @@ import path from "path";
 
 import { DataFromCache, DataFromGoogleAPI, HTTPRequestsWrapper } from "./types";
 
-const apiUrl = "https://www.googleapis.com/books/v1/volumes";
+const API_URL = "https://www.googleapis.com/books/v1/volumes";
 
-export abstract class ServeFromCacheHandler {
+abstract class CacheHandler {
   protected absolutePath: string = path.join(__dirname, "/cache");
-  protected urlLink: string = apiUrl;
+  protected urlLink: string = API_URL;
 
   protected getDataFromCache(filepath: string): DataFromCache {
     if (fs.existsSync(filepath)) {
@@ -28,10 +28,12 @@ export abstract class ServeFromCacheHandler {
   }
 
   protected parseData(jsonResponse: any): DataFromGoogleAPI {
+    const { response } = jsonResponse;
+
     const recordData = {
-      _id: jsonResponse.items[0].id,
-      selfLink: jsonResponse.items[0].selfLink,
-      description: jsonResponse.items[0].description,
+      _id: response.items[0].id,
+      selfLink: response.items[0].selfLink,
+      description: response.items[0].volumeInfo.title,
     };
 
     return recordData;
@@ -39,7 +41,9 @@ export abstract class ServeFromCacheHandler {
 
   protected writeToFile(filepath: string, APIData: DataFromGoogleAPI) {
     fs.writeFile(filepath, JSON.stringify(APIData), (err) => {
-      if (err) throw "Problem with caching data.";
+      if (err) {
+        throw new Error("Problem with caching data.");
+      }
     });
   }
 
@@ -48,12 +52,12 @@ export abstract class ServeFromCacheHandler {
   }
 }
 
-class FetchServeFromCache extends ServeFromCacheHandler {
-  private fetchWrapper: HTTPRequestsWrapper;
+export class ServeFromCache extends CacheHandler {
+  private requestsWrapper: HTTPRequestsWrapper;
 
-  constructor(fetchWrapper: HTTPRequestsWrapper) {
+  constructor(wrapper: HTTPRequestsWrapper) {
     super();
-    this.fetchWrapper = fetchWrapper;
+    this.requestsWrapper = wrapper;
   }
 
   fetchAPIWithQueryString(queryString: string) {
@@ -65,28 +69,20 @@ class FetchServeFromCache extends ServeFromCacheHandler {
     if (cacheData.cacheExists) {
       return cacheData.data;
     } else {
-      this.APIRequest(queryString, filepath);
+      return this.APIRequest(queryString, filepath);
     }
   }
 
-  private APIRequest(queryString: string, filepath: string) {
-    const urlParams = `?g=${queryString}&maxResults=1`;
+  private async APIRequest(queryString: string, filepath: string) {
+    const urlParams = `?q=${queryString}&maxResults=1`;
     const urlToFetch = this.urlLink + urlParams;
 
-    const errConnectionProblem = "Problem with connection.";
-
-    return this.fetchWrapper
+    return this.requestsWrapper
       .fetchURL(urlToFetch)
       .then((response) => {
-        if (!response) {
-          throw new Error(errConnectionProblem);
-        }
         return this.cacheAndReturnData(response, filepath);
       })
       .catch((err) => {
-        if (err.message !== errConnectionProblem) {
-          throw new Error("Unexpected problem with fetching data.");
-        }
         throw err;
       });
   }
