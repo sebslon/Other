@@ -1,0 +1,45 @@
+body {
+  background-color: #111;
+  height: 400vh;
+  margin: 0px;
+  box-sizing: border-box;
+}
+
+#sticky__menu {
+  background-color: #555;
+  position: fixed;
+}
+
+.scrolling > #sticky__menu {
+  width: 100px;
+  height: 50px;
+  animation: scrollingAnimation 0.3s;
+}
+
+.not-scrolling > #sticky__menu {
+  width: 100%;
+  height: 80px;
+  animation: notScrollingAnimation 0.3s;
+}
+
+@keyframes scrollingAnimation {
+  0% {
+    width: 100%;
+    height: 80px;
+  }
+  100% {
+    width: 100px;
+    height: 50px;
+  }
+}
+
+@keyframes notScrollingAnimation {
+  0% {
+    width: 100px;
+    height: 50px;
+  }
+  100% {
+    width: 100%;
+    height: 80px;
+  }
+}

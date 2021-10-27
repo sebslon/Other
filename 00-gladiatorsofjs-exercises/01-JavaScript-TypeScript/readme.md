@@ -51,3 +51,5 @@ Asynchronous JS, API, Communication, Promises
 **[IN PROGRESS]**
 
 - **01 - getUrlParameters** - Function that converts URL parameters to an object with key value pairs (`?page=10&id=1` => `{page: 10, id:1}`)
+- **02 - onStopScroll** - Navbar on scroll animation, adding/removing classes
+
