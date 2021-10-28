@@ -52,4 +52,5 @@ Asynchronous JS, API, Communication, Promises
 
 - **01 - getUrlParameters** - Function that converts URL parameters to an object with key value pairs (`?page=10&id=1` => `{page: 10, id:1}`)
 - **02 - onStopScroll** - Navbar on scroll animation, adding/removing classes
-
+- **03 - formBEM** - simple form with classes in BEM methodology
+- **04 - dynamicForm** - function which generates and appends a form (HTML) by given settings
