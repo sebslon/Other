@@ -54,3 +54,5 @@ Asynchronous JS, API, Communication, Promises
 - **02 - onStopScroll** - Navbar on scroll animation, adding/removing classes
 - **03 - formBEM** - simple form with classes in BEM methodology
 - **04 - dynamicForm** - function which generates and appends a form (HTML) by given settings
+- **05 - nextAwesomeSCSSGrid** - use SCSS with its loops to generate bootstrap like grid
+

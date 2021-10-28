@@ -1,0 +1,40 @@
+@mixin centeredElement {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@for $i from 1 to 10 {
+  .col-#{$i} {
+    width: 10% * $i;
+  }
+}
+
+$flexDirections: "row", "column";
+
+@each $dir in $flexDirections {
+  .flex-#{$dir} {
+    flex-direction: #{$dir};
+    flex-wrap: wrap;
+    @include centeredElement;
+  }
+}
+
+$breakpoints: ("-sm-": 576px, "-md-": 768px, "-lg-": 992px, "-xl-": 1200px);
+
+@each $breakpoint, $size in $breakpoints {
+  @media( min-width: #{$size} ) {
+    @each $dir in $flexDirections {
+      .flex#{$breakpoint}#{$dir} {
+        @include centeredElement;
+        flex-direction: #{$dir}
+      } 
+    }
+
+    @for $j from 1 through 10 {
+      .col#{$breakpoint}#{$j} {
+        width: 10% * $j;
+      }
+    }
+  }
+}
