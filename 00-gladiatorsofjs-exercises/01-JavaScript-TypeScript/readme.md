@@ -55,4 +55,5 @@ Asynchronous JS, API, Communication, Promises
 - **03 - formBEM** - simple form with classes in BEM methodology
 - **04 - dynamicForm** - function which generates and appends a form (HTML) by given settings
 - **05 - nextAwesomeSCSSGrid** - use SCSS with its loops to generate bootstrap like grid
+- **06 - onDelayHref** - a[data-delayed-href][data-delayed-duration] - delayed onClick redirection
 
