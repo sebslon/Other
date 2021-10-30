@@ -56,4 +56,4 @@ Asynchronous JS, API, Communication, Promises
 - **04 - dynamicForm** - function which generates and appends a form (HTML) by given settings
 - **05 - nextAwesomeSCSSGrid** - use SCSS with its loops to generate bootstrap like grid
 - **06 - onDelayHref** - a[data-delayed-href][data-delayed-duration] - delayed onClick redirection
-
+- **07 - zoomOnHover** - Creates additional image (lens effect) when hovering over an image example: https://nbsklep.pl/new_balance_cm997hae.html
