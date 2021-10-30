@@ -50,6 +50,8 @@ Asynchronous JS, API, Communication, Promises
 
 **[IN PROGRESS]**
 
+To run examples with TS use parcel -> `parcel serve /...path-to/index.html`
+
 - **01 - getUrlParameters** - Function that converts URL parameters to an object with key value pairs (`?page=10&id=1` => `{page: 10, id:1}`)
 - **02 - onStopScroll** - Navbar on scroll animation, adding/removing classes
 - **03 - formBEM** - simple form with classes in BEM methodology
@@ -57,3 +59,4 @@ Asynchronous JS, API, Communication, Promises
 - **05 - nextAwesomeSCSSGrid** - use SCSS with its loops to generate bootstrap like grid
 - **06 - onDelayHref** - a[data-delayed-href][data-delayed-duration] - delayed onClick redirection
 - **07 - zoomOnHover** - Creates additional image (lens effect) when hovering over an image example: https://nbsklep.pl/new_balance_cm997hae.html
+- **08 - progressReadingBar** - Bar with progress of scrollable area (intersection observer)

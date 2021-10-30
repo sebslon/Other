@@ -1,0 +1,19 @@
+.wrapper {
+  width: 500px;
+  height: 800px;
+  overflow-y: scroll;
+  margin: 5em auto;
+}
+
+.progress-bar-wrapper {
+  width: 100%;
+  position: sticky;
+  top: 0;
+}
+
+.progress-bar {
+  height: 10px;
+  width: 0px;
+  background-color: blue;
+  transition: width 0.2s ease;
+}
