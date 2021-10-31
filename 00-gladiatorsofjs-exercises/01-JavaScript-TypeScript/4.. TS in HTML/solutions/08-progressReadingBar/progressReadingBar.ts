@@ -36,7 +36,7 @@ class ProgressReadingBarObserver {
 
   onScroll = (entry: IntersectionObserverEntry) => {
     const element = entry.target;
-    console.log(element);
+
     if (!(element instanceof HTMLElement)) {
       throw new Error("Element must be of type HTMLElement");
     }
@@ -45,10 +45,10 @@ class ProgressReadingBarObserver {
       ".progress-bar"
     ) as HTMLElement;
 
-    const scrolledArea = element.scrollTop + element.offsetHeight;
-    const totalHeight = element.scrollHeight;
+    const scrolledArea = element.scrollTop;
+    const totalHeight = element.scrollHeight - element.offsetHeight;
 
-    const scrollValue = (scrolledArea / totalHeight) * 100;
+    const scrollValue = ((scrolledArea / totalHeight) * 100).toFixed(2);
 
     progressBar.style.width = `${scrollValue}%`;
   };
