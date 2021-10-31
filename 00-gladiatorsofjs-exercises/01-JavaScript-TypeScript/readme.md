@@ -61,3 +61,4 @@ To run examples with TS use parcel -> `parcel serve /...path-to/index.html`
 - **07 - zoomOnHover** - Creates additional image (lens effect) when hovering over an image example: https://nbsklep.pl/new_balance_cm997hae.html
 - **08 - progressReadingBar** - Bar with progress of scrollable area (intersection observer)
 - **09 - trackMeNow** - Simple mobile tracking app with use of Google Maps API
+- **10 - TypingEffect** - Animated typing letters one by one, forward then backwards. (like -> https://mattboldt.com/demos/typed-js/)
