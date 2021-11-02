@@ -1,0 +1,50 @@
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #999;
+}
+
+.app {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.local-time {
+  font-size: 2em;
+  margin-bottom: 1em;
+}
+
+.dates {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.date {
+  border: 2px solid black;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin: 0.2em;
+}
+
+.buttons {
+  display: flex;
+  width: 100%;
+  margin-top: 1em;
+  justify-content: space-between;
+}
+
+.buttons button {
+  padding: 1em;
+  width: 120px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
