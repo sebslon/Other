@@ -39,7 +39,6 @@ function createTable(containerSelector: string, data: Record<string, any>[]) {
 
   const tableHeaderWithColumns = dataKeys.reduce((acc, key) => {
     acc.append(createHeaderRow(key));
-    console.log(key);
     return acc;
   }, tableHeader);
 

@@ -1,0 +1,107 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap");
+
+body {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+}
+
+p {
+  margin: 0px;
+}
+
+.date-picker {
+  width: 100%;
+  margin: 0 auto;
+  padding: 2em;
+  width: fit-content;
+  background-color: white;
+}
+
+.heading {
+  font-size: 2em;
+  margin-bottom: 1.5em;
+}
+
+.blue-text {
+  color: #0044f5;
+}
+
+.date-container {
+  width: 300px;
+  height: 250px;
+  position: relative;
+  display: flex;
+}
+
+.date-container::before {
+  position: absolute;
+  content: "";
+  width: 300px;
+  height: 1px;
+  background: #a19f9c;
+  top: 106px;
+}
+
+.date-container::after {
+  position: absolute;
+  content: "";
+  width: 300px;
+  height: 1px;
+  background: #a19f9c;
+  top: 146px;
+}
+
+.day-container,
+.month-container,
+.year-container {
+  width: 100px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 30px;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+  scroll-snap-type: both mandatory;
+  cursor: auto;
+}
+
+.day-container p,
+.month-container p,
+.year-container p {
+  scroll-snap-align: center;
+  opacity: 0.2;
+  cursor: pointer;
+  height: 36px;
+}
+
+.day-container p:first-of-type,
+.month-container p:first-of-type,
+.year-container p:first-of-type {
+  margin-top: 115px;
+}
+
+.day-container p:last-of-type,
+.month-container p:last-of-type,
+.year-container p:last-of-type {
+  margin-bottom: 115px;
+}
+
+.day-container::-webkit-scrollbar,
+.month-container::-webkit-scrollbar,
+.year-container::-webkit-scrollbar {
+  display: none;
+}
+
+.month-container p,
+.year-container p {
+  color: #0044f5;
+}
+
+.formatted-date {
+  margin-top: 20px;
+  text-align: center;
+}
