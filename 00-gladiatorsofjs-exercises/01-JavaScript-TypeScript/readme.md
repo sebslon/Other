@@ -6,6 +6,8 @@ Almost every exercise has written tests for it in `"__tests__"` directories.
 
 To run tests install dependencies (yarn) and then run yarn test.
 
+<hr>
+
 ### 1. Functional programming
 
 Functional programming - recursion, regexps, higher order functions, inputs validating.
@@ -21,6 +23,8 @@ Functional programming - recursion, regexps, higher order functions, inputs vali
 - **09 - masterReduce** - with .reduce - create built in array methods (map, filter, every, some).
 - **10 - filterWith** - with .filter - create a filtering function that will filter out an array of objects with nested objects and arrays - use recursion and regexp.
 
+<hr>
+
 ### 2. Object-oriented programming
 
 SOLID, Separation of Concerns, extracting abstractions
@@ -34,6 +38,8 @@ SOLID, Separation of Concerns, extracting abstractions
 
 + **Validator** - Helper class with static methods, which has been used to validate multiple properties in exercises above.
 
+<hr>
+
 ### 3. TS in Node & Async
 
 Asynchronous JS, API, Communication, Promises
@@ -45,6 +51,8 @@ Asynchronous JS, API, Communication, Promises
 - **03 - PromiseMethods**
 - **04 - mailWithHook**
 - **05 - autoTranslator**
+
+<hr>
 
 ### 4. TS in HTML
 
@@ -66,4 +74,4 @@ To run examples with TS use parcel -> `parcel serve /...path-to/index.html`
 - **12 - dynamicTable** - Generate table accordingly to data provided in .json file
 - **13 - awesomeDatePicker** - Recreate Awesome Date Picker (mobile scrolling version)
 
-![date picker]("4. TS in HTML/zadania/AwesomeDatePicker/date-picker-ui-element.gif")
+![date-picker]("https://github.com/sebslon/Other/blob/main/00-gladiatorsofjs-exercises/01-JavaScript-TypeScript/4.%20TS%20in%20HTML/zadania/AwesomeDatePicker/date-picker-ui-element.gif?raw=true")
