@@ -32,7 +32,7 @@ SOLID, Separation of Concerns, extracting abstractions
 - **05 - DynamicSwitch** - Validating class which accepts multiple cases
 - **06 - AddressBook**
 
-* **Validator** - Helper class with static methods, which has been used to validate multiple properties in exercises above.
++ **Validator** - Helper class with static methods, which has been used to validate multiple properties in exercises above.
 
 ### 3. TS in Node & Async
 
@@ -48,8 +48,22 @@ Asynchronous JS, API, Communication, Promises
 
 ### 4. TS in HTML
 
-**[IN PROGRESS]**
+Browser APIs, SCSS, TypeScript with HTML elements
 
-### 5. TS in Tests
+To run examples with TS use parcel -> `parcel serve /...path-to/index.html`
 
-**[IN PROGRESS]**
+- **01 - getUrlParameters** - Function that converts URL parameters to an object with key value pairs (`?page=10&id=1` => `{page: 10, id:1}`)
+- **02 - onStopScroll** - Navbar on scroll animation, adding/removing classes
+- **03 - formBEM** - Simple form with classes in BEM methodology
+- **04 - dynamicForm** - Function which generates and appends a form (HTML) by given settings
+- **05 - nextAwesomeSCSSGrid** - Use SCSS with its loops to generate bootstrap like grid
+- **06 - onDelayHref** - a[data-delayed-href][data-delayed-duration] elements - delayed onClick redirection
+- **07 - zoomOnHover** - Creates additional image (lens effect) when hovering over an image example: https://nbsklep.pl/new_balance_cm997hae.html
+- **08 - progressReadingBar** - Bar with progress of scrollable area (intersection observer)
+- **09 - trackMeNow** - Simple mobile tracking app with use of Google Maps API
+- **10 - TypingEffect** - Animated typing letters one by one, forward then backwards. (like -> https://mattboldt.com/demos/typed-js/)
+- **11 - weekWithDateFns** - Weekly calendar with date.fns
+- **12 - dynamicTable** - Generate table accordingly to data provided in .json file
+- **13 - awesomeDatePicker** - Recreate Awesome Date Picker (mobile scrolling version)
+
+![date picker]("4. TS in HTML/zadania/AwesomeDatePicker/date-picker-ui-element.gif")
