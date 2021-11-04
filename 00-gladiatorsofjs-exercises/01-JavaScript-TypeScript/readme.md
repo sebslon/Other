@@ -48,6 +48,8 @@ Asynchronous JS, API, Communication, Promises
 
 ### 4. TS in HTML
 
+Browser APIs, SCSS, TypeScript with HTML elements
+
 To run examples with TS use parcel -> `parcel serve /...path-to/index.html`
 
 - **01 - getUrlParameters** - Function that converts URL parameters to an object with key value pairs (`?page=10&id=1` => `{page: 10, id:1}`)
@@ -63,3 +65,5 @@ To run examples with TS use parcel -> `parcel serve /...path-to/index.html`
 - **11 - weekWithDateFns** - Weekly calendar with date.fns
 - **12 - dynamicTable** - Generate table accordingly to data provided in .json file
 - **13 - awesomeDatePicker** - Recreate Awesome Date Picker (mobile scrolling version)
+
+![date picker]("4. TS in HTML/zadania/AwesomeDatePicker/date-picker-ui-element.gif")
