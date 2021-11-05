@@ -1,5 +1,5 @@
-function promiseAll<T>(promises: (Promise<T> | T)[]) {
-  if (promises.length === 0) return Promise.resolve();
+export function promiseAll<T>(promises: (Promise<T> | T)[]) {
+  if (promises.length === 0) return Promise.resolve([]);
 
   return new Promise((resolve, reject) => {
     const results: unknown[] = [];
