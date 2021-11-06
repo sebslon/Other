@@ -1,4 +1,4 @@
-function promiseIgnoreErrors<T>(promises: (Promise<T> | T)[]) {
+export function promiseIgnoreErrors<T>(promises: (Promise<T> | T)[]) {
   return new Promise((resolve, reject) => {
     const results: T[] = [];
 

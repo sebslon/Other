@@ -2,7 +2,7 @@ export function promiseAll<T>(promises: (Promise<T> | T)[]) {
   if (promises.length === 0) return Promise.resolve([]);
 
   return new Promise((resolve, reject) => {
-    const results: unknown[] = [];
+    const results: T[] = [];
     let completed = 0;
 
     promises.forEach((promise, index) => {

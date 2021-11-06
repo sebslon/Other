@@ -1,7 +1,7 @@
-// Retruns last fulfilled promise.
+// Returns last fulfilled promise.
 // If an error occurs, promiseLast returns it after completion of all promises.
 
-function promiseLast<T>(promises: (Promise<T> | T)[]) {
+export function promiseLast<T>(promises: (Promise<T> | T)[]) {
   return new Promise((resolve, reject) => {
     let completed = 0;
     let error: T;

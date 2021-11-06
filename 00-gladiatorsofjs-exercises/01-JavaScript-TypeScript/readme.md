@@ -42,7 +42,7 @@ Asynchronous JS, API, Communication, Promises
 
 - **01 - serveFromCache** - Functionality which fetches and caches data by given query from Google Books API with use of fetch and axios (return data from "./cache/query.json" if already cached)
 - **02 - recursivePromise**
-- **03 - PromiseMethods**
+- **03 - PromiseMethods** - Promise.race, Promise.all + two own promiseIgnoreErrors, promiseLast
 - **04 - mailWithHook**
 - **05 - autoTranslator**
 
