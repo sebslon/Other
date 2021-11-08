@@ -1,7 +1,9 @@
-// require('dotenv').config();
+require('dotenv').config();
 
 import { App } from "./app";
 
-const server = new App([]);
+import { TranslationController } from "./src/api/translation/TranslationController";
+
+const server = new App([new TranslationController()]);
 
 server.listen();

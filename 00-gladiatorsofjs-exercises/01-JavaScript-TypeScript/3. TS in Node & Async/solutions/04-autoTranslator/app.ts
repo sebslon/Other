@@ -2,7 +2,7 @@ import express, { Application } from "express";
 
 import { errorMiddleware } from "./src/middlewares/error-middleware";
 
-import { Controller } from "./types";
+import { Controller } from "./src/types";
 
 
 export class App {

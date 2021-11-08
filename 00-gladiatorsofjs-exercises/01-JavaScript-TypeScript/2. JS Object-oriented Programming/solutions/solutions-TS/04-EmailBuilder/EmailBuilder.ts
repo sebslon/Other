@@ -37,4 +37,3 @@ export class EmailBuilder {
     return this.mail;
   }
 }
-
