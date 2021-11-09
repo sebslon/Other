@@ -7,9 +7,9 @@ class LanguagesHandler {
     "https://translation.googleapis.com/language/translate/v2/languages";
   private supportedLanguages: string[] = [];
 
-  isLanguageSupported(language: string) {
+  async isLanguageSupported(language: string) {
     if (!this.supportedLanguages.length) {
-      this.getListOfSupportedLanguages();
+      await this.getListOfSupportedLanguages();
     }
 
     return this.supportedLanguages.includes(language);
