@@ -18,9 +18,7 @@ export class TranslationController implements Controller {
   private initializeRoutes() {
     this.router.post(
       "/",
-      this.translationService.translateDataWithGivenLanguage.bind(
-        this.translationService
-      )
+      handleErrors(this.translationService.translateDataWithGivenLanguage)
     );
   }
 }
