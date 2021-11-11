@@ -13,6 +13,7 @@ To run tests install dependencies (yarn) and then run yarn test.
 Functional programming - recursion, regexps, higher order functions, inputs validating.
 
 - **01 - aggregateArrayIntoChunks** - Aggregate array in random length (in range 4, 7) chunks.
+
 - **02 - Array Methods** - Implement built in array methods (forEach, map, entries, filter, every, some, reduce) by using for/while loops.
 - **03 - findPhraseInArray** - Return elements that match given phrase.
 - **04 - generateArrayWithRandomNumbers** - Create a function to generate array of given length with arrays (also given length) with random numbers.
@@ -30,6 +31,7 @@ Functional programming - recursion, regexps, higher order functions, inputs vali
 SOLID, Separation of Concerns, extracting abstractions
 
 - **01 - Cart** - Cart, CartItem classes
+
 - **02 - Library** - Library which allows to create bookings
 - **03 - User** - App class with possibility to create User and Admin objects
 - **04 - EmailBuilder** - Design pattern: Builder
@@ -47,6 +49,7 @@ Asynchronous JS, API, Communication, Promises
 **[IN PROGRESS]**
 
 - **01 - serveFromCache** - Functionality which fetches and caches data by given query from Google Books API with use of fetch and axios (return data from "./cache/query.json" if already cached)
+
 - **02 - recursivePromise** - Created recursivePromise which returns resolved promises (in order) or if error is catched it returns resolved promises (until error) + error in catch block
 - **03 - PromiseMethods** - Promise.race, Promise.all + two own promiseIgnoreErrors, promiseLast
 - **04 - mailWithHook** - Send email with link, which when has been clicked sends second email (like confirmation of email),
@@ -61,6 +64,7 @@ Browser APIs, SCSS, TypeScript with HTML elements
 To run examples with TS use parcel -> `parcel serve /...path-to/index.html`
 
 - **01 - getUrlParameters** - Function that converts URL parameters to an object with key value pairs (`?page=10&id=1` => `{page: 10, id:1}`)
+
 - **02 - onStopScroll** - Navbar on scroll animation, adding/removing classes
 - **03 - formBEM** - Simple form with classes in BEM methodology
 - **04 - dynamicForm** - Function which generates and appends a form (HTML) by given settings
