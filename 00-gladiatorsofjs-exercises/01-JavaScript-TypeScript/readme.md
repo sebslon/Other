@@ -46,8 +46,6 @@ SOLID, Separation of Concerns, extracting abstractions
 
 Asynchronous JS, API, Communication, Promises
 
-**[IN PROGRESS]**
-
 - **01 - serveFromCache** - Functionality which fetches and caches data by given query from Google Books API with use of fetch and axios (return data from "./cache/query.json" if already cached)
 
 - **02 - recursivePromise** - Created recursivePromise which returns resolved promises (in order) or if error is catched it returns resolved promises (until error) + error in catch block
