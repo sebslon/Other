@@ -19,6 +19,9 @@ class LanguagesHandler {
     const data = await fetch(
       this.languagesURL + `?key=${process.env.GOOGLE_API_KEY}`
     );
+
+    if(!data.ok) throw new Error("Failed to fetch languages data.")
+
     const json: IGoogleLanguagesResponse = await data.json();
 
     const languages = this.mapLanguagesResponseToArray(json);

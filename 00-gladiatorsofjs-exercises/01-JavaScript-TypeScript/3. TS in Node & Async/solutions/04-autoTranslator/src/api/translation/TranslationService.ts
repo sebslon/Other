@@ -10,7 +10,7 @@ export class TranslationService {
     const isSupported = await languagesHandler.isLanguageSupported(lang);
 
     if (!isSupported) {
-      return res.status(400).send("Given language is not supported.");
+      return res.status(400).json("Given language is not supported.");
     }
 
     const translation = await translationHandler.translateData(lang);

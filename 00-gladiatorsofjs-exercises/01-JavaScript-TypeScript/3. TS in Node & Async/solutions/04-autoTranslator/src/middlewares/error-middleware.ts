@@ -7,9 +7,8 @@ export function errorMiddleware(
   next: NextFunction
 ) {
   if (process.env.NODE_ENV === "development") {
-    return res.sendStatus(200).send(error.message);
+    return res.sendStatus(500).json(error.message);
   } else {
-    // logging errors
-    return res.sendStatus(500).send("Something went wrong");
+    return res.sendStatus(500).json("Something went wrong");
   }
 }
