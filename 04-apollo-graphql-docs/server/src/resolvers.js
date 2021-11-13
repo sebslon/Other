@@ -9,6 +9,10 @@ const resolvers = {
     track: (_, { id }, { dataSources }) => {
       return dataSources.trackAPI.getTrack(id);
     },
+
+    module: (_, { id }, { dataSources }) => {
+      return dataSources.trackAPI.getModule(id);
+    },
   },
 
   Mutation: {
@@ -27,8 +31,8 @@ const resolvers = {
           code: err.extensions.response.status,
           success: false,
           message: err.extensions.response.body,
-          track: null
-        }
+          track: null,
+        };
       }
     },
   },

@@ -4,7 +4,8 @@ const typeDefs = gql`
     type Query {
         "Tracks array for homepage grid"
         tracksForHome: [Track!]!
-        track(id: ID!): Track
+        track(id: ID!): Track!
+        module(id: ID!): Module!
     }
 
     type Mutation {
@@ -42,6 +43,8 @@ const typeDefs = gql`
         id: ID!
         title: String
         length: Int
+        content: String
+        videoUrl: String
     }
 `;
 
