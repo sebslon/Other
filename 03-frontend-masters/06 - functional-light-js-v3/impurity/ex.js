@@ -1,39 +1,51 @@
 "use strict";
 
 var students = [
-	{ id: 260, name: "Kyle" },
-	{ id: 729, name: "Susan" },
-	{ id: 42, name: "Frank" },
-	{ id: 74, name: "Jessica" },
-	{ id: 491, name: "Ally" }
+  { id: 260, name: "Kyle" },
+  { id: 729, name: "Susan" },
+  { id: 42, name: "Frank" },
+  { id: 74, name: "Jessica" },
+  { id: 491, name: "Ally" },
 ];
 
-function sortStudentsByName() {
-	// Don't modify this function
-	students.sort(function byName(s1,s2){
-		if (s1.name < s2.name) return -1;
-		else if (s1.name > s2.name) return 1;
-		else return 0;
-	});
-	return students;
+// First solution: Contain impurity (wrap in a function)
+// Try to move and contain all the impurity in one place
+// Avoid side effects
+
+// modify/move this function
+function getStudentsByName(students) {
+  students = students.slice();
+  return sortStudentsByName();
+
+  function sortStudentsByName() {
+    // Don't modify this function
+    students.sort(function byName(s1, s2) {
+      if (s1.name < s2.name) return -1;
+      else if (s1.name > s2.name) return 1;
+      else return 0;
+    });
+    return students;
+  }
 }
 
+// modify/move this function
 function sortStudentsByID() {
-	// Don't modify this function
-	students.sort(function byID(s1,s2){
-		return s1.id - s2.id;
-	});
-	return students;
+  // Don't modify this function
+  students.sort(function byID(s1, s2) {
+    return s1.id - s2.id;
+  });
+  return students;
 }
 
-// *************************************
-
-// modify/move this function
-function getStudentsByName() { return students; }
-
-// modify/move this function
-function getStudentsByID() { return students; }
-
+// Second solution: Adapter function
+// Adapter function, take current state, save it, run side effect function, restore old state and return new one
+function getStudentsByID(curStudents) {
+  var origStudents = students.slice(0);
+  students = curStudents;
+  var newStudents = sortStudentsByID();
+  students = origStudents;
+  return newStudents;
+}
 // *************************************
 
 var studentsTest1 = getStudentsByName(students);
