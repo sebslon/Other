@@ -1,6 +1,6 @@
-import { createMachine, assign, interpret } from 'xstate';
+import { createMachine, assign, interpret } from "xstate";
 
-const elBox = document.querySelector('#box');
+const elBox = document.querySelector("#box");
 const elBody = document.body;
 
 const assignPoint = assign({
@@ -42,7 +42,7 @@ const assignLocked = assign({
 });
 
 const dragDropMachine = createMachine({
-  initial: 'idle',
+  initial: "idle",
   context: {
     x: 0,
     y: 0,
@@ -56,21 +56,21 @@ const dragDropMachine = createMachine({
       on: {
         mousedown: {
           actions: assignPoint,
-          target: 'dragging',
+          target: "dragging",
         },
       },
     },
     dragging: {
-      initial: 'normal',
+      initial: "normal",
       states: {
         normal: {
           on: {
-            'keydown.shift': 'locked',
+            "keydown.shift": "locked",
           },
         },
         locked: {
           on: {
-            'keyup.shift': 'normal',
+            "keyup.shift": "normal",
             mousemove: {
               actions: assignLocked,
             },
@@ -84,10 +84,10 @@ const dragDropMachine = createMachine({
         },
         mouseup: {
           actions: [assignPosition],
-          target: 'idle',
+          target: "idle",
         },
-        'keyup.escape': {
-          target: 'idle',
+        "keyup.escape": {
+          target: "idle",
           actions: resetPosition,
         },
       },
@@ -98,44 +98,44 @@ const dragDropMachine = createMachine({
 const service = interpret(dragDropMachine);
 
 service.onTransition((state) => {
-  elBox.dataset.state = state.toStrings().join(' ');
+  elBox.dataset.state = state.toStrings().join(" ");
 
   if (state.changed) {
-    elBox.style.setProperty('--dx', state.context.dx);
-    elBox.style.setProperty('--dy', state.context.dy);
-    elBox.style.setProperty('--x', state.context.x);
-    elBox.style.setProperty('--y', state.context.y);
+    elBox.style.setProperty("--dx", state.context.dx);
+    elBox.style.setProperty("--dy", state.context.dy);
+    elBox.style.setProperty("--x", state.context.x);
+    elBox.style.setProperty("--y", state.context.y);
   }
 });
 
 service.start();
 
-elBox.addEventListener('mousedown', (event) => {
+elBox.addEventListener("mousedown", (event) => {
   service.send(event);
 });
 
-elBody.addEventListener('mousemove', (event) => {
+elBody.addEventListener("mousemove", (event) => {
   service.send(event);
 });
 
-elBody.addEventListener('mouseup', (event) => {
+elBody.addEventListener("mouseup", (event) => {
   service.send(event);
 });
 
-elBody.addEventListener('keyup', (e) => {
-  if (e.key === 'Escape') {
-    service.send('keyup.escape');
+elBody.addEventListener("keyup", (e) => {
+  if (e.key === "Escape") {
+    service.send("keyup.escape");
   }
 });
 
-elBody.addEventListener('keydown', (e) => {
-  if (e.key === 'Shift') {
-    service.send('keydown.shift');
+elBody.addEventListener("keydown", (e) => {
+  if (e.key === "Shift") {
+    service.send("keydown.shift");
   }
 });
 
-elBody.addEventListener('keyup', (e) => {
-  if (e.key === 'Shift') {
-    service.send('keyup.shift');
+elBody.addEventListener("keyup", (e) => {
+  if (e.key === "Shift") {
+    service.send("keyup.shift");
   }
 });
