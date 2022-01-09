@@ -22,10 +22,7 @@ class WasmLoader {
       return this.wasmFallback(path, imports);
     }
 
-    const { instance } = await loader.instantiateStreaming(
-      fetch(path),
-      imports
-    );
+    const instance = await loader.instantiateStreaming(fetch(path), imports);
 
     return instance?.exports;
   }
@@ -35,7 +32,7 @@ class WasmLoader {
 
     const response = await fetch(path);
     const bytes = await response?.arrayBuffer();
-    const { instance } = loader.instantiateStreaming(bytes, imports);
+    const instance = loader.instantiateStreaming(bytes, imports);
 
     return instance?.exports;
   }
