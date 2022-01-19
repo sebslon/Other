@@ -2,11 +2,22 @@
 
 var curFib = 0;
 
-// TODO
-
-self.postMessage("Hello from the web worker");
+self.onmessage = onMessage;
 
 // **********************************
+
+function onMessage(event) {
+  getNextFib();
+}
+
+function getNextFib() {
+  const fibNum = fib(curFib);
+
+  self.postMessage({ idx: curFib, fib: fibNum });
+  curFib++;
+
+  setTimeout(getNextFib, 0);
+}
 
 function fib(n) {
   if (n < 2) {

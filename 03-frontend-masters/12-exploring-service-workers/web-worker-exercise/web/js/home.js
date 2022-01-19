@@ -33,11 +33,12 @@
     startStopBtn.innerText = "Stop";
     fibsList.innerHTML = "";
 
-    // TODO - Create Worker
+    //// Create Worker
 
     worker = new Worker("/js/worker.js");
 
     worker.addEventListener("message", onMessage);
+    worker.postMessage({ start: true });
   }
 
   function stopFibs() {
@@ -46,10 +47,12 @@
 
     startStopBtn.innerText = "Start";
 
-    // TODO
+    //// STOP WORKER
+    worker.terminate();
   }
 
   function onMessage(evt) {
-    console.log(evt.data);
+    // worker.postMessage("Hello from the client");
+    renderFib(evt.data.idx, evt.data.fib);
   }
 })();
