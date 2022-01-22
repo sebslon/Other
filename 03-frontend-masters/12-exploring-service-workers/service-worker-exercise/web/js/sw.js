@@ -3,7 +3,7 @@
 // TODO
 // Be aware of global scope life time in service workers
 
-const version = 3;
+const version = 4;
 const cacheName = `ramblings-${version}`;
 
 const urlsToCache = {
@@ -30,6 +30,7 @@ let isLoggedIn = false;
 self.addEventListener("install", onInstall);
 self.addEventListener("activate", onActivated);
 self.addEventListener("message", onMessage);
+self.addEventListener("fetch", onFetch);
 
 main().catch(console.error);
 
@@ -67,14 +68,52 @@ function onMessage({ data }) {
   }
 }
 
+// ************************** ROUTING
+// coming from the page through our service worker (req)
+function onFetch(evt) {
+  console.log(evt);
+  evt.respondWith(router(evt.request));
+}
+
+async function router(req) {
+  const url = new URL(req.url);
+  const reqURL = url.pathname;
+  const cache = await caches.open(cacheName);
+  let res;
+
+  if (url.origin == location.origin) {
+    try {
+      const fetchOptions = {
+        method: req.method,
+        headers: req.headers,
+        credentials: "omit",
+        cache: "no-store",
+      };
+      res = await fetch(req.url, fetchOptions);
+
+      if (res && res.ok) {
+        await cache.put(reqURL, res.clone());
+        return res;
+      }
+    } catch (err) {}
+
+    res = await cache.match(reqURL);
+
+    if (res) {
+      return res.clone();
+    }
+  }
+}
+// **************************
+
 function onActivated(evt) {
   evt.waitUntil(handleActivation());
 }
 
 async function handleActivation() {
   await clearCaches();
-  await clients.claim(); // The claim() method of the Clients interface allows an active service worker to set itself as the controller for all clients within its scope (MDN)
   await cacheLoggedOutFiles(/*forceReloda*/ true);
+  await clients.claim(); // The claim() method of the Clients interface allows an active service worker to set itself as the controller for all clients within its scope (MDN)
   console.log(`Service worker (${version}) is activated.`);
 }
 
@@ -114,7 +153,7 @@ async function cacheLoggedOutFiles(forceReload = false) {
 
         let fetchOptions = {
           method: "GET",
-          cache: "no-cache",
+          cache: "no-store",
           credentials: "omit",
         };
 
