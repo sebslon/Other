@@ -1,17 +1,21 @@
-(function Blog() {
+(function Blog(global) {
   "use strict";
 
+  const usingSW = "serviceWorker" in navigator;
   let offlineIcon;
-  let isOnline = "onLine" in navigator ? navigator.onLine : true;
-  let usingSW = "serviceWorker" in navigator;
+  let isOnline = "onLine" in navigator && navigator.onLine;
+  let isLoggedIn = /isLoggedIn=1/.test(document.cookie.toString() || "");
   let swRegistration;
   let svcworker;
 
-  const isLoggedIn = /isLoggedIn=1/.test(document.cookie.toString() || "");
+  if (usingSW) {
+    initServiceWorker().catch(console.error);
+  }
+
+  global.isBlogOnline = isBlogOnline;
 
   document.addEventListener("DOMContentLoaded", ready, false);
 
-  initServiceWorker().catch(console.error);
   // **********************************
 
   function ready() {
@@ -21,23 +25,34 @@
       offlineIcon.classList.remove("hidden");
     }
 
-    window.addEventListener("online", function online() {
-      offlineIcon.classList.add("hidden");
-      isOnline = true;
-      sendStatusUpdate();
-    });
+    window.addEventListener(
+      "online",
+      function online() {
+        offlineIcon.classList.add("hidden");
+        isOnline = true;
+        sendStatusUpdate();
+      },
+      false
+    );
+    window.addEventListener(
+      "offline",
+      function offline() {
+        offlineIcon.classList.remove("hidden");
+        isOnline = false;
+        sendStatusUpdate();
+      },
+      false
+    );
+  }
 
-    window.addEventListener("offline", function offline() {
-      offlineIcon.classList.remove("hidden");
-      isOnline = false;
-      sendStatusUpdate();
-    });
+  function isBlogOnline() {
+    return isOnline;
   }
 
   async function initServiceWorker() {
-    swRegistration = await navigator.serviceWorker.register("/js/sw.js", {
+    swRegistration = await navigator.serviceWorker.register("/sw.js", {
       updateViaCache: "none",
-    }); // start up and access service worker
+    });
 
     svcworker =
       swRegistration.installing ||
@@ -45,25 +60,28 @@
       swRegistration.active;
     sendStatusUpdate(svcworker);
 
+    // listen for new service worker to take over
     navigator.serviceWorker.addEventListener(
       "controllerchange",
-      function onController() {
+      async function onController() {
         svcworker = navigator.serviceWorker.controller;
         sendStatusUpdate(svcworker);
       }
     );
 
-    navigator.serviceWorker.controller.addEventListener("message", onSWMessage);
+    navigator.serviceWorker.addEventListener("message", onSWMessage, false);
   }
-
-  // **************************
 
   function onSWMessage(evt) {
     const { data } = evt;
 
-    if (data.requestStatusUpdate) {
-      console.log("Received status update request from SW, responding...");
+    if (data.statusUpdateRequest) {
+      console.log("Status update requested from service worker, responding...");
       sendStatusUpdate(evt.ports && evt.ports[0]);
+    } else if (data == "force-logout") {
+      document.cookie = "isLoggedIn=";
+      isLoggedIn = false;
+      sendStatusUpdate();
     }
   }
 
@@ -76,8 +94,8 @@
       target.postMessage(msg);
     } else if (svcworker) {
       svcworker.postMessage(msg);
-    } else {
+    } else if (navigator.serviceWorker.controller) {
       navigator.serviceWorker.controller.postMessage(msg);
     }
   }
-})();
+})(window);
