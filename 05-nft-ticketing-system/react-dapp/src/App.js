@@ -1,5 +1,8 @@
 import { Route, Routes, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { ethers } from "ethers";
+
+import NFTixBooth from "./contracts/NFTixBooth.json";
 
 import logo from "./images/devdao.svg";
 
@@ -35,14 +38,66 @@ function App() {
   const navigate = useNavigate();
 
   const [address, setAddress] = useState(null);
+  const [isOwner, setIsOwner] = useState(false);
+  const [connectedContract, setConnectedContract] = useState(null);
+
+  useEffect(() => {
+    const checkIsContractOwner = async () => {
+      if (!address || !connectedContract) return;
+
+      const ownerAddress = await connectedContract.owner();
+
+      if (address.toLowerCase() === ownerAddress.toLowerCase()) {
+        setIsOwner(true);
+      } else {
+        setIsOwner(false);
+      }
+    };
+
+    checkIsContractOwner();
+  }, [address, connectedContract]);
+
+  useEffect(() => {
+    if (!address) {
+      const previousAddress = window.localStorage.getItem("nftix-address");
+      if (previousAddress) setAddress(previousAddress);
+    }
+  }, [address]);
+
+  const getConnectedContract = async () => {
+    const { ethereum } = window;
+    if (!ethereum) return;
+
+    const provider = new ethers.providers.Web3Provider(ethereum);
+    await provider.send("eth_requestAccounts", []);
+
+    const signer = provider.getSigner();
+    const connectedContract = new ethers.Contract(
+      process.env.REACT_APP_CONTRACT_ID,
+      NFTixBooth.abi,
+      signer
+    );
+
+    setConnectedContract(connectedContract);
+  };
+
+  useEffect(() => {
+    getConnectedContract();
+  }, []);
 
   return (
     <>
       <Connect
         address={address}
-        onConnect={(address) => setAddress(address)}
+        onConnect={(address) => {
+          setAddress(address);
+
+          window.localStorage.setItem("nftix-address", address);
+        }}
         onDisconnect={() => {
           setAddress(null);
+
+          window.localStorage.removeItem("nftix-address");
         }}
       />
       <Page>
@@ -90,7 +145,10 @@ function App() {
                   </Flex>
                 </MenuItem>
                 <MenuDivider />
-                <MenuItem onClick={() => navigate("/check-in")}>
+                <MenuItem
+                  isDisabled={!isOwner}
+                  onClick={() => navigate("/check-in")}
+                >
                   <Flex
                     alignItems="center"
                     flexDirection="row"
@@ -102,7 +160,10 @@ function App() {
                   </Flex>
                 </MenuItem>
                 <MenuDivider />
-                <MenuItem onClick={() => navigate("/admin")}>
+                <MenuItem
+                  isDisabled={!isOwner}
+                  onClick={() => navigate("/admin")}
+                >
                   <Flex
                     alignItems="center"
                     flexDirection="row"
