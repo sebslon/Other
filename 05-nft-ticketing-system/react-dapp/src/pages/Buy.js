@@ -1,9 +1,18 @@
-import { Button, ButtonGroup, Heading, Text, Flex } from "@chakra-ui/react";
+import {
+  Button,
+  ButtonGroup,
+  Heading,
+  Text,
+  Flex,
+  useToast,
+} from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 
 function Buy({ connectedContract }) {
+  const toast = useToast();
   const [totalTicketCount, setTotalTicketCount] = useState(null);
   const [availableTicketsCount, setAvailableTicketsCount] = useState(null);
+  const [buyTxnPending, setBuyTxnPending] = useState(false);
 
   const getAvailableTicketsCount = async () => {
     try {
@@ -30,6 +39,43 @@ function Buy({ connectedContract }) {
     getTotalTicketsCount();
   }, []);
 
+  const buyTicket = async () => {
+    try {
+      if (!connectedContract) return;
+
+      setBuyTxnPending(true);
+      const buyTxn = await connectedContract.mint({
+        value: `${0.08 * 10 ** 18}`,
+      });
+
+      await buyTxn.wait();
+      setBuyTxnPending(false);
+      toast({
+        title: "Success!",
+        description: (
+          <a
+            href={`https://rinkeby.etherscan.io/tx/${buyTxn.hash}`}
+            target="_blank"
+            rel="nofollow noreferrer"
+          >
+            Checkout the transaction on Etherscan
+          </a>
+        ),
+        status: "success",
+        variant: "subtle",
+      });
+    } catch (err) {
+      console.log(err);
+      setBuyTxnPending(false);
+      toast({
+        title: "Failed.",
+        description: err,
+        status: "error",
+        variant: "subtle",
+      });
+    }
+  };
+
   return (
     <>
       <Heading mb={4}>DevDAO Conference 2022</Heading>
@@ -44,7 +90,13 @@ function Buy({ connectedContract }) {
         maxW="140px"
       >
         <ButtonGroup mb={4}>
-          <Button loadingText="Pending" size="lg" colorScheme="teal">
+          <Button
+            isLoading={buyTxnPending}
+            onClick={buyTicket}
+            loadingText="Pending"
+            size="lg"
+            colorScheme="teal"
+          >
             Buy Ticket
           </Button>
         </ButtonGroup>
