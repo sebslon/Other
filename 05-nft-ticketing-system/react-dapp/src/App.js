@@ -1,8 +1,5 @@
-import {
-  Route,
-  Routes,
-  useNavigate,
-} from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 import logo from "./images/devdao.svg";
 
@@ -26,10 +23,7 @@ import {
   MenuDivider,
 } from "@chakra-ui/react";
 
-import {
-  ChevronDownIcon,
-  ChevronUpIcon,
-} from "@chakra-ui/icons";
+import { ChevronDownIcon, ChevronUpIcon } from "@chakra-ui/icons";
 
 import Admin from "./pages/Admin";
 import Buy from "./pages/Buy";
@@ -40,9 +34,17 @@ import Wallet from "./pages/Wallet";
 function App() {
   const navigate = useNavigate();
 
+  const [address, setAddress] = useState(null);
+
   return (
     <>
-      <Connect />
+      <Connect
+        address={address}
+        onConnect={(address) => setAddress(address)}
+        onDisconnect={() => {
+          setAddress(null);
+        }}
+      />
       <Page>
         <Menu
           left="0"
@@ -59,22 +61,12 @@ function App() {
                 right="16px"
                 as={Button}
                 colorScheme="purple"
-                rightIcon={
-                  isOpen ? (
-                    <ChevronUpIcon />
-                  ) : (
-                    <ChevronDownIcon />
-                  )
-                }
+                rightIcon={isOpen ? <ChevronUpIcon /> : <ChevronDownIcon />}
               >
                 Actions
               </MenuButton>
               <MenuList>
-                <MenuItem
-                  onClick={() =>
-                    navigate("/")
-                  }
-                >
+                <MenuItem onClick={() => navigate("/")}>
                   <Flex
                     alignItems="center"
                     flexDirection="row"
@@ -82,18 +74,11 @@ function App() {
                     justifyContent="space-between"
                   >
                     Buy
-                    <FontAwesomeIcon
-                      icon={faEthereum}
-                      size="lg"
-                    />
+                    <FontAwesomeIcon icon={faEthereum} size="lg" />
                   </Flex>
                 </MenuItem>
                 <MenuDivider />
-                <MenuItem
-                  onClick={() =>
-                    navigate("/wallet")
-                  }
-                >
+                <MenuItem onClick={() => navigate("/wallet")}>
                   <Flex
                     alignItems="center"
                     flexDirection="row"
@@ -101,20 +86,11 @@ function App() {
                     justifyContent="space-between"
                   >
                     Your Tickets
-                    <FontAwesomeIcon
-                      icon={faTicketAlt}
-                      size="lg"
-                    />
+                    <FontAwesomeIcon icon={faTicketAlt} size="lg" />
                   </Flex>
                 </MenuItem>
                 <MenuDivider />
-                <MenuItem
-                  onClick={() =>
-                    navigate(
-                      "/check-in"
-                    )
-                  }
-                >
+                <MenuItem onClick={() => navigate("/check-in")}>
                   <Flex
                     alignItems="center"
                     flexDirection="row"
@@ -122,18 +98,11 @@ function App() {
                     justifyContent="space-between"
                   >
                     Check In
-                    <FontAwesomeIcon
-                      icon={faQrcode}
-                      size="lg"
-                    />
+                    <FontAwesomeIcon icon={faQrcode} size="lg" />
                   </Flex>
                 </MenuItem>
                 <MenuDivider />
-                <MenuItem
-                  onClick={() =>
-                    navigate("/admin")
-                  }
-                >
+                <MenuItem onClick={() => navigate("/admin")}>
                   <Flex
                     alignItems="center"
                     flexDirection="row"
@@ -141,10 +110,7 @@ function App() {
                     justifyContent="space-between"
                   >
                     Settings
-                    <FontAwesomeIcon
-                      icon={faTools}
-                      size="lg"
-                    />
+                    <FontAwesomeIcon icon={faTools} size="lg" />
                   </Flex>
                 </MenuItem>
               </MenuList>
@@ -165,25 +131,13 @@ function App() {
             width="15%"
           />
           <Routes>
-            <Route
-              path="/"
-              element={<Buy />}
-            />
+            <Route path="/" element={<Buy />} />
 
-            <Route
-              path="/check-in"
-              element={<CheckIn />}
-            />
+            <Route path="/check-in" element={<CheckIn />} />
 
-            <Route
-              path="/admin"
-              element={<Admin />}
-            />
+            <Route path="/admin" element={<Admin />} />
 
-            <Route
-              path="/wallet"
-              element={<Wallet />}
-            />
+            <Route path="/wallet" element={<Wallet />} />
           </Routes>
         </Flex>
       </Page>
