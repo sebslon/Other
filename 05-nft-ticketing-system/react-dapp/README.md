@@ -1,5 +1,7 @@
 # NFTix Demo UI
 
+https://egghead.io/courses/build-an-nft-based-ticketing-system-1a2f387c
+
 ## Get started
 
 1. Clone the repo to you local system
@@ -33,3 +35,8 @@ REACT_APP_CONTRACT_ID=0x1234567890
 ```bash
 yarn start
 ```
+
+// ON EVERY REDEPLOY OF THE CONTRACT
+
+- change env variable ID
+- change abi file

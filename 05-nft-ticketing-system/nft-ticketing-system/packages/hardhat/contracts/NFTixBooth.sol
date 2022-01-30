@@ -21,9 +21,36 @@ contract NFTixBooth is ERC721URIStorage, Ownable {
     uint256 public mintPrice = 80000000000000000; // GWEI
 
     mapping(address => uint256[]) public holderTokenIDs;
+    mapping(address => bool) public checkIns;
 
     constructor() ERC721("NFTix", "NFTX") {
         currentId.increment();
+    }
+
+    function checkIn(address addy) public {
+        checkIns[addy] = true;
+        uint256 tokenId = holderTokenIDs[addy][0];
+
+        string memory json = Base64.encode(
+            bytes(
+                string(
+                    abi.encodePacked(
+                        '{ "name": "NFTix #',
+                        Strings.toString(tokenId),
+                        '", "description": "A NFT-powered ticketing system", ',
+                        '"traits": [{ "trait_type": "Checked In", "value": "true" }, { "trait_type": "Purchased", "value": "true" }], ',
+                        '"image": "ipfs://<image_link_on_pinata>" }'
+                    )
+                )
+            )
+        );
+
+        string memory tokenURI = string(
+            abi.encodePacked("data:application.json; base64,", json)
+        );
+        // --- embedding an image with token metadata [END]
+
+        _setTokenURI(currentId.current(), tokenURI); // Apply image to the token
     }
 
     function mint() public payable {
@@ -32,15 +59,6 @@ contract NFTixBooth is ERC721URIStorage, Ownable {
         require(saleIsActive, "Tickets are not on sale!");
 
         // --- embedding an image with token metadata [START]
-        string[3] memory svg;
-        svg[
-            0
-        ] = '<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><text y="50">';
-        svg[1] = Strings.toString(currentId.current());
-        svg[2] = "</text></svg>";
-
-        string memory image = string(abi.encodePacked(svg[0], svg[1], svg[2]));
-        string memory encodedImage = Base64.encode(bytes(image));
         string memory json = Base64.encode(
             bytes(
                 string(
@@ -49,9 +67,7 @@ contract NFTixBooth is ERC721URIStorage, Ownable {
                         Strings.toString(currentId.current()),
                         '", "description": "A NFT-powered ticketing system", ',
                         '"traits": [{ "trait_type": "Checked In", "value": "false" }, { "trait_type": "Purchased", "value": "true" }], ',
-                        '"image": "data:image/svg+xml;base64,',
-                        encodedImage,
-                        '" }'
+                        '"image": "ipfs://<image_link_on_pinata>" }'
                     )
                 )
             )
