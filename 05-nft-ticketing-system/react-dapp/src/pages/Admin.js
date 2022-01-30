@@ -17,7 +17,7 @@ function Admin({ isOwner, connectedContract }) {
       setCloseSaleTxnPending(false);
 
       toast({
-        status: "Success",
+        status: "success",
         title: "Sale is closed!",
         variant: "subtle",
         description: (
@@ -35,7 +35,7 @@ function Admin({ isOwner, connectedContract }) {
       setCloseSaleTxnPending(false);
       toast({
         title: "Failure",
-        description: err,
+        description: err.message || null,
         status: "error",
         variant: "subtle",
       });
@@ -53,7 +53,7 @@ function Admin({ isOwner, connectedContract }) {
       setOpenSaleTxnPending(false);
 
       toast({
-        status: "Success",
+        status: "success",
         title: "Sale is open!",
         variant: "subtle",
         description: (
@@ -71,7 +71,7 @@ function Admin({ isOwner, connectedContract }) {
       setOpenSaleTxnPending(false);
       toast({
         title: "Failure",
-        description: err,
+        description: err.message || null,
         status: "error",
         variant: "subtle",
       });
