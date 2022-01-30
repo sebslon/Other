@@ -192,9 +192,16 @@ function App() {
             width="15%"
           />
           <Routes>
-            <Route path="/" element={<Buy />} />
+            <Route
+              path="/"
+              element={<Buy connectedContract={connectedContract} />}
+            />
 
-            <Route path="/check-in" element={<CheckIn />} />
+            <Route
+              path="/check-in"
+              element={<CheckIn />}
+              connectedContract={connectedContract}
+            />
 
             <Route
               path="/admin"

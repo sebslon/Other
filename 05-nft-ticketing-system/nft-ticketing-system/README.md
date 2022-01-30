@@ -108,6 +108,9 @@ Join the telegram [support chat 💬](https://t.me/joinchat/KByvmRe5wkR-8F_zz6Aj
 
 #### Smart Contract - test deployment
 
+yarn chain - run blockchain
+yarn start
+
 yarn generate - generate account
 yarn account - account info -> go to the faucet for ＄＄＄
 yarn deploy --network <network to deploy contract>

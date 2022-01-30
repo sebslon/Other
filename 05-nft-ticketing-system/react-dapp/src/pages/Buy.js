@@ -37,7 +37,7 @@ function Buy({ connectedContract }) {
 
     getAvailableTicketsCount();
     getTotalTicketsCount();
-  }, []);
+  });
 
   const buyTicket = async () => {
     try {
