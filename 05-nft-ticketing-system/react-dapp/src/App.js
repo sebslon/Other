@@ -196,7 +196,15 @@ function App() {
 
             <Route path="/check-in" element={<CheckIn />} />
 
-            <Route path="/admin" element={<Admin />} />
+            <Route
+              path="/admin"
+              element={
+                <Admin
+                  isOwner={isOwner}
+                  connectedContract={connectedContract}
+                />
+              }
+            />
 
             <Route path="/wallet" element={<Wallet />} />
           </Routes>
