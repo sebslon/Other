@@ -17,6 +17,7 @@ contract NFTixBooth is ERC721URIStorage {
     bool public saleIsActive = false;
     uint256 public totalTickets = 10;
     uint256 public availableTickets = 10;
+    uint256 public mintPrice = 80000000000000000; // GWEI
 
     mapping(address => uint256[]) public holderTokenIDs;
 
@@ -24,8 +25,9 @@ contract NFTixBooth is ERC721URIStorage {
         currentId.increment();
     }
 
-    function mint() public {
+    function mint() public payable {
         require(availableTickets > 0, "Not enough tickets.");
+        require(msg.value >= mintPrice, "Not enough ETH!");
 
         // --- embedding an image with token metadata [START]
         string[3] memory svg;
