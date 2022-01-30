@@ -23,19 +23,19 @@ class BinarySearchTree {
           node.left = new Node(value);
           return node.left;
         } else {
-          insertHelper(node.left, value);
+          insertHelper(node.left, value); // go next
         }
-      } else {
+      } else if (value > node.value) {
         if (node.right === null) {
           node.right = new Node(value);
           return node.right;
         } else {
-          insertHelper(node.right, value);
+          insertHelper(node.right, value); // go next
         }
       }
     }
 
-    return insertHelper.call(this, this.root, value);
+    return insertHelper.call(this, this.root, value); // call itself with a value
   }
 
   contains(value) {
