@@ -38,11 +38,12 @@ export class CounterComponent implements AfterViewInit {
   count = 0;
 
   ngAfterViewInit() {
-    // -------------------------------------------------------------------
-    // CHALLENGE: Go Beast Mode By 1!
-    // -------------------------------------------------------------------
-    // Capture the btn click and increment count by 1
-    // -------------------------------------------------------------------
+    fromEvent(this.getNativeElement(this.btn), 'click')
+      .pipe(
+        startWith(this.count),
+        scan((acc: number, value) => acc + 1)
+      )
+      .subscribe(count => this.count = count);
   }
 
   getNativeElement(element) {

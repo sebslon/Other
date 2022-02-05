@@ -43,14 +43,13 @@ export class MapComponent implements OnInit {
   lines: Line[] = [];
 
   ngOnInit() {
-    // -------------------------------------------------------------------
-    // CHALLENGE: Map your route / Map your getaway
-    // -------------------------------------------------------------------
-    // Create the stream needed to click to draw a straight line
-    // Process the stream appropriately
-    // Update the stream to accommodate fluid lines
-    // Helper functions have been given to help keep you focused
-    // -------------------------------------------------------------------
+    fromEvent(document, 'click')
+      .pipe(
+        map((e: MouseEvent) => this.generatePosition(e)),
+        pairwise(),
+        map(([oldPos, newPos]) => this.generateCoordinates(oldPos, newPos))
+      )
+      .subscribe((line) => (this.lines = [...this.lines, line]));
   }
 
   generatePosition(e: MouseEvent) {

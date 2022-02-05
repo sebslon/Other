@@ -44,14 +44,11 @@ export class LocationComponent implements OnInit {
   @ViewChild('pin') pin;
 
   ngOnInit() {
-    // -------------------------------------------------------------------
-    // CHALLENGE: Share your location
-    // -------------------------------------------------------------------
-    // Create the stream that captures your click coordinates
-    // Process the stream appropriately
-    // At the end of the stream, animate the pin to your location
-    // TweenMax.to(this.pin.nativeElement, 1, position)
-    // -------------------------------------------------------------------
+    fromEvent(document, 'click')
+      .pipe(
+        map((e: MouseEvent) => this.generatePosition(e))
+      )
+      .subscribe(position => TweenMax.to(this.pin.nativeElement, 1, position));
   }
 
   generatePosition(e: MouseEvent) {
