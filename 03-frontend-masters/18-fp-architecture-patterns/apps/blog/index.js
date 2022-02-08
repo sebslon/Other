@@ -1,6 +1,6 @@
 const { save, all } = require("../lib/db");
 const { Task } = require("../lib/types");
-const { last } = require("rambda");
+const { last } = require("ramda");
 /* original import */
 
 const AuthorTable = "Authors";
