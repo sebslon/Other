@@ -1,17 +1,17 @@
 const path = require("path");
 const webpack = require("webpack");
 
-module.exports = env => ({
+module.exports = (env) => ({
   mode: env === "production" ? "production" : "development",
   entry: {
-    index: "./index.js"
+    index: "./index.js",
   },
   output: {
     filename: "./[name].bundle.js",
-    path: path.resolve(__dirname)
+    path: path.resolve(__dirname),
   },
   devServer: {
-    contentBase: "./"
+    contentBase: "./",
   },
   module: {
     rules: [
@@ -27,15 +27,15 @@ module.exports = env => ({
                 "@babel/preset-env",
                 {
                   targets: { chrome: "69" },
-                  shippedProposals: true
-                }
+                  shippedProposals: true,
+                },
               ],
-              "@babel/preset-react"
-            ]
-          }
-        }
-      }
-    ]
+              "@babel/preset-react",
+            ],
+          },
+        },
+      },
+    ],
   },
-  devtool: "cheap-module-source-map"
+  devtool: "cheap-module-source-map",
 });

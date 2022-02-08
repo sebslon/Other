@@ -1,46 +1,46 @@
-const daggy = require('daggy')
+const daggy = require("daggy");
 
-const Free = daggy.taggedSum('Free', {Impure: ['x', 'f'], Pure: ['x']})
+const Free = daggy.taggedSum("Free", { Impure: ["x", "f"], Pure: ["x"] });
 
-Free.of = Free.Pure
+Free.of = Free.Pure;
 
-const kleisli_comp = (f, g) => x => f(x).chain(g)
+const kleisli_comp = (f, g) => (x) => f(x).chain(g);
 
-Free.prototype.fold = function() {
-  return this.x.fold.apply(this.x, arguments)
-}
+Free.prototype.fold = function () {
+  return this.x.fold.apply(this.x, arguments);
+};
 
-
-Free.prototype.map = function(f) {
+Free.prototype.map = function (f) {
   return this.cata({
-    Impure: (x, g) => Free.Impure(x, y => g(y).map(f)),
-    Pure: x => Free.Pure(f(x))
-  })
-}
+    Impure: (x, g) => Free.Impure(x, (y) => g(y).map(f)),
+    Pure: (x) => Free.Pure(f(x)),
+  });
+};
 
-Free.prototype.ap = function(a) {
+Free.prototype.ap = function (a) {
   return this.cata({
-    Impure: (x, g) => Free.Impure(x, y => g(y).ap(a)),
-    Pure: f => a.map(f)
-  })
-}
+    Impure: (x, g) => Free.Impure(x, (y) => g(y).ap(a)),
+    Pure: (f) => a.map(f),
+  });
+};
 
-Free.prototype.chain = function(f) {
+Free.prototype.chain = function (f) {
   return this.cata({
     Impure: (x, g) => Free.Impure(x, kleisli_comp(g, f)),
-    Pure: x => f(x)
-  })
-}
+    Pure: (x) => f(x),
+  });
+};
 
-const liftF = command => Free.Impure(command, Free.Pure)
+const liftF = (command) => Free.Impure(command, Free.Pure);
 
-Free.prototype.foldMap = function(interpreter, of) {
+Free.prototype.foldMap = function (interpreter, of) {
   return this.cata({
-    Pure: a => of(a),
+    Pure: (a) => of(a),
     Impure: (intruction_of_arg, next) =>
-        interpreter(intruction_of_arg).chain(result =>
-          next(result).foldMap(interpreter, of))
-  })
-}
+      interpreter(intruction_of_arg).chain((result) =>
+        next(result).foldMap(interpreter, of)
+      ),
+  });
+};
 
-module.exports = { liftF, Free }
+module.exports = { liftF, Free };
