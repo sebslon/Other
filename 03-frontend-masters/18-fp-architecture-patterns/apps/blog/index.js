@@ -1,5 +1,5 @@
-const { save, all } = require("../lib/db");
-const { Task } = require("../lib/types");
+const { save, all } = require("../../lib/db");
+const { Task } = require("../../lib/types");
 const { last } = require("ramda");
 /* original import */
 
