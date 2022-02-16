@@ -20,3 +20,7 @@ This is the source code for a Frontend Masters course with Jason Lengstorf about
 OMDB_API_KEY
 HASURA_API_URL
 HASURA_ADMIN_SECRET
+
+ntl init - initialize netlify project
+
+- add env variables
