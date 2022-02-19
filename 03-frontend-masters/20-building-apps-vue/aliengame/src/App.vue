@@ -19,7 +19,7 @@
       <button @click="pickCharacter">Pick your character!</button>
     </GamestateStart>
 
-    <section v-else>
+    <section v-else-if="uiState === 'characterChosen'">
       <svg viewBox="0 -180 1628 1180" class="main">
         <defs>
           <clipPath id="bottom-clip">
@@ -84,7 +84,21 @@
           />
         </g>
       </svg>
+
+      <div class="friendtalk">
+        <h3>{{ questions[questionIndex].question }}</h3>
+      </div>
+
+      <div class="zombietalk">
+        <p v-for="character in shuffle(characterChoices)" :key="character">
+          <button @click="pickQuestion(character)">
+            {{ questions[questionIndex][character] }}
+          </button>
+        </p>
+      </div>
     </section>
+
+    <GamestateFinish v-else />
   </div>
 </template>
 
@@ -98,10 +112,12 @@ import Score from "@/components/Score.vue";
 import Zombie from "@/components/Zombie.vue";
 import Baker from "@/components/Baker.vue";
 import GamestateStart from "@/components/GamestateStart.vue";
+import GamestateFinish from "@/components/GamestateFinish.vue";
 
 export default {
   components: {
     GamestateStart,
+    GamestateFinish,
     Artist,
     Baker,
     Friend,
@@ -110,7 +126,13 @@ export default {
     Zombie,
   },
   computed: {
-    ...mapState(["uiState", "questions", "character", "characterChoices"]),
+    ...mapState([
+      "uiState",
+      "questions",
+      "character",
+      "characterChoices",
+      "questionIndex",
+    ]),
   },
   data() {
     return {
@@ -121,6 +143,18 @@ export default {
     pickCharacter() {
       this.$store.commit("pickCharacter", this.characterInput);
       this.$store.commit("updateUIState", "characterChosen");
+    },
+    pickQuestion(character) {
+      this.$store.commit("pickQuestion", character);
+    },
+    shuffle(array) {
+      // LODASH - fisher yates shuffle
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+
+      return array;
     },
   },
 };
