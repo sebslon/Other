@@ -18,37 +18,47 @@
       </div>
 
       <fieldset v-if="currentItem.options">
-        <legend><h3>Options</h3></legend>
+        <legend>
+          <h3>Options</h3>
+        </legend>
         <div v-for="option in currentItem.options" :key="option">
           <input
             type="radio"
             name="option"
             :id="option"
             :value="option"
-            v-model="itemOptions"
+            v-model="$v.itemOptions.$model"
           />
           <label :for="option">{{ option }}</label>
         </div>
       </fieldset>
 
       <fieldset v-if="currentItem.addOns">
-        <legend><h3>Add Ons</h3></legend>
+        <legend>
+          <h3>Add Ons</h3>
+        </legend>
         <div v-for="addon in currentItem.addOns" :key="addon">
           <input
             type="checkbox"
             name="addon"
             :id="addon"
             :value="addon"
-            v-model="itemAddons"
+            v-model="$v.itemAddons.$model"
           />
           <label :for="addon">{{ addon }}</label>
         </div>
       </fieldset>
 
-      <AppToast v-if="cartSubmitted"
-        >Order submitted <br />
-        Check out more <nuxt-link to="/restaurants">restaurants!</nuxt-link>
-      </AppToast>
+      <app-toast v-if="cartSubmitted">
+        Order Added!
+        <br />Return to
+        <nuxt-link to="/restaurants">restaurants</nuxt-link>
+      </app-toast>
+
+      <app-toast v-if="errors">
+        Please select options and
+        <br />addons before continuing
+      </app-toast>
     </section>
 
     <section class="options">
@@ -60,8 +70,8 @@
 
 <script>
 import { mapState } from "vuex";
-
 import AppToast from "@/components/AppToast.vue";
+import { required } from "vuelidate/lib/validators";
 
 export default {
   components: {
@@ -75,7 +85,16 @@ export default {
       itemAddons: [],
       itemSizeAndCost: [],
       cartSubmitted: false,
+      errors: false,
     };
+  },
+  validations: {
+    itemOptions: {
+      required,
+    },
+    itemAddons: {
+      required,
+    },
   },
   computed: {
     ...mapState(["fooddata"]),
@@ -104,12 +123,22 @@ export default {
         item: this.currentItem.item,
         count: this.count,
         options: this.itemOptions,
-        addons: this.itemAddons,
+        addOns: this.itemAddons,
         combinedPrice: this.combinedPrice,
       };
 
-      this.cartSubmitted = true;
-      this.$store.commit("addToCart", formOutput);
+      const addOnError = this.$v.itemAddons.$invalid;
+      const optionError = this.currentItem.options
+        ? this.$v.itemOptions.$invalid
+        : false;
+
+      if (addOnError || optionError) {
+        this.errors = true;
+      } else {
+        this.errors = false;
+        this.cartSubmitted = true;
+        this.$store.commit("addToCart", formOutput);
+      }
     },
   },
 };
@@ -131,13 +160,10 @@ export default {
   grid-area: 1 / 1 / 2 / 2;
   background-size: cover;
 }
-
 .details {
   grid-area: 1 / 2 / 2 / 3;
-
   position: relative;
 }
-
 .options {
   grid-area: 2 / 1 / 3 / 2;
 }
