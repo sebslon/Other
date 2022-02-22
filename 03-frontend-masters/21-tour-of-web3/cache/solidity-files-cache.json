@@ -37,8 +37,8 @@
       ]
     },
     "/Users/sebastiansloniec/Desktop/MOJE/Other/03-frontend-masters/21-tour-of-web3/contracts/Counter.sol": {
-      "lastModificationDate": 1645469387912,
-      "contentHash": "b3a9e12544d07fb6f26cacb881eb77a4",
+      "lastModificationDate": 1645552954978,
+      "contentHash": "cfa72ff3a56ed04a25940f5eeb3992d5",
       "sourceName": "contracts/Counter.sol",
       "solcConfig": {
         "version": "0.8.10",
@@ -106,6 +106,78 @@
       ],
       "artifacts": [
         "console"
+      ]
+    },
+    "/Users/sebastiansloniec/Desktop/MOJE/Other/03-frontend-masters/21-tour-of-web3/contracts/Hero.sol": {
+      "lastModificationDate": 1645561763654,
+      "contentHash": "5f15f0421decc3383d3c50a27f2713e9",
+      "sourceName": "contracts/Hero.sol",
+      "solcConfig": {
+        "version": "0.8.10",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "Hero"
+      ]
+    },
+    "/Users/sebastiansloniec/Desktop/MOJE/Other/03-frontend-masters/21-tour-of-web3/contracts/TestHero.sol": {
+      "lastModificationDate": 1645561063780,
+      "contentHash": "48d75bc744bbc15e8ae099a1dfe2432f",
+      "sourceName": "contracts/TestHero.sol",
+      "solcConfig": {
+        "version": "0.8.10",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./Hero.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "TestHero"
       ]
     }
   }
