@@ -17,3 +17,5 @@ gas cost _ gas used _ 10^9 _ eth-cost / 10^18 or gas-cost _ gas-used \* eth-cost
 [ANOTHER_INFO]
 
 - memory (in the function) / storage (on the contract);
+
+https://github.com/mudgen/diamond-3-hardhat

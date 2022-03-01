@@ -179,6 +179,118 @@
       "artifacts": [
         "TestHero"
       ]
+    },
+    "/Users/sebastiansloniec/Desktop/MOJE/Other/03-frontend-masters/21-tour-of-web3/contracts/Fallback.sol": {
+      "lastModificationDate": 1645645410895,
+      "contentHash": "4dec98753246e4c2c2547528c5e86d6b",
+      "sourceName": "contracts/Fallback.sol",
+      "solcConfig": {
+        "version": "0.8.10",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "hardhat/console.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "Fallback",
+        "IFallback"
+      ]
+    },
+    "/Users/sebastiansloniec/Desktop/MOJE/Other/03-frontend-masters/21-tour-of-web3/contracts/A.sol": {
+      "lastModificationDate": 1645647925325,
+      "contentHash": "62ec458aecee34a48105799361d17bad",
+      "sourceName": "contracts/A.sol",
+      "solcConfig": {
+        "version": "0.8.10",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "hardhat/console.sol",
+        "./Storage.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "A",
+        "B"
+      ]
+    },
+    "/Users/sebastiansloniec/Desktop/MOJE/Other/03-frontend-masters/21-tour-of-web3/contracts/Storage.sol": {
+      "lastModificationDate": 1645647996828,
+      "contentHash": "ead73ecfddbccb0d8b0f9ac9f008b4d8",
+      "sourceName": "contracts/Storage.sol",
+      "solcConfig": {
+        "version": "0.8.10",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "hardhat/console.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": []
     }
   }
 }
