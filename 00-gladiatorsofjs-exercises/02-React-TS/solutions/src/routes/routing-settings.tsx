@@ -12,7 +12,8 @@ import {
   SearchWithDropdownVis,
   MasonryGridVis,
   PasswordInputVis,
-  InfiniteList
+  InfiniteList,
+  IntersectionObserverPresentation,
 } from "pages";
 
 export const routes: ExerciseRoute[] = [
@@ -70,6 +71,11 @@ export const routes: ExerciseRoute[] = [
   {
     path: "/InfiniteList",
     component: InfiniteList,
+    exact: true,
+  },
+  {
+    path: "/useIntersectionObserver",
+    component: IntersectionObserverPresentation,
     exact: true,
   },
 ];

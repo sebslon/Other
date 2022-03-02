@@ -25,3 +25,5 @@ yarn-error.log*
 info.md
 TODO.md
 todo.md
+# Local Netlify folder
+.netlify
