@@ -23,7 +23,8 @@ Projects are listed by difficulty (from easier in the beginning).
 - **09 - MasonryGrid** - like http://www.kristianhammerstad.com/, without use of external libraries.
 - **10 - PasswordInput** - With randomly disabled fields for letters (like in bank).
 - **11 - InfiniteList** - Generate random persons, then display them, when list is finished, automatically generate new persons. Styles with BEM methodology.
-- **12 - useIntersectionObserver**
+- **12 - useIntersectionObserver** - create custom hook, add possibility to pass callback and all the options.
+- **13 - MultistepForm** - 
 
 <hr>
 
