@@ -14,6 +14,8 @@ import {
   PasswordInputVis,
   InfiniteList,
   IntersectionObserverPresentation,
+  MultistepForms,
+  multistepForms,
 } from "pages";
 
 export const routes: ExerciseRoute[] = [
@@ -76,6 +78,26 @@ export const routes: ExerciseRoute[] = [
   {
     path: "/useIntersectionObserver",
     component: IntersectionObserverPresentation,
+    exact: true,
+  },
+  {
+    path: "/MultistepForm",
+    component: MultistepForms,
+    exact: true,
+  },
+  {
+    path: "/MultistepForm/form-without-library",
+    component: multistepForms.withoutLibrary,
+    exact: true,
+  },
+  {
+    path: "/MultistepForm/form-formik-yup",
+    component: multistepForms.formikYup,
+    exact: true,
+  },
+  {
+    path: "/MultistepForm/form-react-hook-form",
+    component: multistepForms.reactHookForm,
     exact: true,
   },
 ];
