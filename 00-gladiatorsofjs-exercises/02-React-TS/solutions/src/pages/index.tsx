@@ -1,6 +1,6 @@
-import { FormikYupForm } from "./1-ReactTS_Fundamentals/13-multistepForm/formik-yup";
-import { ReactHookMultistepForm } from "./1-ReactTS_Fundamentals/13-multistepForm/react-hook-form";
-import { MultistepFormWithoutLibrary } from "./1-ReactTS_Fundamentals/13-multistepForm/without-library";
+import { FormikYupForm } from "./1-ReactTS_Fundamentals/13-multistepForm/form-implementations/formik-yup";
+import { ReactHookMultistepForm } from "./1-ReactTS_Fundamentals/13-multistepForm/form-implementations/react-hook-form";
+import { MultistepFormWithoutLibrary } from "./1-ReactTS_Fundamentals/13-multistepForm/form-implementations/without-library";
 
 export { HomePage } from "./0-Homepage";
 export { TwitterClone } from "./1-ReactTS_Fundamentals/01-TwitterClone";
