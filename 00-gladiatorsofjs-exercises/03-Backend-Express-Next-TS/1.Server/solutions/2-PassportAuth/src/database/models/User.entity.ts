@@ -20,8 +20,11 @@ export class User extends BaseEntity {
   @Column()
   email!: string;
 
-  @Column()
+  @Column({ nullable: true })
   password!: string;
+
+  @Column({ nullable: true })
+  facebookId!: string;
 
   async hashPassword(password: string) {
     const salt = await bcrypt.genSalt(10);

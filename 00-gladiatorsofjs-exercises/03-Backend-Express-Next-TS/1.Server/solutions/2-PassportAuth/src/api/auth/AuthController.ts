@@ -4,6 +4,7 @@ import { Controller } from "../../types";
 import { handleErrors } from "../../helpers/handleErrors";
 
 import { AuthService } from "./AuthService";
+import passport from "./passport";
 
 export class AuthController implements Controller {
   public path = "/auth";
@@ -18,5 +19,14 @@ export class AuthController implements Controller {
 
   private initializeRoutes() {
     this.router.post("/sign-in", handleErrors(this.authService.signIn));
+    this.router.get("/facebook", passport.authenticate("facebook"));
+    this.router.get(
+      "/facebook/callback",
+      passport.authenticate("facebook", {
+        failureRedirect: "/login-failed",
+        successRedirect: "/",
+      }),
+      this.authService.authenticateUser
+    );
   }
 }

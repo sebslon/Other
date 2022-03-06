@@ -6,7 +6,6 @@ export class AuthService {
   constructor() {}
 
   async signIn(req: Request, res: Response) {
-    console.log(req.body);
     const { email, password } = req.body;
 
     const user = await User.findOne({ email: email.toLowerCase() });
@@ -17,5 +16,9 @@ export class AuthService {
     } else {
       return res.status(404).json("Wrong password.");
     }
+  }
+
+  authenticateUser(req: Request, res: Response) {
+    console.log("USER IS AUTHENTICATED");
   }
 }
