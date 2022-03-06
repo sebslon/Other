@@ -11,6 +11,8 @@ export class App {
   constructor(controllers: Controller[]) {
     this.app = express();
 
+    this.app.use(express.static("client"));
+
     this.connectToTheDatabase();
     this.initializeMiddlewares();
     this.initializeControllers(controllers);

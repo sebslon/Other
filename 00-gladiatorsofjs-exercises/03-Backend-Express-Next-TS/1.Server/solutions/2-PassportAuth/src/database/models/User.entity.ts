@@ -29,4 +29,8 @@ export class User extends BaseEntity {
 
     return hash;
   }
+
+  async checkPassword(password: string) {
+    return bcrypt.compare(password, this.password);
+  }
 }

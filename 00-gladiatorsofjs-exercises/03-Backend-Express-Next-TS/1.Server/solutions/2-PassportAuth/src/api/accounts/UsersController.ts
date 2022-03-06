@@ -3,13 +3,13 @@ import { Router } from "express";
 import { Controller } from "../../types";
 import { handleErrors } from "../../helpers/handleErrors";
 
-import { AccountsService } from "./AccountsService";
+import { UsersService } from "./UsersService";
 
-export class AccountsController implements Controller {
-  public path = "/accounts";
+export class UsersController implements Controller {
+  public path = "/users";
   public router: Router;
 
-  private testService = new AccountsService();
+  private userService = new UsersService();
 
   constructor() {
     this.router = Router();
@@ -17,6 +17,6 @@ export class AccountsController implements Controller {
   }
 
   private initializeRoutes() {
-    this.router.post("/create", handleErrors(this.testService.createUser));
+    this.router.post("/create", handleErrors(this.userService.createUser));
   }
 }
