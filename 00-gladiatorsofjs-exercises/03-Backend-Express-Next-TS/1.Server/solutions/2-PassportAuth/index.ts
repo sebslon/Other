@@ -2,6 +2,8 @@ require("dotenv").config();
 
 import { App } from "./app";
 
-const server = new App([]);
+import { TestController } from "./src/api/test/TestController";
+
+const server = new App([new TestController()]);
 
 server.listen();

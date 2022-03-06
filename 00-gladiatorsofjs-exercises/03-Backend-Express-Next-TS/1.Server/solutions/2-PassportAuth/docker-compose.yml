@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  auth-api:
+    container_name: auth-api
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    environment:
+      POSTGRES_HOST: host.docker.internal
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    depends_on:
+      - postgres
+    ports:
+      - 3001:3001
+
+  postgres:
+    container_name: postgres
+    image: 'postgres'
+    ports:
+      - '5432:5432'
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DATABASE: auth-postgres
+    volumes:
+      - auth-postgres/db:/docker-entrypoint-initdb.d/
+
+volumes:
+  auth-postgres:

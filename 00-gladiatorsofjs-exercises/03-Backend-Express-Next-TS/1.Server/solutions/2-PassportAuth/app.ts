@@ -2,6 +2,7 @@ import express, { Application } from "express";
 
 import { Controller } from "./src/types";
 import { errorMiddleware } from "./src/middlewares/error-middleware";
+import { createConnection } from "typeorm";
 
 export class App {
   private app: Application;
@@ -33,11 +34,20 @@ export class App {
     this.app.use(express.urlencoded({ extended: true }));
   }
 
-  private connectToTheDatabase() {
-    //
+  private async connectToTheDatabase() {
+    createConnection({
+      type: "postgres",
+      host: (process.env.POSTGRES_HOST as string) || "localhost",
+      port: (process.env.PORT as unknown as number) || 5432,
+      username: (process.env.POSTGRES_USERNAME as string) || "postgres",
+      password: (process.env.POSTGRES_PASSWORD as string) || "postgres",
+      database: (process.env.POSTGRES_DB as string) || "auth-postgres",
+      entities: [__dirname + "/**/*.entity.ts"],
+      synchronize: true,
+    }).then(() => console.log("Connected to the database."));
   }
 
-  private initializeErrorHandling() {
+  private async initializeErrorHandling() {
     this.app.use(errorMiddleware);
   }
 }
