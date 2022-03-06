@@ -26,6 +26,7 @@ export const facebookStrategy = new Facebook(
         });
 
         await user.save();
+
         return done(null, user);
       } else {
         return done(null, user);

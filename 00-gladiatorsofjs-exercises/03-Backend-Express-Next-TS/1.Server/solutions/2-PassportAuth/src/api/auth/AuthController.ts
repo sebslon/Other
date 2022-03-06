@@ -24,7 +24,7 @@ export class AuthController implements Controller {
       "/facebook/callback",
       passport.authenticate("facebook", {
         failureRedirect: "/login-failed",
-        successRedirect: "/",
+        failureMessage: true,
       }),
       this.authService.authenticateUser
     );

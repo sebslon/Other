@@ -16,10 +16,3 @@ signInBtn.addEventListener("click", () => {
     })
     .catch((err) => console.log(err));
 });
-
-signInFB.addEventListener("click", () => {
-  const login = axios({
-    url: "api/auth/facebook",
-    method: "GET",
-  });
-});

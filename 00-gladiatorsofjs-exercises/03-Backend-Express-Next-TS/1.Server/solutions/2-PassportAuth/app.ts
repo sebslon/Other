@@ -4,6 +4,8 @@ import session from "express-session";
 import passport from "./src/api/auth/passport";
 
 import { Controller } from "./src/types";
+
+import { logger } from "./src/middlewares/simple-logger";
 import { errorMiddleware } from "./src/middlewares/error-middleware";
 
 export class App {
@@ -41,6 +43,7 @@ export class App {
         secret: process.env.SESSION_SECRET! || "secret",
       })
     );
+
     this.app.use(passport.initialize());
     this.app.use(passport.session());
 
@@ -48,12 +51,16 @@ export class App {
       cb(null, user);
     });
 
-    passport.deserializeUser(function (obj, cb) {
+    passport.deserializeUser(function (
+      obj: false | Express.User | null | undefined,
+      cb
+    ) {
       cb(null, obj);
     });
 
     this.app.use(express.json());
     this.app.use(express.urlencoded({ extended: true }));
+    this.app.use(logger);
   }
 
   private async connectToTheDatabase() {
