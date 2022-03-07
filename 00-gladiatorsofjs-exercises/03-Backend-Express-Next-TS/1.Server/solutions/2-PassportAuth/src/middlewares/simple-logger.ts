@@ -1,9 +1,11 @@
-import { NextFunction } from "express";
+import { Request, Response, NextFunction } from "express";
 
-export const logger = (req: Request, res: Response, next: NextFunction) => {
+export function logger(req: Request, res: Response, next: NextFunction) {
   const method = req.method;
   const url = req.url;
   const log = `[${method}:${url}]`;
 
-  next();
-};
+  console.log(log);
+
+  return next();
+}

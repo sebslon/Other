@@ -1,6 +1,7 @@
-import { createConnection } from "typeorm";
 import express, { Application } from "express";
+import { createConnection } from "typeorm";
 import session from "express-session";
+
 import passport from "./src/api/auth/passport";
 
 import { Controller } from "./src/types";
@@ -36,6 +37,7 @@ export class App {
   }
 
   private initializeMiddlewares() {
+    this.app.use(logger);
     this.app.use(
       session({
         resave: false,
@@ -60,7 +62,6 @@ export class App {
 
     this.app.use(express.json());
     this.app.use(express.urlencoded({ extended: true }));
-    this.app.use(logger);
   }
 
   private async connectToTheDatabase() {

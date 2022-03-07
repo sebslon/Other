@@ -18,11 +18,17 @@ export class AuthController implements Controller {
   }
 
   private initializeRoutes() {
-    this.router.post("/sign-in", handleErrors(this.authService.signIn));
+    this.router.post(
+      "/login",
+      passport.authenticate("local"),
+      handleErrors(this.authService.authenticateUser)
+    );
+
     this.router.get("/facebook", passport.authenticate("facebook"));
     this.router.get(
       "/facebook/callback",
       passport.authenticate("facebook", {
+        successRedirect: "/",
         failureRedirect: "/login-failed",
         failureMessage: true,
       }),
