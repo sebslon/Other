@@ -34,5 +34,15 @@ export class AuthController implements Controller {
       }),
       this.authService.authenticateUser
     );
+
+    this.router.get("/google", passport.authenticate("google"));
+    this.router.get(
+      "/google/callback",
+      passport.authenticate("google", {
+        successRedirect: "/",
+        failureRedirect: "/login-failed",
+      }),
+      this.authService.authenticateUser
+    );
   }
 }
