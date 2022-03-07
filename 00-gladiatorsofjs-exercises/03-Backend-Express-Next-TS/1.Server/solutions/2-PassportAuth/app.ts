@@ -64,15 +64,13 @@ export class App {
   }
 
   private async connectToTheDatabase() {
-    const PORT: number = process.env.PORT! as unknown as number;
-
-    createConnection({
+    await createConnection({
       type: "postgres",
       host: process.env.POSTGRES_HOST! || "localhost",
-      port: PORT || 5432,
+      port: 5432,
       username: process.env.POSTGRES_USERNAME! || "postgres",
       password: process.env.POSTGRES_PASSWORD! || "postgres",
-      database: process.env.POSTGRES_DB! || "auth-postgres",
+      database: process.env.POSTGRES_DB! || "postgres",
       entities: [__dirname + "/**/*.entity.ts"],
       synchronize: true,
     }).then(() => console.log("Connected to the database."));

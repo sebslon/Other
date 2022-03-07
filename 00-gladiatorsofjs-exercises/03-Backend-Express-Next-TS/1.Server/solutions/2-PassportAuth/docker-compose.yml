@@ -6,27 +6,27 @@ services:
     build:
       context: .
       dockerfile: ./Dockerfile
-    environment:
-      POSTGRES_HOST: host.docker.internal
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
+    env_file: .env
     depends_on:
       - postgres
+    environment:
+      PORT: 3010
+      POSTGRES_HOST: host.docker.internal
     ports:
-      - 3001:3001
+      - 3010:3010
 
   postgres:
     container_name: postgres
+    environment:
+      DB_USER: postgres
+      DB_PASSWORD: postgres
     image: 'postgres'
     ports:
       - '5432:5432'
     restart: always
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DATABASE: auth-postgres
+    env_file: .env
     volumes:
-      - auth-postgres/db:/docker-entrypoint-initdb.d/
+      - pgdata:/var/lib/postgresql/data
 
 volumes:
-  auth-postgres:
+  pgdata:

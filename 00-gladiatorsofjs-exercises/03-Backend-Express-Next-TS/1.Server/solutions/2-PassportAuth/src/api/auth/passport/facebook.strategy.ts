@@ -9,7 +9,9 @@ import { User } from "../../../database/models/User.entity";
 const options: StrategyOption = {
   clientID: process.env.FACEBOOK_APP_ID!,
   clientSecret: process.env.FACEBOOK_APP_SECRET!,
-  callbackURL: "http://localhost:3030/api/auth/facebook/callback",
+  callbackURL: `http://localhost:${
+    process.env.PORT || 3030
+  }/api/auth/facebook/callback`,
 };
 
 export const facebookStrategy = new Facebook(
