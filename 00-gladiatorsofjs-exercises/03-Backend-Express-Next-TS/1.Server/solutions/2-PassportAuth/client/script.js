@@ -4,10 +4,10 @@ const resultArea = document.querySelector(".result");
 
 signInBtn.addEventListener("click", () => {
   const login = axios({
-    url: "api/auth/sign-in",
+    url: "api/auth/login",
     method: "POST",
     data: {
-      email: "janusz@gmail.com",
+      email: "janusz@gmailxdxsdas.com",
       password: "janusz",
     },
   })

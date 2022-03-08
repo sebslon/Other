@@ -44,5 +44,16 @@ export class AuthController implements Controller {
       }),
       this.authService.authenticateUser
     );
+
+    this.router.get(
+      "/github",
+      passport.authenticate("github", { scope: ["user:email"] })
+    );
+
+    this.router.get(
+      "/github/callback",
+      passport.authenticate("github", { failureRedirect: "/login" }),
+      this.authService.authenticateUser
+    );
   }
 }
