@@ -1,5 +1,3 @@
-require("dotenv").config();
-
 import { App } from "./app";
 
 const server = new App([]);

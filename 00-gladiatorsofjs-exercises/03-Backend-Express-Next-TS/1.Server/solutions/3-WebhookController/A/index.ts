@@ -1,7 +1,7 @@
-require("dotenv").config();
-
 import { App } from "./app";
 
-const server = new App([]);
+import { UsersController } from "./src/api/users/users.controller";
+
+const server = new App([new UsersController()]);
 
 server.listen();
