@@ -1,5 +1,7 @@
 /// <reference types="cypress" />
 
+// Tasks - things happening in node.js
+
 const user = {
   email: `${Date.now()}@example.com`,
   password: 'password123',

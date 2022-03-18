@@ -53,8 +53,25 @@ describe('Secret Menu Items', () => {
 
   for (const restaurant of restaurants) {
     it(`should only display rows that match ${restaurant} when selected`, () => {
-      cy.get('@restaurant-filter').select(restaurant);
-      cy.get('td[headers="whereToOrder-column"]');
+      cy.get('#restaurant-visibility-filter').select(restaurant);
+      cy.get('td[headers="whereToOrder-column"]')
+        .should('contain', restaurant)
+        .and('have.length.at.least', 1);
     });
   }
+
+  describe('Rating Filter', () => {
+    beforeEach(() => {
+      cy.get('#minimum-rating-visibility').as('rating');
+    });
+
+    for (const rating of ratings) {
+      it(`should only display items with a rating of ${rating} or higher`, () => {
+        cy.get('@rating').invoke('val', rating).trigger('change');
+        cy.get('td.popularity').each(($el) => {
+          expect(+$el.text()).to.be.gte(rating);
+        });
+      });
+    }
+  });
 });
