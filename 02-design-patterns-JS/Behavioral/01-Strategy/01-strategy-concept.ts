@@ -12,7 +12,7 @@ class Context {
     this.strategy = strategy;
   }
 
-  //Allow context to change it's strategy at runtime.
+  // Allow context to change it's strategy at runtime.
   setStrategy(strategy: Strategy) {
     this.strategy = strategy;
   }
@@ -20,7 +20,7 @@ class Context {
   // sorting a string array - for example
   doBusinessLogic(): string[] {
     const result = this.strategy.doAlgorithm(["a", "e", "d", "c", "b", "f"]);
-    
+
     return result;
   }
 }
@@ -37,7 +37,7 @@ class NormalSortStrategy implements Strategy {
 class ReverseSortStrategy implements Strategy {
   doAlgorithm(data: string[]): string[] {
     console.log("Reverse sorting");
-    
+
     return data.reverse();
   }
 }
@@ -46,8 +46,8 @@ class ReverseSortStrategy implements Strategy {
 Creating a context with default strategy, then changing strategy if needed.
 */
 
-const context = new Context(new NormalSortStrategy());
-console.log(context.doBusinessLogic());
+const contextInstance = new Context(new NormalSortStrategy());
+console.log(contextInstance.doBusinessLogic());
 
-context.setStrategy(new ReverseSortStrategy());
-console.log(context.doBusinessLogic());
+contextInstance.setStrategy(new ReverseSortStrategy());
+console.log(contextInstance.doBusinessLogic());
