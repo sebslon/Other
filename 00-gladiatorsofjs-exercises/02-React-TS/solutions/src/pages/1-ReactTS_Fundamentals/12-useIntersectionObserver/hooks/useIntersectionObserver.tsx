@@ -48,30 +48,4 @@ export const useIntersectionObserver = (
   }, [element, options]);
 
   return { isIntersecting };
-  // const [entry, setEntry] = useState<IntersectionObserverEntry | null>(null);
-  // const [isIntersecting, setIsIntersecting] = useState(false);
-  // const [intersectionRatio, setIntersectionRatio] = useState(0);
-
-  // useEffect(() => {
-  //   const refElement = ref.current;
-
-  //   const observer = new IntersectionObserver(([entry]) => {
-  //     setIsIntersecting(entry.isIntersecting);
-  //     setEntry(entry);
-  //   }, options);
-
-  //   if (refElement) {
-  //     observer.observe(refElement);
-  //   }
-
-  //   return () => {
-  //     observer.unobserve(refElement);
-  //   };
-  // }, []);
-
-  // useEffect(() => {
-  //   if (entry) setIntersectionRatio(entry?.intersectionRatio);
-  // }, [entry?.intersectionRatio]);
-
-  // return { entry, isIntersecting, intersectionRatio };
 };
