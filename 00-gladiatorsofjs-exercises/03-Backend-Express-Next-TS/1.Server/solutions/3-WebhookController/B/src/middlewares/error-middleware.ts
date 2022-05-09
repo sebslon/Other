@@ -1,15 +1,18 @@
-import { Request, Response, NextFunction } from "express";
+import { NextFunction, Request, Response } from "express";
 
-export const errorMiddleware = (
+export const errorMiddleware = async (
   error: Error,
   req: Request,
   res: Response,
   next: NextFunction
 ) => {
-  if (process.env.NODE_ENV === "development") {
-    return res.status(500).send(error.message);
-  } else {
-    // + logging
-    return res.status(500).send("Something went wrong...");
+  try {
+    await next();
+  } catch (error: unknown) {
+    if (process.env.NODE_ENV === "development") {
+      return res.status(500).send(error);
+    } else {
+      return res.status(500).send("Something went wrong...");
+    }
   }
 };

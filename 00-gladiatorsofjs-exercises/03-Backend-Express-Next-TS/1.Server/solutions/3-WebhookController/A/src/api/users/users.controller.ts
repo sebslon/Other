@@ -1,27 +1,33 @@
-import { Router } from "express";
+import { Request, Response } from "express";
 
-import { Controller } from "../../types";
 import { UsersService } from "./users.service";
 
-// switch controllers to routers
-export class UsersController implements Controller {
-  public path = "/users";
-  public router: Router;
+export class UsersController {
+  private usersService: UsersService = new UsersService();
 
-  private userService = new UsersService();
+  addUser(req: Request, res: Response) {
+    this.usersService.addUser(req.params.name);
 
-  constructor() {
-    this.router = Router();
-    this.initializeRoutes();
+    return res.status(201).send({ success: true });
   }
 
-  private initializeRoutes() {
-    this.router.post("/addUser/:name", this.userService.addUser);
-    this.router.put("/userLoggedIn/:name", this.userService.userLoggedIn);
-    this.router.put("/userLoggedOut/:name", this.userService.userLoggedOut);
-    this.router.put(
-      "/userBoughtProduct/:name",
-      this.userService.userBoughtSomething
+  userLoggedIn(req: Request, res: Response) {
+    this.usersService.userLoggedIn(req.params.name);
+
+    return res.status(200).send({ success: true });
+  }
+
+  userLoggedOut(req: Request, res: Response) {
+    this.usersService.userLoggedOut(req.params.name);
+
+    return res.status(200).send({ success: true });
+  }
+  userBoughtSomething(req: Request, res: Response) {
+    const user = this.usersService.userBoughtSomething(
+      req.params.name,
+      req.body.amount
     );
+
+    return res.status(200).send(user);
   }
 }

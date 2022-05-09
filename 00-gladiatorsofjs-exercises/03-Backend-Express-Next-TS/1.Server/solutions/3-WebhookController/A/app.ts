@@ -1,19 +1,20 @@
 import express, { Application } from "express";
-import { errorMiddleware } from "./src/middlewares/error-middleware";
 
-import { Controller } from "./src/types";
+import { errorMiddleware } from "./src/middlewares/error-middleware";
+import { logger } from "./src/middlewares/logger";
+
+import { IRouter } from "./src/types";
 
 export class App {
   private app: Application;
-  private port = process.env.PORT || 3030;
+  private port = process.env.PORT || 3031;
 
-  constructor(controllers: Controller[]) {
+  constructor(controllers: IRouter[]) {
     this.app = express();
 
     this.connectToTheDatabase();
     this.initializeMiddlewares();
     this.initializeControllers(controllers);
-    this.initializeErrorHandling();
   }
 
   listen() {
@@ -22,7 +23,7 @@ export class App {
     });
   }
 
-  private initializeControllers(controllers: Controller[]) {
+  private initializeControllers(controllers: IRouter[]) {
     controllers.forEach((controller) => {
       this.app.use("/api" + controller.path, controller.router);
     });
@@ -31,11 +32,9 @@ export class App {
   private initializeMiddlewares() {
     this.app.use(express.json());
     this.app.use(express.urlencoded({ extended: true }));
+    this.app.use(logger);
+    this.app.use(errorMiddleware);
   }
 
   private async connectToTheDatabase() {}
-
-  private async initializeErrorHandling() {
-    this.app.use(errorMiddleware);
-  }
 }

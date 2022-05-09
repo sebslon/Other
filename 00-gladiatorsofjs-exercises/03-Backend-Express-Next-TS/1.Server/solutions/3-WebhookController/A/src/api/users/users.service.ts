@@ -1,54 +1,47 @@
-import { Request, Response } from "express";
 import { findValueInArray } from "../../helpers";
 
-import { UserWithAmountOfBoughtProducts } from "../../types";
+import { Buyer } from "../../types";
 
 export class UsersService {
   private users: Array<string> = [];
   private onlineUsers: Array<string> = [];
   private offlineUsers: Array<string> = [];
-  private usersWhichBoughtSomething: Array<UserWithAmountOfBoughtProducts> = [];
+  private usersWhichBoughtSomething: Array<Buyer> = [];
 
-  addUser(req: Request, res: Response) {
-    const name = req.params.name;
-
+  addUser(name: string) {
     this.checkName(name);
 
     const user = findValueInArray(name, this.users);
+
     if (user) {
-      throw Error("User already exists.");
+      throw new Error("User already exists.");
     }
 
     this.users.push(name);
-
-    res.status(204).send({ success: true });
   }
 
-  userBoughtSomething(req: Request, res: Response) {
-    const userName = req.params.name;
-    const productsAmount = req.body.amount;
-
-    this.checkName(userName);
-    this.checkIfUserExist(userName);
+  userBoughtSomething(name: string, productsAmount: number): Buyer {
+    this.checkName(name);
+    this.checkIfUserExist(name);
     this.checkAmountOfProducts(productsAmount);
 
     const user = this.usersWhichBoughtSomething.find(
-      ({ name }) => name === userName
+      ({ name }) => name === name
     );
+
     if (user) {
-      user.amount += productsAmount;
-      return res.status(200).send(user);
+      user.amountOfBoughtProducts += productsAmount;
     } else {
-      const data = { name: userName, amount: productsAmount };
+      const data = { name, amountOfBoughtProducts: productsAmount };
       this.usersWhichBoughtSomething.push(data);
 
-      return res.status(201).send(data);
+      return data;
     }
+
+    return user;
   }
 
-  public userLoggedIn(req: Request, res: Response) {
-    const { name } = req.params;
-
+  public userLoggedIn(name: string) {
     this.checkName(name);
     this.checkIfUserExist(name);
     this.checkIsUserAlreadyOnline(name);
@@ -60,13 +53,9 @@ export class UsersService {
       );
     }
     this.onlineUsers.push(name);
-
-    return res.status(200).send({ success: true });
   }
 
-  public userLoggedOut(req: Request, res: Response) {
-    const { name } = req.params;
-
+  public userLoggedOut(name: string) {
     this.checkName(name);
     this.checkIfUserExist(name);
     this.checkIsUserAlreadyOffline(name);
@@ -76,22 +65,23 @@ export class UsersService {
       this.onlineUsers = this.onlineUsers.filter((user) => user != user);
     }
     this.offlineUsers.push(name);
-
-    return res.status(200).send({ success: true });
   }
 
   // ## PRIVATE METHODS ## //
 
   private checkName(name: string) {
     if (!name) {
-      throw Error("Provide name to create an user.");
+      throw new Error("Provide name to create an user.");
+    }
+    if (typeof name !== "string") {
+      throw new Error("User name should be a string.");
     }
   }
 
   private checkIfUserExist(name: string) {
     const userExist = findValueInArray(name, this.users);
     if (!userExist) {
-      throw Error("User not exist!");
+      throw new Error("User does not exist!");
     }
     return true;
   }

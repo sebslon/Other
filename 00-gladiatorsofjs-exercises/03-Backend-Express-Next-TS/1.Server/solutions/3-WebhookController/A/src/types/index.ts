@@ -1,11 +1,11 @@
-import { Router } from "express";
+import { Router as ExpressRouter } from "express";
 
-export interface Controller {
+export interface IRouter {
   path: string;
-  router: Router;
+  router: ExpressRouter;
 }
 
-export interface UserWithAmountOfBoughtProducts {
+export interface Buyer {
   name: string;
-  amount: number;
+  amountOfBoughtProducts: number;
 }

@@ -1,7 +1,7 @@
 import { App } from "./app";
 
-import { UsersController } from "./src/api/users/users.controller";
+import { UsersRouter } from "./src/api/users/users.router";
 
-const server = new App([new UsersController()]);
+const server = new App([new UsersRouter()]);
 
 server.listen();
