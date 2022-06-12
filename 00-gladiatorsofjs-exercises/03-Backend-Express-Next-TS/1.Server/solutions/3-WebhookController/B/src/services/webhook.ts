@@ -18,17 +18,13 @@ class Webhook {
 
     switch (action) {
       case "addUser":
-        this.addUser(data);
-        break;
+        return this.addUser(data);
       case "userLoggedIn":
-        this.userLoggedIn(data);
-        break;
+        return this.userLoggedIn(data);
       case "userLoggedOut":
-        this.userLoggedOut(data);
-        break;
+        return this.userLoggedOut(data);
       case "userBoughtProduct":
-        this.userBoughtProduct(data);
-        break;
+        return this.userBoughtProduct(data);
     }
   }
 
