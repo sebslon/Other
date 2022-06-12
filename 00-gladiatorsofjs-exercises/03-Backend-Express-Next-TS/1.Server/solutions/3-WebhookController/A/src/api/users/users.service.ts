@@ -1,4 +1,5 @@
 import { findValueInArray } from "../../helpers";
+import { AppError } from "../../helpers/error";
 
 import { Buyer } from "../../types";
 
@@ -13,9 +14,7 @@ export class UsersService {
 
     const user = findValueInArray(name, this.users);
 
-    if (user) {
-      throw new Error("User already exists.");
-    }
+    if (user) throw new AppError(400, "User already exists.");
 
     this.users.push(name);
   }

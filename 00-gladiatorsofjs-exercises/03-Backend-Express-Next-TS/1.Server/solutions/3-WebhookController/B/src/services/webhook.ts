@@ -31,9 +31,8 @@ class Webhook {
         break;
     }
   }
-  /// TUTAJ KONIEC -> IMPLEMENTACJA WEBHOOKA - POTEM TESTY
+
   addUser(data: string) {
-    console.log(this.addUserURL + "/" + data);
     return this.axiosWrapper.post(this.addUserURL + "/" + data, {});
   }
   userLoggedIn(data: string) {

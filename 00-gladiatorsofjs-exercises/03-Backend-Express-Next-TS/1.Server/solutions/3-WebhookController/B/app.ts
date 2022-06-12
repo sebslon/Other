@@ -1,7 +1,9 @@
+require("express-async-errors"); // Handling async errors in express (no need for try/catch)
+
 import express, { Application } from "express";
 
-import { errorMiddleware } from "./src/middlewares/error-middleware";
 import { logger } from "./src/middlewares/logger";
+import { errorMiddleware } from "./src/middlewares/error-middleware";
 
 import { Server } from "http";
 
@@ -18,6 +20,7 @@ export class App {
     this.connectToTheDatabase();
     this.initializeMiddlewares();
     this.initializeControllers(controllers);
+    this.initializeErrorMiddleware();
   }
 
   listen() {
@@ -26,9 +29,9 @@ export class App {
     });
   }
 
-  private initializeControllers(routers: IRouter[]) {
-    routers.forEach((router) => {
-      this.app.use("/api" + router.path, router.router);
+  private initializeControllers(controllers: IRouter[]) {
+    controllers.forEach((controllers) => {
+      this.app.use("/api" + controllers.path, controllers.router);
     });
   }
 
@@ -36,6 +39,9 @@ export class App {
     this.app.use(express.json());
     this.app.use(express.urlencoded({ extended: true }));
     this.app.use(logger);
+  }
+
+  private initializeErrorMiddleware() {
     this.app.use(errorMiddleware);
   }
 

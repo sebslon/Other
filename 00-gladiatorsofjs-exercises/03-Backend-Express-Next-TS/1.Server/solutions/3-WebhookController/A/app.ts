@@ -1,3 +1,5 @@
+require("express-async-errors");
+
 import express, { Application } from "express";
 
 import { errorMiddleware } from "./src/middlewares/error-middleware";
@@ -15,6 +17,7 @@ export class App {
     this.connectToTheDatabase();
     this.initializeMiddlewares();
     this.initializeControllers(controllers);
+    this.initializeErrorMiddleware();
   }
 
   listen() {
@@ -33,8 +36,10 @@ export class App {
     this.app.use(express.json());
     this.app.use(express.urlencoded({ extended: true }));
     this.app.use(logger);
-    this.app.use(errorMiddleware);
   }
 
+  initializeErrorMiddleware() {
+    this.app.use(errorMiddleware);
+  }
   private async connectToTheDatabase() {}
 }

@@ -1,18 +1,18 @@
-import { NextFunction, Request, Response } from "express";
+import { Request, Response, NextFunction } from "express";
+
+import { AppError } from "../helpers/error";
 
 export const errorMiddleware = async (
-  error: Error,
+  error: Error | AppError,
   req: Request,
   res: Response,
   next: NextFunction
 ) => {
-  try {
-    await next();
-  } catch (error: unknown) {
-    if (process.env.NODE_ENV === "development") {
-      return res.status(500).send(error);
-    } else {
-      return res.status(500).send("Something went wrong...");
-    }
+  console.log(error.message);
+
+  if (error instanceof AppError) {
+    return res.status(error.status).send({ message: error.message });
+  } else {
+    res.status(500).json({ error: "Something failed" });
   }
 };

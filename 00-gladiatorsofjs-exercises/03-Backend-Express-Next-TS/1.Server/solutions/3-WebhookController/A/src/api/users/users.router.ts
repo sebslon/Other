@@ -4,7 +4,6 @@ import { IRouter } from "../../types";
 
 import { UsersController } from "./users.controller";
 
-// switch controllers to routers
 export class UsersRouter implements IRouter {
   public path = "/users";
   public router: Router;
