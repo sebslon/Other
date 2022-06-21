@@ -67,7 +67,7 @@ export class App {
   private async connectToTheDatabase() {
     await createConnection({
       type: "postgres",
-      host: process.env.POSTGRES_HOST! || "localhost",
+      host: process.env.POSTGRES_HOST! || "host.docker.internal",
       port: 5432,
       username: process.env.POSTGRES_USERNAME! || "postgres",
       password: process.env.POSTGRES_PASSWORD! || "postgres",
