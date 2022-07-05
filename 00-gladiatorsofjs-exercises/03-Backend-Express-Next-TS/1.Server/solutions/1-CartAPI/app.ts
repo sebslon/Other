@@ -1,4 +1,4 @@
-import express, { Application, NextFunction, Request, Response } from "express";
+import express, { Application } from "express";
 import { errorMiddleware } from "./src/middlewares/error-middleware";
 
 import { Controller } from "./src/types";
@@ -19,12 +19,12 @@ export class App {
   listen() {
     this.app.listen(this.port, () => {
       console.log(`Listening on port ${this.port}...`);
-    })
+    });
   }
 
   private initializeControllers(controllers: Controller[]) {
     controllers.forEach((controller) => {
-      this.app.use('/api' + controller.path, controller.router);
+      this.app.use("/api" + controller.path, controller.router);
     });
   }
 
