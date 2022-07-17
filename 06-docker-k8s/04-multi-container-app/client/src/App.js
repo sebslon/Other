@@ -12,7 +12,7 @@ function App() {
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <p>Welcome To React</p>
+          <p>Fibonacci Calculator</p>
           <a
             className="App-link"
             href="https://reactjs.org"
