@@ -1,11 +1,14 @@
 ## Kubernetes basics
 
-- Pods - Runs one or more closely related containers
+Object Types:
+
+- Pods - Runs one or more closely related containers (dev, rarely prod)
 - Service - Sets up networking in K8s cluster (k8s is strict about networking), subtypes includes:
   - ClusterIP
   - NodePort - exposes the container to the outside world (only good for dev purposes)
   - LoadBalancer
   - Ingress
+- Deployment - Maintains a set of identical pods, ensuring that they have the correct config and that the right number exists (dev/prod) - possible to change the overall configuration (if will differ too much - will scrap existing pods and create new ones)
 
 ```
 Example:
@@ -32,6 +35,8 @@ Change current configuration of the cluster -
 ```
 kubectl apply -f <configfile>
 kubectl get pods
+kubectl describe <object type> <object name>
+kubectl delete -f <config file> - remove pod
 ```
 
 - Kubernetes is a system to deploy containerized applications
@@ -41,3 +46,10 @@ kubectl get pods
 - Kubernetes (the master) decided where to run each container - each node can run a dissimilar set of containers
   - To deploy something, we update the desired state of the master with a config file
   - The master works constatnly to meet your desired state
+
+**Triggering deployment updates (imperatively)**:
+
+- Tag the image with a version, push to docker hub (docker build -t sebastiansloniec/imagename:v1 .)
+- kubectl set image <object_type> / <object_name> <container_name> = <new_image_to_use>
+  - `kubectl set image deployment/client-deployment client=sebastiansloniec/multi-client:v5`
+- PROD: prepare a script to facilitate that logic
