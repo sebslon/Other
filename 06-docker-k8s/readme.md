@@ -53,3 +53,35 @@ kubectl delete -f <config file> - remove pod
 - kubectl set image <object_type> / <object_name> <container_name> = <new_image_to_use>
   - `kubectl set image deployment/client-deployment client=sebastiansloniec/multi-client:v5`
 - PROD: prepare a script to facilitate that logic
+
+## More on docker etc.
+
+- Multi stage builds
+
+```
+FROM golang AS build
+LABEL maintainer="xxx@gmail.com"
+WORKDIR /workspace
+COPY go.mod go.sum ./ ## Leverage Caching
+RUN go mod download -json
+COPY hello.go .
+RUN CGO_ENABLED=0 GOOS=linux GOARCH=arm64 \
+    go build -a -installsuffix cgo -o hello
+
+FROM scratch
+COPY --from-build=build /workspace/hello /
+USER 1001 # Creates user to run CMD/Entrypoint commands (no root)
+ENTRYPOINT ["/hello"]
+CMD ["world"]
+```
+
+- Inspecting images
+  - docker inspect <image>
+  - tool - dive
+
+## More on kubernetes etc.
+
+- Observability with Prometheus
+  - Tools:
+    - kube-prometheus (deploying prometheus in the cluster) - Grafana + Prometheus
+    - OpenTracing - distributed tracing + DataDog / jaeger operator

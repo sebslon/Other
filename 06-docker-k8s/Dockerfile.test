@@ -1,0 +1,11 @@
+# Use an existing docker image as base
+FROM alpine
+
+# Download and install dependencies
+RUN apk add --update redis
+
+# Creates user to run CMD/Entrypoint commands (no root)
+USER 1001
+
+# tell the imagewhat to do when it starts as a container
+CMD ["redis-server"]
