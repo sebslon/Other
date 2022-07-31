@@ -1,6 +1,8 @@
 require("express-async-errors"); // Handling async errors in express (no need for try/catch)
+require("dotenv").config();
 
 import express, { Application } from "express";
+import { scheduleJob } from "node-schedule";
 
 import { logger } from "./src/middlewares/logger";
 import { errorMiddleware } from "./src/middlewares/error-middleware";
@@ -8,6 +10,8 @@ import { errorMiddleware } from "./src/middlewares/error-middleware";
 import { Server } from "http";
 
 import { IRouter } from "./src/types";
+import { emailService } from "./src/services/email-service.service";
+import { cronInterval } from "./src/cron/cron-interval";
 
 export class App {
   private _server!: Server;
@@ -18,6 +22,7 @@ export class App {
     this.app = express();
 
     this.connectToTheDatabase();
+    this.initializeCronJobs();
     this.initializeMiddlewares();
     this.initializeControllers(controllers);
     this.initializeErrorMiddleware();
@@ -43,6 +48,19 @@ export class App {
 
   private initializeErrorMiddleware() {
     this.app.use(errorMiddleware);
+  }
+
+  private initializeCronJobs() {
+    scheduleJob(cronInterval.EVERY_20_MINUTES, () => {
+      console.info("Sending scheduled email..");
+
+      emailService.sendEmail(
+        process.env.EMAIL_RECEIVER!,
+        process.env.EMAIL_SUBJECT!,
+        process.env.EMAIL_TEXT!,
+        process.env.EMAIL_HTML!
+      );
+    });
   }
 
   private async connectToTheDatabase() {}
