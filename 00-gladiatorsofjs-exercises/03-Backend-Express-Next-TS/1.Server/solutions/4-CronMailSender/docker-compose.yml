@@ -1,0 +1,15 @@
+version: "3.8"
+
+services:
+  backend:
+    container_name: backend
+    restart: always
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    volumes:
+      - /app/node_modules
+      - ./backend:/app
+    ports:
+      - 3010:3010
+    
