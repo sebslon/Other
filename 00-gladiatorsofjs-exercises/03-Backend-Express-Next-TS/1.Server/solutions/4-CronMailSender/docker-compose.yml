@@ -12,4 +12,17 @@ services:
       - ./backend:/app
     ports:
       - 3010:3010
+  
+  frontend:
+    container_name: frontend
+    restart: always
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      target: dev
+    volumes:
+      - /app/node_modules
+      - ./frontend:/app
+    ports:
+      - 3011:3000
     
