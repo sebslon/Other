@@ -1,17 +1,19 @@
-require("express-async-errors"); // Handling async errors in express (no need for try/catch)
-require("dotenv").config();
+require('express-async-errors'); // Handling async errors in express (no need for try/catch)
+require('dotenv').config();
 
-import express, { Application } from "express";
-import { scheduleJob } from "node-schedule";
+import express, { Application } from 'express';
+import { scheduleJob } from 'node-schedule';
 
-import { logger } from "./src/middlewares/logger";
-import { errorMiddleware } from "./src/middlewares/error-middleware";
+import { logger } from './src/middlewares/logger';
+import { errorMiddleware } from './src/middlewares/error-middleware';
 
-import { Server } from "http";
+import { Server } from 'http';
 
-import { IRouter } from "./src/types";
-import { emailService } from "./src/services/email-service.service";
-import { cronInterval } from "./src/cron/cron-interval";
+import { IRouter } from './src/types';
+import { emailService } from './src/services/email-service.service';
+import { cronInterval } from './src/cron/cron-interval';
+import { getRandomInt } from './src/helpers/random';
+import { emails } from './src/constants/emails';
 
 export class App {
   private _server!: Server;
@@ -36,7 +38,7 @@ export class App {
 
   private initializeControllers(controllers: IRouter[]) {
     controllers.forEach((controllers) => {
-      this.app.use("/api" + controllers.path, controllers.router);
+      this.app.use('/api' + controllers.path, controllers.router);
     });
   }
 
@@ -52,13 +54,15 @@ export class App {
 
   private initializeCronJobs() {
     scheduleJob(cronInterval.EVERY_20_MINUTES, () => {
-      console.info("Sending scheduled email..");
+      const emailNumber = getRandomInt(1, 3);
+
+      console.info(`Sending scheduled email number ${emailNumber}.`);
 
       emailService.sendEmail(
-        process.env.EMAIL_RECEIVER!,
-        process.env.EMAIL_SUBJECT!,
-        process.env.EMAIL_TEXT!,
-        process.env.EMAIL_HTML!
+        emails[emailNumber].receiver,
+        emails[emailNumber].subject,
+        emails[emailNumber].content,
+        emails[emailNumber].html
       );
     });
   }
