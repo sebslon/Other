@@ -1,19 +1,19 @@
 require('express-async-errors'); // Handling async errors in express (no need for try/catch)
 require('dotenv').config();
 
+import { Server } from 'http';
 import express, { Application } from 'express';
 import { scheduleJob } from 'node-schedule';
+
+import { IRouter } from './src/types';
+import { emails } from './src/constants/emails';
 
 import { logger } from './src/middlewares/logger';
 import { errorMiddleware } from './src/middlewares/error-middleware';
 
-import { Server } from 'http';
-
-import { IRouter } from './src/types';
-import { emailService } from './src/services/email-service.service';
 import { cronInterval } from './src/cron/cron-interval';
 import { getRandomInt } from './src/helpers/random';
-import { emails } from './src/constants/emails';
+import { emailService } from './src/services/email-handler.service';
 
 export class App {
   private _server!: Server;

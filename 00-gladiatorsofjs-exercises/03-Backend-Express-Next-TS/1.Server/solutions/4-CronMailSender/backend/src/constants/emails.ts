@@ -1,4 +1,4 @@
-import { Email } from '../types';
+import { Email } from '../database/models/email.entity';
 
 export const emails: Email[] = [
   {

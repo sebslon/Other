@@ -1,11 +1,11 @@
-import nodemailer, { Transporter } from "nodemailer";
+import nodemailer, { Transporter } from 'nodemailer';
 
-class EmailService {
+class EmailHandler {
   private transporter: Transporter;
 
   constructor() {
     this.transporter = nodemailer.createTransport({
-      service: "gmail",
+      service: 'gmail',
       auth: {
         user: process.env.GMAIL_USER,
         pass: process.env.GMAIL_PASSWORD,
@@ -20,7 +20,7 @@ class EmailService {
     html: string
   ) {
     const mailOptions = {
-      from: "",
+      from: '',
       to,
       subject,
       text,
@@ -31,4 +31,4 @@ class EmailService {
   }
 }
 
-export const emailService = new EmailService();
+export const emailService = new EmailHandler();
