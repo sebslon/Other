@@ -1,8 +1,9 @@
 require('express-async-errors'); // Handling async errors in express (no need for try/catch)
 require('dotenv').config();
 
-import { Server } from 'http';
+import cors from 'cors';
 import express, { Application } from 'express';
+import { Server } from 'http';
 import { scheduleJob } from 'node-schedule';
 
 import { IRouter } from './src/types';
@@ -43,6 +44,7 @@ export class App {
   }
 
   private initializeMiddlewares() {
+    this.app.use(cors());
     this.app.use(express.json());
     this.app.use(express.urlencoded({ extended: true }));
     this.app.use(logger);
