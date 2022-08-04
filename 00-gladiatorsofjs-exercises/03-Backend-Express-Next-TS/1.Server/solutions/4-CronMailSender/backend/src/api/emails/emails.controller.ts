@@ -19,6 +19,12 @@ class EmailsController {
 
     res.status(200).send(result);
   }
+
+  visitEmail(req: Request, res: TResponse<Email>) {
+    const result = this.emailsService.visitEmail(parseInt(req.params.id));
+
+    res.status(200).send(result);
+  }
 }
 
 export const emailsController = new EmailsController(

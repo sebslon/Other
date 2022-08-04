@@ -1,5 +1,9 @@
 <h2 align="center">CRON - mail sender</h2>
 
+My summary:
+
+- Could be done in only Next.js - wanted to put docker-compose etc.
+
 <br>
 
 ## Technologies
@@ -12,7 +16,7 @@
 - [x] Create a server which sends an email every 20 minutes to a given email
 - [x] Create 3 different emails containing link to the page (3 different pages)
 - [x] Emails should be kept in an array and should have properties: ID, receiver, how many times was visited, toggle on/off, content
-- [ ] Every page should contain number of visits and should show IP of the visitor
+- [x] Every page should contain number of visits and should show IP of the visitor
 - [ ] Every page should contain a link to the page where you can turn off this email
 - [ ] Email turn off should be handled by /stop/:emailId endpoint
 

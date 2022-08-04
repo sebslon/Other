@@ -16,4 +16,17 @@ export class EmailsService {
 
     return email;
   }
+
+  visitEmail(id: number) {
+    const email = this.emailsRepository.getById(id);
+
+    if (!email) throw new AppError(400, 'Email not found');
+
+    const updatedEmail = { ...email };
+    updatedEmail.timesVisited++;
+
+    this.emailsRepository.update(updatedEmail);
+
+    return email;
+  }
 }
