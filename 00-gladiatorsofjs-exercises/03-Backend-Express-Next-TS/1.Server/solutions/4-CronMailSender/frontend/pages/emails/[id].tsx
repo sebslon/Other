@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 
+import styles from './Email.module.css';
+
+import { http } from '../../http';
 import { Email } from '../../types';
-import { API_URL, http } from '../../http';
 
 const Email = () => {
   const [email, setEmail] = useState<null | Email>(null);
@@ -19,6 +21,15 @@ const Email = () => {
       const email = await http.get<Email>(`/emails/${id}`);
 
       if (email) setEmail(email);
+    } catch (err) {
+      setError(err);
+    }
+  }
+
+  async function toggleEmail() {
+    try {
+      await http.post(`/emails/${id}/toggle`, {});
+      if (email) setEmail({ ...email, active: !email.active });
     } catch (err) {
       setError(err);
     }
@@ -41,6 +52,15 @@ const Email = () => {
         <>
           <h1>Email nr. {email.id}</h1>
           <p>Total number of visits: {email.timesVisited}</p>
+          <p>Active: {`${email.active}`}</p>
+          <label className={styles.switch}>
+            <input
+              type='checkbox'
+              checked={email.active}
+              onChange={toggleEmail}
+            />
+            <span className={`${styles.slider} ${styles.round}`}></span>
+          </label>
         </>
       ) : (
         <h1>Missing information for email nr. {id}</h1>

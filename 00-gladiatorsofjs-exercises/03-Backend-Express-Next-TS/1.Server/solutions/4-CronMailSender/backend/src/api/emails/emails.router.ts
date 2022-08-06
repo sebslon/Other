@@ -18,6 +18,10 @@ export class EmailsRouter implements IRouter {
     this.router.get('/:id', (req: Request, res: Response) =>
       emailsController.getEmail(req, res)
     );
+    // toggle on-off
+    this.router.post('/:id/toggle', (req: Request, res: Response) =>
+      emailsController.toggleEmail(req, res)
+    );
 
     this.router.post('/:id/visit', (req: Request, res: Response) =>
       emailsController.visitEmail(req, res)

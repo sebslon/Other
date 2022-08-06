@@ -29,4 +29,17 @@ export class EmailsService {
 
     return email;
   }
+
+  toggleEmail(id: number) {
+    const email = this.emailsRepository.getById(id);
+
+    if (!email) throw new AppError(400, 'Email not found');
+
+    const updatedEmail = { ...email };
+    updatedEmail.active = !updatedEmail.active;
+
+    this.emailsRepository.update(updatedEmail);
+
+    return email;
+  }
 }

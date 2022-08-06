@@ -25,6 +25,12 @@ class EmailsController {
 
     res.status(200).send(result);
   }
+
+  toggleEmail(req: Request, res: TResponse<Email>) {
+    const result = this.emailsService.toggleEmail(parseInt(req.params.id));
+
+    res.status(200).send(result);
+  }
 }
 
 export const emailsController = new EmailsController(

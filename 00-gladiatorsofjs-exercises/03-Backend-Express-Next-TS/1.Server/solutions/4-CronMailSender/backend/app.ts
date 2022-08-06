@@ -58,6 +58,8 @@ export class App {
     scheduleJob(cronInterval.EVERY_20_MINUTES, () => {
       const emailNumber = getRandomInt(1, 3);
 
+      if (!emails[emailNumber].active) return;
+
       console.info(`Sending scheduled email number ${emailNumber}.`);
 
       emailService.sendEmail(
