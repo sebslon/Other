@@ -17,8 +17,8 @@ My summary:
 - [x] Create 3 different emails containing link to the page (3 different pages)
 - [x] Emails should be kept in an array and should have properties: ID, receiver, how many times was visited, toggle on/off, content
 - [x] Every page should contain number of visits and should show IP of the visitor
-- [ ] Every page should contain a link to the page where you can turn off this email
-- [ ] Email turn off should be handled by /stop/:emailId endpoint
+- [x] Every page should contain a link to the page where you can turn off this email
+- [x] Email turn off should be handled by /stop/:emailId endpoint
 
 ## Optional
 
