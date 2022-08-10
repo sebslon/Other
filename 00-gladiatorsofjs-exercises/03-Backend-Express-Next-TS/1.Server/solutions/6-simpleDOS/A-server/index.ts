@@ -1,7 +1,7 @@
-import { App } from "./app";
+import { App } from './app';
 
-import { SampleRouter } from "./src/api/sample/sample.router";
+import { AttackingRouter } from './src/api/sample/attack.router';
 
-export const server = new App([new SampleRouter()]);
+export const server = new App([new AttackingRouter()]);
 
 server.listen();

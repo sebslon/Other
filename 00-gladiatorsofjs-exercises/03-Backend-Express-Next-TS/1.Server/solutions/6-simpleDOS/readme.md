@@ -10,7 +10,7 @@
 ## Main goals
 
 - [x] Create a server with two endpoints: /get-first-image, /get-second-image which returns two different photos
-- [ ] Create another server with endpoint: /attack
+- [x] Create another server with endpoint: /attack
 - [ ] Endpoint /attack gets url on which he should perform pseudo DOS attack
 - [ ] Secure the first server with this guidelines: https://itnext.io/make-security-on-your-nodejs-api-the-priority-50da8dc71d68
 - [ ] Make a simulation of the attack
