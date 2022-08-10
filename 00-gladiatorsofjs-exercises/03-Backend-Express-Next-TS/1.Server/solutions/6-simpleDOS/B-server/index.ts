@@ -1,7 +1,7 @@
-import { App } from "./app";
+import { App } from './app';
 
-import { SampleRouter } from "./src/api/sample/sample.router";
+import { ImagesRouter } from './src/api/images/images.router';
 
-export const server = new App([new SampleRouter()]);
+export const server = new App([new ImagesRouter()]);
 
 server.listen();

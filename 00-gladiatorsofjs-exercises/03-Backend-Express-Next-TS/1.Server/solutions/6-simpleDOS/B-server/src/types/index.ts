@@ -1,5 +1,5 @@
-import { Router as ExpressRouter } from "express";
-import { Query, Send } from "express-serve-static-core";
+import { Router as ExpressRouter, Request, Response } from 'express';
+import { Query, Send } from 'express-serve-static-core';
 
 export interface IRouter {
   path: string;
@@ -7,20 +7,20 @@ export interface IRouter {
 }
 
 /* Express Request & Response typed */
-export interface TRequestBody<T> extends Express.Request {
+export interface TRequestBody<T> extends Request {
   body: T;
 }
 
-export interface TRequestQueryP<T extends Query> extends Express.Request {
+export interface TRequestQueryP<T extends Query> extends Request {
   query: T;
 }
 
-export interface TRequest<T extends Query, U> extends Express.Request {
+export interface TRequest<T extends Query, U> extends Request {
   body: U;
   query: T;
 }
 
-export interface TResponse<ResBody> extends Express.Response {
+export interface TResponse<ResBody> extends Response {
   json: Send<ResBody, this>;
 }
 
