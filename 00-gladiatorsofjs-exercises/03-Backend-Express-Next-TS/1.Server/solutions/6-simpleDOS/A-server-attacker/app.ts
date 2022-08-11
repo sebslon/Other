@@ -12,7 +12,7 @@ import { IRouter } from './src/types';
 export class App {
   private _server!: Server;
   private app: Application;
-  private port = process.env.PORT || 3000;
+  private port = process.env.PORT || 3030;
 
   constructor(controllers: IRouter[]) {
     this.app = express();

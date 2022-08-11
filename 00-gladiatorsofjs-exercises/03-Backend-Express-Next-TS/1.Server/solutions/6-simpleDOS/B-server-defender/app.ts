@@ -12,7 +12,7 @@ import { IRouter } from './src/types';
 export class App {
   private _server!: Server;
   private app: Application;
-  private port = process.env.PORT || 3000;
+  private port = process.env.PORT || 3031;
 
   constructor(controllers: IRouter[]) {
     this.app = express();
@@ -38,7 +38,7 @@ export class App {
   private initializeMiddlewares() {
     this.app.use(express.json());
     this.app.use(express.urlencoded({ extended: true }));
-    this.app.use(logger);
+    // this.app.use(logger);
   }
 
   private initializeErrorMiddleware() {

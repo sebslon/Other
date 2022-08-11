@@ -7,15 +7,15 @@ services:
       dockerfile: Dockerfile
     volumes:
       - /app/node_modules
-      - ./A-server:/app
+      - ./A-server-attacker:/app
     ports:
-      - 3030:3000
+      - 3030:3030
   backend-defender:
     build:
       context: ./B-server-defender
       dockerfile: Dockerfile
     volumes:
       - /app/node_modules
-      - ./B-server:/app
+      - ./B-server-defender:/app
     ports:
-      - 3031:3000
+      - 3031:3031
