@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  backend-attacker:
+    build:
+      context: ./A-server-attacker
+      dockerfile: Dockerfile
+    volumes:
+      - /app/node_modules
+      - ./A-server-attacker:/app
+    ports:
+      - 3030:3030
+  backend-defender:
+    build:
+      context: ./B-server-defender
+      dockerfile: Dockerfile
+    volumes:
+      - /app/node_modules
+      - ./B-server-defender:/app
+    ports:
+      - 3031:3031
