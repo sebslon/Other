@@ -1,9 +1,10 @@
 require('express-async-errors'); // Handling async errors in express (no need for try/catch)
 
+import helmet from 'helmet';
 import express, { Application } from 'express';
 
-import { logger } from './src/middlewares/logger';
 import { errorMiddleware } from './src/middlewares/error-middleware';
+import { requestsRateLimiter } from './src/middlewares/requests-rate-limiter';
 
 import { Server } from 'http';
 
@@ -36,6 +37,12 @@ export class App {
   }
 
   private initializeMiddlewares() {
+    // Security middlewares
+    this.app.use(express.json({ limit: '10kb' }));
+    this.app.use(requestsRateLimiter);
+    this.app.use(helmet());
+    //
+
     this.app.use(express.json());
     this.app.use(express.urlencoded({ extended: true }));
     // this.app.use(logger);

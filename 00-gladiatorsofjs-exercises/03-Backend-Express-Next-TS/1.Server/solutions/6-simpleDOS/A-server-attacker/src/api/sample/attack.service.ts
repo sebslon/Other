@@ -18,24 +18,19 @@ export class AttackingService {
     const attackResults = await Promise.allSettled(attacks);
 
     const successfulRequests = attackResults.filter(
-      (result) => result.status === 'fulfilled'
-    );
+      ({ status }) => status === 'fulfilled'
+    ).length;
 
-    const failedRequests = attackResults.filter(
-      (result) => result.status === 'rejected'
-    );
+    const failedRequests = attackResults.length - successfulRequests;
 
     return {
-      successfulRequests: successfulRequests.length,
-      failedRequests: failedRequests.length,
+      successfulRequests: successfulRequests,
+      failedRequests: failedRequests,
     };
   }
 
   requestUrl(url: string) {
-    return axios
-      .get(url)
-      .then((res: AxiosResponse<any>) => res.status)
-      .catch((err: AxiosError) => err.message);
+    return axios.get(url).then((res: AxiosResponse<any>) => res);
   }
 }
 

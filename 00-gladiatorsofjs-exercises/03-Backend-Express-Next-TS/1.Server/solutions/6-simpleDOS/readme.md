@@ -26,3 +26,7 @@
 - Difference between DOS and DDOS :https://www.youtube.com/watch?v=c9EjuOQRUdg&t=55s
 - How to check CPU usage in VS Code - https://www.youtube.com/watch?v=9UI0JT8y2c4
 - Additional informations: https://javascript.plainenglish.io/website-ddos-f96e20f9ad40
+
+#### More Additional Links
+
+- https://davidwalsh.name/2fa - 2FA setup
