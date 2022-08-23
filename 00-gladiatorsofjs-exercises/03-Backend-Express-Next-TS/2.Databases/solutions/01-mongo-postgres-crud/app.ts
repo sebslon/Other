@@ -1,5 +1,8 @@
 require('express-async-errors'); // Handling async errors in express (no need for try/catch)
+require('dotenv').config(); // Load environment variables from .env file
 
+import knex from 'knex';
+import mongoose from 'mongoose';
 import express, { Application } from 'express';
 
 import { logger } from './src/middlewares/logger';
@@ -45,7 +48,28 @@ export class App {
     this.app.use(errorMiddleware);
   }
 
-  private async connectToTheDatabase() {}
+  private async connectToTheDatabase() {
+    const mongoDbHost = `mongodb://${process.env.MONGODB_HOST}:27017/${process.env.MONGODB_DBNAME}`;
+
+    try {
+      knex({
+        client: 'pg',
+        connection: {
+          host: process.env.POSTGRES_HOST,
+          port: 5432,
+          user: process.env.POSTGRES_USER,
+          password: process.env.POSTGRES_PASSWORD,
+          database: process.env.POSTGRES_DBNAME,
+        },
+      });
+
+      mongoose
+        .connect(mongoDbHost)
+        .then(() => console.log('Connected to MongoDB database'));
+    } catch (err) {
+      console.error('Failed to connect database: ' + err);
+    }
+  }
 
   get server() {
     return this._server;
