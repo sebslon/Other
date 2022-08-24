@@ -1,6 +1,7 @@
 import { Router } from 'express';
 
 import { IRouter } from '../../types';
+import { CatsController } from './cats.controller';
 
 export class CatsRouter implements IRouter {
   public path = '/cats';
@@ -12,5 +13,8 @@ export class CatsRouter implements IRouter {
     this.initializeRoutes();
   }
 
-  private initializeRoutes() {}
+  private initializeRoutes() {
+    this.router.get('/', CatsController.getCats);
+    this.router.post('/', CatsController.addCat);
+  }
 }
