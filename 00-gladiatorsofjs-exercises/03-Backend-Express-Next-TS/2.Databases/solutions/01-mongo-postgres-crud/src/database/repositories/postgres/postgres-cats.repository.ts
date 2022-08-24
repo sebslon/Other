@@ -12,6 +12,13 @@ class PostgresCatsRepository implements CatsRepository {
   getById(id: number | string): Promise<ICat | null> {
     return knex({}).select('*').from('cats').where({ id }).first();
   }
+
+  addCat(data: ICat) {
+    return knex('cats')
+      .insert(data)
+      .returning('*')
+      .then((rows) => rows[0]);
+  }
 }
 
 export const postgresCatsRepository = new PostgresCatsRepository();

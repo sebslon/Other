@@ -1,3 +1,5 @@
+import { Knex } from 'knex';
+
 const knexConfig = require('./knexfile');
 
 export function initKnex() {
@@ -6,4 +8,4 @@ export function initKnex() {
   return knex;
 }
 
-export const knex = initKnex();
+export const knex: Knex = initKnex();

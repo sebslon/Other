@@ -1,35 +1,49 @@
 import { Request, Response } from 'express';
 import { ICat } from '../../database/models/Cat/Cat';
 import { MongoCat } from '../../database/models/Cat/MongoCat';
-import { mongoCatsService, postgreCatsService } from './cats.service';
+import { AppError } from '../../utils/error';
+import { CatsService } from './cats.service';
 export class CatsController {
   static getCat(req: Request, res: Response) {}
 
-  static async getCats(req: Request, res: Response) {
+  static async getCats(
+    req: Request<{}, {}, {}, { db: 'mongo' | 'postgres' }>,
+    res: Response
+  ) {
     const { db } = req.query;
 
-    if (!db) return res.status(400).send('Database was not provided.');
+    this.handleDbQueryParam(db);
 
-    let cats: ICat[] = [];
-
-    if (db === 'mongo') cats = await mongoCatsService.getAll();
-    else if (db === 'postgres') cats = await postgreCatsService.getAll();
+    const catsService = new CatsService(db);
+    const cats = await catsService.getAll();
 
     res.send(cats);
   }
 
-  static async addCat(req: Request, res: Response) {
+  static async addCat(
+    req: Request<{}, {}, ICat, { db: 'mongo' | 'postgres' }>,
+    res: Response
+  ) {
     const { db } = req.query;
-    const { name, age, colour } = req.body;
+    const { name, age, colour, sex } = req.body;
 
-    if (db === 'mongo') {
-      const cat = await MongoCat.create({ name, age, colour });
+    CatsController.handleDbQueryParam(db);
 
-      res.send(cat);
-    }
+    const catsService = new CatsService(db);
+    const cat = await catsService.addCat({ name, age, colour, sex });
+
+    res.send(cat);
   }
 
   static deleteCat(req: Request, res: Response) {}
 
   static updateCat(req: Request, res: Response) {}
+
+  // PRIVATE METHODS
+
+  private static handleDbQueryParam(db: string) {
+    if (!db || (db !== 'mongo' && db !== 'postgres')) {
+      throw new AppError(400, 'Database was not provided or is not supported.');
+    }
+  }
 }
