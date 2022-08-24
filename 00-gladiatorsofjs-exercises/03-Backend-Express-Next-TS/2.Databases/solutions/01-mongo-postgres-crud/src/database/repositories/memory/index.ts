@@ -1,6 +1,6 @@
 // separate per use case - for example purposes only
 
-import { CatsRepository } from '../../types';
+import { CatsRepository } from '../../../types/repository';
 
 export class InMemoryRepository implements CatsRepository {
   private users = ['Sebastian'];

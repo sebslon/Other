@@ -36,3 +36,8 @@ class ShelterHandler {
   public adoptAKitten(id) {}
 }
 ```
+
+## Additional notes
+
+Creating a migrations with Knex - knex migrate:make migration_name -x ts
+Creating seeds - knex seed:make cats --knexfile db/knexfile.js

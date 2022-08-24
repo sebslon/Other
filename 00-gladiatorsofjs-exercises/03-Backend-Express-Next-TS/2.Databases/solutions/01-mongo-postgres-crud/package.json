@@ -19,6 +19,8 @@
     "@types/express": "^4.17.13"
   },
   "scripts": {
-    "start": "tsnd ./index.ts"
+    "start": "tsnd ./index.ts",
+    "migrate": "knex migrate:latest --knexfile src/database/knex/knexfile.ts",
+    "seed": "knex seed:run --knexfile src/database/knex/knexfile.ts"
   }
 }

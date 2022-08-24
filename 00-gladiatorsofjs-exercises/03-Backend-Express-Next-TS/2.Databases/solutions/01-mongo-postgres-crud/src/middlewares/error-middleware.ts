@@ -1,6 +1,6 @@
-import { Request, Response, NextFunction } from "express";
+import { Request, Response, NextFunction } from 'express';
 
-import { AppError } from "../helpers/error";
+import { AppError } from '../utils/error';
 
 export const errorMiddleware = async (
   error: Error | AppError,
@@ -13,6 +13,6 @@ export const errorMiddleware = async (
   if (error instanceof AppError) {
     return res.status(error.status).send({ message: error.message });
   } else {
-    res.status(500).json({ error: "Something failed" });
+    res.status(500).json({ error: 'Something failed' });
   }
 };
