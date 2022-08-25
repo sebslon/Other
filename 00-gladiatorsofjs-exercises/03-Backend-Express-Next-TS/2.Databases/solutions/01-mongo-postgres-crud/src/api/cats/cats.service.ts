@@ -35,6 +35,12 @@ export class CatsService {
 
     return cat;
   }
+
+  async getCat(id: number | string): Promise<ICat | null> {
+    const cat = await this.catsRepository.getById(id);
+
+    return cat;
+  }
 }
 
 // export const mongoCatsService = new CatsService(mongoCatsRepository);

@@ -15,6 +15,7 @@ export class CatsRouter implements IRouter {
 
   private initializeRoutes() {
     this.router.get('/', CatsController.getCats);
+    this.router.get('/:id', CatsController.getCatById);
     this.router.post('/', CatsController.addCat);
   }
 }
