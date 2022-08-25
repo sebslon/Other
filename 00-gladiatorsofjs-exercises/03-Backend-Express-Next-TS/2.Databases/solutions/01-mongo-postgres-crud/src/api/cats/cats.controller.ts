@@ -64,7 +64,21 @@ export class CatsController {
     res.status(200).send({ success: true });
   }
 
-  static updateCat(req: Request, res: Response) {}
+  static async updateCat(
+    req: Request<{ id: string }, {}, ICat, { db: 'mongo' | 'postgres' }>,
+    res: Response
+  ) {
+    const { db } = req.query;
+    const { id } = req.params;
+
+    CatsController.validateDbQueryParam(db);
+
+    const catsService = new CatsService(db);
+
+    const cat = await catsService.updateCat(id, req.body);
+
+    res.status(200).send(cat);
+  }
 
   // PRIVATE METHODS
 

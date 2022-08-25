@@ -49,6 +49,14 @@ export class CatsService {
 
     if (!cat) throw new AppError(400, 'Cat not found!');
   }
+
+  async updateCat(id: number | string, data: ICat): Promise<ICat> {
+    const cat = await this.catsRepository.updateById(id, data);
+
+    if (!cat) throw new AppError(400, 'Cat not found!');
+
+    return cat;
+  }
 }
 
 // export const mongoCatsService = new CatsService(mongoCatsRepository);

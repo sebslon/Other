@@ -23,6 +23,13 @@ class PostgresCatsRepository implements CatsRepository {
   deleteById(id: string | number): Promise<ICat | null> {
     return knex('cats').where({ id }).del();
   }
+
+  updateById(id: string | number, data: ICat): Promise<ICat | null> {
+    return knex('cats')
+      .where({ id })
+      .update(data, '*')
+      .then((rows) => rows[0]);
+  }
 }
 
 export const postgresCatsRepository = new PostgresCatsRepository();

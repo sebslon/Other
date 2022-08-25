@@ -22,6 +22,12 @@ class MongoCatsRepository implements CatsRepository {
   deleteById(id: string | number): Promise<ICat | null> {
     return MongoCat.findByIdAndDelete(id).then((doc) => doc);
   }
+
+  updateById(id: string | number, data: ICat): Promise<ICat | null> {
+    return MongoCat.findByIdAndUpdate(id, data, { new: true }).then(
+      (doc) => doc
+    );
+  }
 }
 
 export const mongoCatsRepository = new MongoCatsRepository();
