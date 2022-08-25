@@ -16,7 +16,7 @@ export class CatsController {
     const catsService = new CatsService(db);
     const cat = await catsService.getCat(id);
 
-    res.send(cat);
+    res.status(200).send(cat);
   }
 
   static async getCats(
@@ -30,7 +30,7 @@ export class CatsController {
     const catsService = new CatsService(db);
     const cats = await catsService.getAll();
 
-    res.send(cats);
+    res.status(200).send(cats);
   }
 
   static async addCat(
@@ -45,10 +45,24 @@ export class CatsController {
     const catsService = new CatsService(db);
     const cat = await catsService.addCat({ name, age, colour, sex });
 
-    res.send(cat);
+    res.status(201).send(cat);
   }
 
-  static deleteCat(req: Request, res: Response) {}
+  static async deleteCat(
+    req: Request<{ id: string }, {}, {}, { db: 'mongo' | 'postgres' }>,
+    res: Response
+  ) {
+    const { db } = req.query;
+    const { id } = req.params;
+
+    CatsController.validateDbQueryParam(db);
+
+    const catsService = new CatsService(db);
+
+    await catsService.deleteCat(id);
+
+    res.status(200).send({ success: true });
+  }
 
   static updateCat(req: Request, res: Response) {}
 

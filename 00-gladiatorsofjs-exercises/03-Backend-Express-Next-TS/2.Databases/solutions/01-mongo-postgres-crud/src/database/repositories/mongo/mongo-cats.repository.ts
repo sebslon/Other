@@ -18,6 +18,10 @@ class MongoCatsRepository implements CatsRepository {
 
     return cat.save();
   }
+
+  deleteById(id: string | number): Promise<ICat | null> {
+    return MongoCat.findByIdAndDelete(id).then((doc) => doc);
+  }
 }
 
 export const mongoCatsRepository = new MongoCatsRepository();

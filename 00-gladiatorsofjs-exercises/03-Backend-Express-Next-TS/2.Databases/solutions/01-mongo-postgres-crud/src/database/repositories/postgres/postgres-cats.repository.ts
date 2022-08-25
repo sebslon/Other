@@ -19,6 +19,10 @@ class PostgresCatsRepository implements CatsRepository {
       .returning('*')
       .then((rows) => rows[0]);
   }
+
+  deleteById(id: string | number): Promise<ICat | null> {
+    return knex('cats').where({ id }).del();
+  }
 }
 
 export const postgresCatsRepository = new PostgresCatsRepository();

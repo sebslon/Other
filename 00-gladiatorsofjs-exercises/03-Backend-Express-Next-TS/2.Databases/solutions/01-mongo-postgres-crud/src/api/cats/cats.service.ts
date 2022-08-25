@@ -5,6 +5,8 @@ import { postgresCatsRepository } from '../../database/repositories/postgres/pos
 
 import { ICat } from '../../database/models/Cat/Cat';
 
+import { AppError } from '../../utils/error';
+
 export class CatsService {
   private catsRepository: CatsRepository;
 
@@ -40,6 +42,12 @@ export class CatsService {
     const cat = await this.catsRepository.getById(id);
 
     return cat;
+  }
+
+  async deleteCat(id: number | string): Promise<void> {
+    const cat = await this.catsRepository.deleteById(id);
+
+    if (!cat) throw new AppError(400, 'Cat not found!');
   }
 }
 
