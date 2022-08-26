@@ -1,7 +1,7 @@
+import { v4 as uuid } from 'uuid';
 import { Request, Response } from 'express';
+
 import { ICat } from '../../database/models/Cat/Cat';
-import { MongoCat } from '../../database/models/Cat/MongoCat';
-import { AppError } from '../../utils/error';
 import { CatsService } from './cats.service';
 export class CatsController {
   static async getCatById(
@@ -10,8 +10,6 @@ export class CatsController {
   ) {
     const { db } = req.query;
     const { id } = req.params;
-
-    CatsController.validateDbQueryParam(db);
 
     const catsService = new CatsService(db);
     const cat = await catsService.getCat(id);
@@ -25,27 +23,43 @@ export class CatsController {
   ) {
     const { db } = req.query;
 
-    CatsController.validateDbQueryParam(db);
-
     const catsService = new CatsService(db);
     const cats = await catsService.getAll();
 
     res.status(200).send(cats);
   }
 
-  static async addCat(
-    req: Request<{}, {}, ICat, { db: 'mongo' | 'postgres' }>,
-    res: Response
-  ) {
-    const { db } = req.query;
+  static async addCat(req: Request<{}, {}, ICat, {}>, res: Response) {
     const { name, age, colour, sex } = req.body;
 
-    CatsController.validateDbQueryParam(db);
+    let mongoCatsService = new CatsService('mongo');
+    let postgresCatsService = new CatsService('postgres');
 
-    const catsService = new CatsService(db);
-    const cat = await catsService.addCat({ name, age, colour, sex });
+    const commonId = uuid();
 
-    res.status(201).send(cat);
+    const results = await Promise.allSettled([
+      postgresCatsService.addCat({
+        name,
+        age,
+        colour,
+        sex,
+        common_id: commonId,
+      }),
+      mongoCatsService.addCat({ name, age, colour, sex, common_id: commonId }),
+    ]);
+
+    const anyInsertFailed = results.find(({ status }) => status === 'rejected');
+
+    if (anyInsertFailed) {
+      await Promise.allSettled([
+        mongoCatsService.deleteCatByCommonId(commonId),
+        postgresCatsService.deleteCatByCommonId(commonId),
+      ]);
+
+      res.status(400).send('Failed adding cat.');
+    }
+
+    res.send(results);
   }
 
   static async deleteCat(
@@ -54,8 +68,6 @@ export class CatsController {
   ) {
     const { db } = req.query;
     const { id } = req.params;
-
-    CatsController.validateDbQueryParam(db);
 
     const catsService = new CatsService(db);
 
@@ -71,20 +83,10 @@ export class CatsController {
     const { db } = req.query;
     const { id } = req.params;
 
-    CatsController.validateDbQueryParam(db);
-
     const catsService = new CatsService(db);
 
     const cat = await catsService.updateCat(id, req.body);
 
     res.status(200).send(cat);
-  }
-
-  // PRIVATE METHODS
-
-  private static validateDbQueryParam(db: string) {
-    if (!db || (db !== 'mongo' && db !== 'postgres')) {
-      throw new AppError(400, 'Database was not provided or is not supported.');
-    }
   }
 }

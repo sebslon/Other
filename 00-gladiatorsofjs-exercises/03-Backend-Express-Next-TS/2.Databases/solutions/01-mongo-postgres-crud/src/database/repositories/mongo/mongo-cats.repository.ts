@@ -13,14 +13,18 @@ class MongoCatsRepository implements CatsRepository {
     return MongoCat.findById(id).exec();
   }
 
-  addCat({ name, age, colour, sex }: ICat): Promise<ICat> {
-    const cat = new MongoCat({ name, age, colour, sex });
+  addCat(data: ICat): Promise<ICat> {
+    const cat = new MongoCat(data);
 
     return cat.save();
   }
 
   deleteById(id: string | number): Promise<ICat | null> {
     return MongoCat.findByIdAndDelete(id).then((doc) => doc);
+  }
+
+  deleteByCommonID(id: string): Promise<ICat | null> {
+    return MongoCat.findOneAndDelete({ commonID: id }).then((doc) => doc);
   }
 
   updateById(id: string | number, data: ICat): Promise<ICat | null> {

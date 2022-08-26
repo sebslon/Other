@@ -1,8 +1,8 @@
-import mongoose from 'mongoose';
+import { Schema, model } from 'mongoose';
 
 import { ICat } from './Cat';
 
-const catSchema = new mongoose.Schema<ICat>({
+const catSchema = new Schema<ICat>({
   name: {
     type: String,
     required: true,
@@ -19,6 +19,10 @@ const catSchema = new mongoose.Schema<ICat>({
     type: String,
     required: true,
   },
+  common_id: {
+    type: String,
+    required: true,
+  },
 });
 
-export const MongoCat = mongoose.model('Cat', catSchema);
+export const MongoCat = model('Cat', catSchema);

@@ -32,7 +32,7 @@ export class CatsService {
     return cats;
   }
 
-  async addCat(data: ICat): Promise<ICat> {
+  async addCat(data: Omit<ICat, 'id'>): Promise<ICat> {
     const cat = await this.catsRepository.addCat(data);
 
     return cat;
@@ -50,12 +50,18 @@ export class CatsService {
     if (!cat) throw new AppError(400, 'Cat not found!');
   }
 
-  async updateCat(id: number | string, data: ICat): Promise<ICat> {
+  async updateCat(id: number | string, data: Partial<ICat>): Promise<ICat> {
     const cat = await this.catsRepository.updateById(id, data);
 
     if (!cat) throw new AppError(400, 'Cat not found!');
 
     return cat;
+  }
+
+  async deleteCatByCommonId(commonId: string): Promise<void> {
+    const cat = await this.catsRepository.deleteByCommonID(commonId);
+
+    if (!cat) throw new AppError(400, 'Cat not found!');
   }
 }
 

@@ -24,6 +24,10 @@ class PostgresCatsRepository implements CatsRepository {
     return knex('cats').where({ id }).del();
   }
 
+  deleteByCommonID(commonId: string): Promise<ICat | null> {
+    return knex('cats').where({ common_id: commonId }).del();
+  }
+
   updateById(id: string | number, data: ICat): Promise<ICat | null> {
     return knex('cats')
       .where({ id })
