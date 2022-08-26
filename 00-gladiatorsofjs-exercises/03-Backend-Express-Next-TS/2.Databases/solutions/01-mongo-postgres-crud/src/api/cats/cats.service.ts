@@ -1,14 +1,20 @@
 import { CatsRepository } from '../../database/repositories/types';
 
-import { mongoCatsRepository } from '../../database/repositories/mongo/mongo-cats.repository';
-import { postgresCatsRepository } from '../../database/repositories/postgres/postgres-cats.repository';
+import {
+  MongoCatsRepository,
+  mongoCatsRepository,
+} from '../../database/repositories/mongo/mongo-cats.repository';
+import {
+  PostgresCatsRepository,
+  postgresCatsRepository,
+} from '../../database/repositories/postgres/postgres-cats.repository';
 
 import { ICat } from '../../database/models/Cat/Cat';
 
 import { AppError } from '../../utils/error';
 
 export class CatsService {
-  private catsRepository: CatsRepository;
+  public catsRepository: CatsRepository;
 
   //---- DEPENDENCY INJECTION ----//
   // constructor(repository: CatsRepository) {
@@ -38,7 +44,7 @@ export class CatsService {
     return cat;
   }
 
-  async getCat(id: number | string): Promise<ICat | null> {
+  async getCatById(id: number | string): Promise<ICat | null> {
     const cat = await this.catsRepository.getById(id);
 
     return cat;
@@ -58,10 +64,27 @@ export class CatsService {
     return cat;
   }
 
+  async updateCatByCommonId(
+    commonId: string,
+    data: Partial<ICat>
+  ): Promise<ICat | null> {
+    const cat = await this.catsRepository.updateByCommonID(commonId, data);
+
+    return cat;
+  }
+
   async deleteCatByCommonId(commonId: string): Promise<void> {
     const cat = await this.catsRepository.deleteByCommonID(commonId);
 
     if (!cat) throw new AppError(400, 'Cat not found!');
+  }
+
+  switchDatabase() {
+    if (this.catsRepository instanceof MongoCatsRepository) {
+      this.catsRepository = postgresCatsRepository;
+    } else if (this.catsRepository instanceof PostgresCatsRepository) {
+      this.catsRepository = mongoCatsRepository;
+    }
   }
 }
 

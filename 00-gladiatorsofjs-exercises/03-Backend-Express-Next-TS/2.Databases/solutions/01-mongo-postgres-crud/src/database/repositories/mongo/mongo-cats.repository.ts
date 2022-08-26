@@ -4,7 +4,7 @@ import { ICat } from '../../models/Cat/Cat';
 
 import { MongoCat } from '../../models/Cat/MongoCat';
 
-class MongoCatsRepository implements CatsRepository {
+export class MongoCatsRepository implements CatsRepository {
   getAll(): Promise<ICat[]> {
     return MongoCat.find({}).exec();
   }
@@ -31,6 +31,12 @@ class MongoCatsRepository implements CatsRepository {
     return MongoCat.findByIdAndUpdate(id, data, { new: true }).then(
       (doc) => doc
     );
+  }
+
+  updateByCommonID(commonId: string, data: ICat): Promise<ICat | null> {
+    return MongoCat.findOneAndUpdate({ common_id: commonId }, data, {
+      new: true,
+    }).then((doc) => doc);
   }
 }
 

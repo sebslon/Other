@@ -12,7 +12,7 @@ export class CatsController {
     const { id } = req.params;
 
     const catsService = new CatsService(db);
-    const cat = await catsService.getCat(id);
+    const cat = await catsService.getCatById(id);
 
     res.status(200).send(cat);
   }
@@ -56,10 +56,10 @@ export class CatsController {
         postgresCatsService.deleteCatByCommonId(commonId),
       ]);
 
-      res.status(400).send('Failed adding cat.');
+      res.status(400).send('Failed to add cat.');
     }
 
-    res.send(results);
+    res.send({ message: 'success' });
   }
 
   static async deleteCat(
@@ -85,8 +85,32 @@ export class CatsController {
 
     const catsService = new CatsService(db);
 
-    const cat = await catsService.updateCat(id, req.body);
+    const oldCat = await catsService.getCatById(id);
+    if (!oldCat) return res.status(400).send({ message: 'Cat not found!' });
 
-    res.status(200).send(cat);
+    const commonId = oldCat.common_id;
+
+    if (!commonId) {
+      catsService.updateCat(id, req.body);
+
+      return res.status(200).send({ message: 'success' });
+    }
+
+    try {
+      await catsService.updateCatByCommonId(commonId, req.body);
+      catsService.switchDatabase(); // Update another one
+      await catsService.updateCatByCommonId(commonId, req.body);
+    } catch (err) {
+      console.error(err);
+      delete oldCat.id;
+
+      // reverse first operation
+      catsService.switchDatabase();
+      await catsService.updateCatByCommonId(commonId, oldCat);
+
+      return res.status(400).send({ message: 'Failed to update cat.' });
+    }
+
+    res.status(200).send({ message: 'success' });
   }
 }

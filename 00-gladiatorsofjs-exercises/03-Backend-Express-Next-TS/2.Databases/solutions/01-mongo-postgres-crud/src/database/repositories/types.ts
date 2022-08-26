@@ -12,4 +12,8 @@ export abstract class CatsRepository implements IRepository<ICat> {
     id: number | string,
     data: Partial<ICat>
   ): Promise<ICat | null>;
+  abstract updateByCommonID(
+    commonId: string,
+    data: Partial<ICat>
+  ): Promise<ICat | null>;
 }

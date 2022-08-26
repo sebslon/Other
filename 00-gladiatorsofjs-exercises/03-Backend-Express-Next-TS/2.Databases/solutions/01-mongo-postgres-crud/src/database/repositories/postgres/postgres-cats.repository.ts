@@ -4,13 +4,13 @@ import { CatsRepository } from '../types';
 import { ICat } from '../../models/Cat/Cat';
 
 // Knex Postgres Cats Repository
-class PostgresCatsRepository implements CatsRepository {
+export class PostgresCatsRepository implements CatsRepository {
   getAll(): Promise<ICat[]> {
     return knex({}).select('*').from('cats');
   }
 
   getById(id: number | string): Promise<ICat | null> {
-    return knex({}).select('*').from('cats').where({ id }).first();
+    return knex('cats').where({ id }).first();
   }
 
   addCat(data: ICat) {
@@ -31,6 +31,13 @@ class PostgresCatsRepository implements CatsRepository {
   updateById(id: string | number, data: ICat): Promise<ICat | null> {
     return knex('cats')
       .where({ id })
+      .update(data, '*')
+      .then((rows) => rows[0]);
+  }
+
+  updateByCommonID(commonId: string, data: ICat): Promise<ICat | null> {
+    return knex('cats')
+      .where({ common_id: commonId })
       .update(data, '*')
       .then((rows) => rows[0]);
   }
