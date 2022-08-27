@@ -1,8 +1,11 @@
 import { v4 as uuid } from 'uuid';
 import { Request, Response } from 'express';
 
+import { knex } from '../../database/knex';
 import { ICat } from '../../database/models/Cat/Cat';
+
 import { CatsService } from './cats.service';
+
 export class CatsController {
   static async getCatById(
     req: Request<{ id: string }, {}, {}, { db: 'mongo' | 'postgres' }>,
@@ -70,10 +73,32 @@ export class CatsController {
     const { id } = req.params;
 
     const catsService = new CatsService(db);
+    const cat = await catsService.getCatById(id);
 
-    await catsService.deleteCat(id);
+    if (!cat) return res.status(400).send({ message: 'Cat not found!' });
 
-    res.status(200).send({ success: true });
+    const commonId = cat.common_id;
+
+    if (!commonId) {
+      await catsService.deleteCat(id);
+
+      return res.status(200).send({ message: 'success' });
+    } else {
+      await knex
+        .transaction(async (trx) => {
+          await trx.del().from('cats').where({ common_id: commonId });
+
+          if (db === 'postgres') catsService.switchDatabase();
+
+          await catsService.deleteCatByCommonId(commonId);
+        })
+        .then(() => {
+          res.status(200).send({ success: true });
+        })
+        .catch(() => {
+          res.status(400).send({ success: false });
+        });
+    }
   }
 
   static async updateCat(

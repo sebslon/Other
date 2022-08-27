@@ -18,7 +18,7 @@
 
 ## Optional
 
-- [ ] Maintain data consistency between Mongo and PostgreSQL. Data that appears / is deleted / modified in the Mongo database should also be added / modified / deleted in the PostgreSQL database
+- [x] Maintain data consistency between Mongo and PostgreSQL. Data that appears / is deleted / modified in the Mongo database should also be added / modified / deleted in the PostgreSQL database
 
 ## Links
 
