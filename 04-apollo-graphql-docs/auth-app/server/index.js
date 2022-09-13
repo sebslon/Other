@@ -4,7 +4,13 @@ const axios = require('axios');
 
 const typeDefs = gql(readFileSync('./schema.graphql', { encoding: 'utf-8' }));
 const resolvers = require('./resolvers');
-const { BookingsDataSource, ReviewsDataSource, ListingsAPI, AccountsAPI, PaymentsAPI } = require('./services');
+const {
+  BookingsDataSource,
+  ReviewsDataSource,
+  ListingsAPI,
+  AccountsAPI,
+  PaymentsAPI,
+} = require('./services');
 
 const server = new ApolloServer({
   typeDefs,
