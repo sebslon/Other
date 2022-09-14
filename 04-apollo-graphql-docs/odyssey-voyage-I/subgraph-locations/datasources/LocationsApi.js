@@ -1,4 +1,4 @@
-const {locations} = require('./locations_data.json');
+const { locations } = require('./locations_data.json');
 
 class LocationsAPI {
   getAllLocations() {
@@ -6,7 +6,7 @@ class LocationsAPI {
   }
 
   getLocation(id) {
-    return locations.find(l => l.id === id);
+    return locations.find((l) => l.id === id);
   }
 }
 
