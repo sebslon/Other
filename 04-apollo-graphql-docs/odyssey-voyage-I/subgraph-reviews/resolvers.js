@@ -16,6 +16,11 @@ const resolvers = {
       };
     },
   },
+  Review: {
+    location: (review) => {
+      return { id: review.locationId }; // __typename + id - representation - specific location within the another subgraph
+    },
+  },
 };
 
 module.exports = resolvers;
