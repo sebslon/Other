@@ -21,6 +21,14 @@ const resolvers = {
       return { id: review.locationId }; // __typename + id - representation - specific location within the another subgraph
     },
   },
+  Location: {
+    overallRating: ({ id }, _, { dataSources }) => {
+      return dataSources.reviewsAPI.getOverallRatingForLocation(id);
+    },
+    reviewsForLocation: ({ id }, _, { dataSources }) => {
+      return dataSources.reviewsAPI.getReviewsForLocation(id);
+    },
+  },
 };
 
 module.exports = resolvers;
