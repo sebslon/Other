@@ -1,29 +1,17 @@
 const { ApolloServer, gql } = require('apollo-server');
 const { buildSubgraphSchema } = require('@apollo/subgraph');
-
 const { readFileSync } = require('fs');
 
 const typeDefs = gql(readFileSync('./schema.graphql', { encoding: 'utf-8' }));
-
 const resolvers = require('./resolvers');
 
-const {
-  BookingsDataSource,
-  ReviewsDataSource,
-  ListingsAPI,
-  AccountsAPI,
-  PaymentsAPI,
-} = require('./services');
+const AccountsAPI = require('./datasources/accounts');
 
 const server = new ApolloServer({
   schema: buildSubgraphSchema({ typeDefs, resolvers }),
   dataSources: () => {
     return {
       accountsAPI: new AccountsAPI(),
-      bookingsDb: new BookingsDataSource(),
-      reviewsDb: new ReviewsDataSource(),
-      listingsAPI: new ListingsAPI(),
-      paymentsAPI: new PaymentsAPI(),
     };
   },
   context: ({ req }) => {
@@ -31,10 +19,13 @@ const server = new ApolloServer({
   },
 });
 
+const port = 4002;
+const subgraphName = 'accounts';
+
 server
-  .listen({ port: 4001 })
+  .listen({ port })
   .then(({ url }) => {
-    console.log(`🚀 Monolith subgraph running at ${url}`);
+    console.log(`Subgraph ${subgraphName} running at ${url}`);
   })
   .catch((err) => {
     console.error(err);

@@ -1,5 +1,5 @@
-const { ApolloServer, AuthenticationError } = require('apollo-server');
 const { ApolloGateway, RemoteGraphQLDataSource } = require('@apollo/gateway');
+const { ApolloServer, AuthenticationError } = require('apollo-server');
 const axios = require('axios');
 
 require('dotenv').config();
@@ -43,4 +43,6 @@ server
   .then(({ url }) => {
     console.log(`🚀  Server ready at ${url}`);
   })
-  .catch((err) => console.error(err));
+  .catch((err) => {
+    console.error(err);
+  });
