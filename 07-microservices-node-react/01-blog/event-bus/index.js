@@ -13,8 +13,13 @@ const services = [
   'http://localhost:4003/events',
 ];
 
+const events = []; // persist events
+
+// Incoming events (persist and send over to the microservices)
 app.post('/events', async (req, res) => {
   const event = req.body;
+
+  events.push(event);
 
   await Promise.allSettled(
     services.map((serviceUrl) => {
@@ -28,6 +33,10 @@ app.post('/events', async (req, res) => {
   );
 
   res.send({ status: 'OK' });
+});
+
+app.get('/events', (req, res) => {
+  res.send(events);
 });
 
 app.listen(4005, () => {
