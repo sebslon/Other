@@ -10,7 +10,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 const commentsByPostId = {};
-const eventBusUrl = 'http://localhost:4005/events';
+const eventBusUrl = 'http://event-bus-srv:4005/events';
 
 app.get('/posts/:id/comments', (req, res) => {
   res.send(commentsByPostId[req.params.id] || []);

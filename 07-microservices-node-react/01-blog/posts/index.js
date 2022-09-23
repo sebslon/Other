@@ -10,7 +10,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 const posts = {};
-const eventBusUrl = 'http://localhost:4005/events';
+const eventBusUrl = 'http://event-bus-srv:4005/events';
 
 app.get('/posts', (req, res) => {
   res.send(posts);

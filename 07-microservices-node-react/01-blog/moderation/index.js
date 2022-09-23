@@ -6,7 +6,7 @@ const app = express();
 
 app.use(bodyParser.json());
 
-const eventBusUrl = 'http://localhost:4005/events';
+const eventBusUrl = 'http://event-bus-srv:4005/events';
 
 app.post('/events', async (req, res) => {
   const { type, data } = req.body;

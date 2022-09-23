@@ -9,6 +9,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 const posts = {};
+const eventBusUrl = 'http://event-bus-srv:4005/events';
 
 function handleEvent(type, data) {
   if (type === 'PostCreated') {
@@ -55,7 +56,7 @@ app.listen(4002, async () => {
   // Get in sync with the event bus (get all events) in case of failure
 
   try {
-    const res = await axios.get('http://localhost:4005/events');
+    const res = await axios.get(eventBusUrl);
 
     for (let event of res.data) {
       console.log('Processing event:', event.type);
