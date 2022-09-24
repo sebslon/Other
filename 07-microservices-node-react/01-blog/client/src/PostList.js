@@ -5,7 +5,7 @@ import CommentCreate from './CommentCreate';
 import CommentList from './CommentList';
 
 // const fetchPostsUrl = 'http://localhost:4002/posts';
-const fetchPostsUrl = 'http://posts.com/posts';
+const fetchPostsUrl = 'http://localhost/posts';
 
 const PostList = () => {
   const [posts, setPosts] = useState({});

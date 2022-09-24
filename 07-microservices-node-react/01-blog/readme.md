@@ -11,3 +11,4 @@ Event Bus (event-based communication between different microservices)
 ## Some other infos
 
 - Updating k8s deployments, two methods: change image or run `kubectl rollout restart deployment [depl_name]`
+- Local development with Kubernetes and Skaffold (skaffold.yaml + `skaffold dev`)
