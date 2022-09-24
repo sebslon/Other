@@ -4,11 +4,14 @@ import React, { useState, useEffect } from 'react';
 import CommentCreate from './CommentCreate';
 import CommentList from './CommentList';
 
+// const fetchPostsUrl = 'http://localhost:4002/posts';
+const fetchPostsUrl = 'http://posts.com/posts';
+
 const PostList = () => {
   const [posts, setPosts] = useState({});
 
   const fetchPosts = async () => {
-    const res = await axios.get('http://localhost:4002/posts');
+    const res = await axios.get(fetchPostsUrl);
 
     setPosts(res.data);
   };
