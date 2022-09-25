@@ -1,5 +1,7 @@
 # Basic microservices Blog App
 
+Getting the idea of microservices and communication between them.
+
 Built Event Bus from scratch without usage of too many libs etc. for better understanding of microservices architecture and communication.
 
 Event Bus (event-based communication between different microservices)

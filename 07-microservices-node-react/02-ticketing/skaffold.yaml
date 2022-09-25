@@ -1,0 +1,18 @@
+apiVersion: skaffold/v2alpha3
+kind: Config
+deploy:
+  kubectl:
+    manifests:
+      - infra/k8s/*.yaml
+build:
+  local:
+    push: false # Don't push to dockerhub (default behaviour)
+  artifacts:
+    - image: sebastiansloniec/auth
+      context: auth
+      docker:
+        dockerfile: Dockerfile
+      sync: # Sync local files with container
+        manual:
+          - src: 'src/**/*.ts'
+            dest: .
