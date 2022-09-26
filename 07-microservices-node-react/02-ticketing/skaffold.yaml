@@ -16,3 +16,23 @@ build:
         manual:
           - src: 'src/**/*.ts'
             dest: .
+#################
+#################
+#################
+## Skaffold has nice integrations with GCP - running development environment in the cloud
+## In case of GCP, we can use skaffold to build and push images to GCR and do remote development
+# build:
+#   googleCloudBuild:
+#     projectId: {PROJECT_ID}
+#   artifacts:
+#     - image: us.gcr.io/{PROJECT_ID}/auth
+#       context: auth
+#       docker:
+#         dockerfile: Dockerfile
+#       sync:
+#         manual:
+#           - src: 'src/**/*.ts'
+#             dest: .
+#
+# + Update deployment files
+#################
