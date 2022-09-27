@@ -21,3 +21,7 @@ Hard to test some event flows                         -> Write tests for as much
 Using too much of resources on local computer         -> Run a k8s cluster in the cloud and develop on it almost as quickly as local
 Concurrency issues                                    -> Create a solutions for those
 ```
+
+### Some Kubernetes stuff
+
+Creating a secret `kubectl create secret generict jwt-secret --from-literal=<key>=<value>` - `kubectl create secret generict jwt-secret --from-literal=JWT_KEY=<value>`
