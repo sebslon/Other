@@ -1,5 +1,8 @@
 # Second Project
 
+- Kubernetes for deployments - each service with its own database
+- Tests setup with mongo-memory-server
+
 ## Quick overview - Ticketing App
 
 - Users can list a ticket for an event (concert, sports) for sale
