@@ -18,7 +18,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@msvcs/common": "^1.0.2",
+    "@msvcs/common": "^1.0.3",
     "cookie-session": "^2.0.0",
     "express": "^4.18.1",
     "express-async-errors": "^3.1.1",
