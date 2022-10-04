@@ -25,6 +25,16 @@ Using too much of resources on local computer         -> Run a k8s cluster in th
 Concurrency issues                                    -> Create a solutions for those
 ```
 
-### Some Kubernetes stuff
+## Services in the project
+
+- Auth - Everything related to user signup/signin/signout
+- Tickets - Ticket creation/editing. Knows whether ticket can be updated
+- Orders - Order creation/editing
+- Expiration - Watches for oders to be created, cancels them after 15 minutes
+- Payments - Handles credit card payments. Cancels orders if payments fails, completes if payment succeeds
+
+<hr>
+
+#### Some Kubernetes stuff
 
 Creating a secret `kubectl create secret generict jwt-secret --from-literal=<key>=<value>` - `kubectl create secret generict jwt-secret --from-literal=JWT_KEY=<value>`
