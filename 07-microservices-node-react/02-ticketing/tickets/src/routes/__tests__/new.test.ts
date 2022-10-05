@@ -2,6 +2,7 @@ import request from 'supertest';
 
 import { app } from '../../app';
 import { Ticket } from '../../models/ticket';
+import { natsWrapper } from '../../nats-wrapper';
 import { AuthTestHelper } from '../../tests-configs/auth-test-helper';
 
 describe('New Ticket', () => {
@@ -66,5 +67,15 @@ describe('New Ticket', () => {
 
     expect(tickets.length).toEqual(1);
     expect(tickets[0].price).toEqual(20);
+  });
+
+  it('Publishes an event when ticket is created', async () => {
+    await request(app)
+      .post('/api/tickets')
+      .set('Cookie', await AuthTestHelper.signin())
+      .send({ title: 'title', price: 20 })
+      .expect(201);
+
+    expect(natsWrapper.client.publish).toHaveBeenCalled();
   });
 });
