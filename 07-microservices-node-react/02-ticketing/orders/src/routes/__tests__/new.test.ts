@@ -50,4 +50,6 @@ describe('New order router', () => {
       .send({ ticketId: ticket.id })
       .expect(201);
   });
+
+  it.todo('Emits an order created event');
 });
