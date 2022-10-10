@@ -27,14 +27,21 @@ Concurrency issues                                    -> Create a solutions for 
 
 ## Services in the project
 
+`: service ( published events ) :`
+
 - Auth - Everything related to user signup/signin/signout
-- Tickets - Ticket creation/editing. Knows whether ticket can be updated
-- Orders - Order creation/editing
-- Expiration - Watches for oders to be created, cancels them after 15 minutes
-- Payments - Handles credit card payments. Cancels orders if payments fails, completes if payment succeeds
+- Tickets - Ticket creation/editing. Knows whether ticket can be updated (`ticket:created, ticket:updated`)
+- Orders - Order creation/editing (`order:created, order:cancelled`)
+- Expiration - Watches for oders to be created, cancels them after 15 minutes (`expiration:complete`)
+- Payments - Handles credit card payments. Cancels orders if payments fails, completes if payment succeeds (`charge:created`)
 
 <hr>
 
 #### Some Kubernetes stuff
 
 Creating a secret `kubectl create secret generict jwt-secret --from-literal=<key>=<value>` - `kubectl create secret generict jwt-secret --from-literal=JWT_KEY=<value>`
+
+#### Other stuff
+
+- Optimistic Concurrency Control (e.g. mongoose-update-if-current)
+  - In case of other databases etc. more preferable approach is implementing custom version control (/orders/models/ticket.ts - commented out `$watch`)
