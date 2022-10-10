@@ -7,6 +7,8 @@ import { AuthTestHelper } from '../../tests-configs/auth-test-helper';
 import { Ticket } from '../../models/ticket';
 import { Order, OrderStatus } from '../../models/order';
 
+import { natsWrapper } from '../../nats-wrapper';
+
 describe('New order router', () => {
   it('Returns an error if the ticket does not exist', async () => {
     const ticketId = new mongoose.Types.ObjectId();
@@ -51,5 +53,18 @@ describe('New order router', () => {
       .expect(201);
   });
 
-  it.todo('Emits an order created event');
+  it('Emits an order created event', async () => {
+    const ticket = await Ticket.build({
+      title: 'concert',
+      price: 20,
+    }).save();
+
+    await request(app)
+      .post('/api/orders')
+      .set('Cookie', await AuthTestHelper.signin())
+      .send({ ticketId: ticket.id })
+      .expect(201);
+
+    expect(natsWrapper.client.publish).toHaveBeenCalled();
+  });
 });
