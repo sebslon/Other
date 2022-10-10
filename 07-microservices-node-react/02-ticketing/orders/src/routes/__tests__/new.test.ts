@@ -22,6 +22,7 @@ describe('New order router', () => {
 
   it('Returns an error if the ticket is already reserved', async () => {
     const ticket = await Ticket.build({
+      id: new mongoose.Types.ObjectId().toHexString(),
       title: 'concert',
       price: 20,
     }).save();
@@ -42,6 +43,7 @@ describe('New order router', () => {
 
   it('Reserves a ticket', async () => {
     const ticket = await Ticket.build({
+      id: new mongoose.Types.ObjectId().toHexString(),
       title: 'concert',
       price: 20,
     }).save();
@@ -55,6 +57,7 @@ describe('New order router', () => {
 
   it('Emits an order created event', async () => {
     const ticket = await Ticket.build({
+      id: new mongoose.Types.ObjectId().toHexString(),
       title: 'concert',
       price: 20,
     }).save();

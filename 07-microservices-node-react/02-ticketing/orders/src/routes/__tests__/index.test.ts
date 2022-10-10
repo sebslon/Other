@@ -1,4 +1,5 @@
 import request from 'supertest';
+import mongoose from 'mongoose';
 
 import { app } from '../../app';
 
@@ -7,6 +8,7 @@ import { AuthTestHelper } from '../../tests-configs/auth-test-helper';
 
 const buildTicket = async () => {
   const ticket = await Ticket.build({
+    id: new mongoose.Types.ObjectId().toHexString(),
     title: 'concert',
     price: 20,
   }).save();

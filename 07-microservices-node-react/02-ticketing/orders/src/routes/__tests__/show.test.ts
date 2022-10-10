@@ -1,4 +1,5 @@
 import request from 'supertest';
+import mongoose from 'mongoose';
 
 import { app } from '../../app';
 
@@ -8,6 +9,7 @@ import { AuthTestHelper } from '../../tests-configs/auth-test-helper';
 describe('Show order router', () => {
   it('Returns order if the user is authenticated', async () => {
     const ticket = await Ticket.build({
+      id: new mongoose.Types.ObjectId().toHexString(),
       title: 'concert',
       price: 20,
     }).save();
@@ -30,6 +32,7 @@ describe('Show order router', () => {
 
   it('Returns an error if the user is not authenticated/owner of the order', async () => {
     const ticket = await Ticket.build({
+      id: new mongoose.Types.ObjectId().toHexString(),
       title: 'concert',
       price: 20,
     }).save();

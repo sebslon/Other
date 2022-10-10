@@ -1,4 +1,5 @@
 import request from 'supertest';
+import mongoose from 'mongoose';
 import { OrderStatus } from '@msvcs/common';
 
 import { app } from '../../app';
@@ -11,6 +12,7 @@ import { natsWrapper } from '../../nats-wrapper';
 describe('Delete order router', () => {
   it('Marks an order as cancelled', async () => {
     const ticket = await Ticket.build({
+      id: new mongoose.Types.ObjectId().toHexString(),
       title: 'concert',
       price: 20,
     }).save();
@@ -38,6 +40,7 @@ describe('Delete order router', () => {
 
   it('Emits an order cancelled event', async () => {
     const ticket = await Ticket.build({
+      id: new mongoose.Types.ObjectId().toHexString(),
       title: 'concert',
       price: 20,
     }).save();
