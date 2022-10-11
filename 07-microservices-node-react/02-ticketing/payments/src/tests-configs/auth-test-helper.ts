@@ -2,9 +2,9 @@ import jwt from 'jsonwebtoken';
 import mongoose from 'mongoose';
 
 export class AuthTestHelper {
-  static signin = async () => {
+  static signin = async (userId?: string) => {
     const payload = {
-      id: new mongoose.Types.ObjectId().toHexString(),
+      id: userId || new mongoose.Types.ObjectId().toHexString(),
       email: 'test@test.com',
     };
     const token = jwt.sign(payload, process.env.JWT_KEY!);
