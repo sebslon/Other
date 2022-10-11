@@ -4,6 +4,7 @@ import mongoose from 'mongoose';
 import { app } from '../../app';
 import { AuthTestHelper } from '../../tests-configs/auth-test-helper';
 import { natsWrapper } from '../../nats-wrapper';
+import { Ticket } from '../../models/ticket';
 
 describe('Update ticket', () => {
   it('Returns a 404 if the provided id does not exist', async () => {
@@ -96,5 +97,27 @@ describe('Update ticket', () => {
       .expect(200);
 
     expect(natsWrapper.client.publish).toHaveBeenCalled();
+  });
+
+  it('Rejects updates if the ticket is reserved', async () => {
+    const cookie = await AuthTestHelper.signin();
+
+    const response = await request(app)
+      .post('/api/tickets')
+      .set('Cookie', cookie)
+      .send({ title: 'concert', price: 20 });
+
+    const ticket = await Ticket.findById(response.body.id);
+    const orderId = new mongoose.Types.ObjectId().toHexString();
+
+    ticket!.set({ orderId });
+
+    await ticket!.save();
+
+    await request(app)
+      .put(`/api/tickets/${response.body.id}`)
+      .set('Cookie', cookie)
+      .send({ title: 'new concert', price: 100 })
+      .expect(400);
   });
 });

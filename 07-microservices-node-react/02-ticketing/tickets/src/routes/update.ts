@@ -5,6 +5,7 @@ import {
   validateRequest,
   NotFoundError,
   NotAuthorizedError,
+  BadRequestError,
 } from '@msvcs/common';
 
 import { natsWrapper } from '../nats-wrapper';
@@ -27,6 +28,9 @@ router.put(
     const ticket = await Ticket.findById(req.params.id);
 
     if (!ticket) throw new NotFoundError();
+    if (ticket.orderId) {
+      throw new BadRequestError('Cannot edit a reserved ticket');
+    }
     if (ticket.userId !== req.currentUser!.id) throw new NotAuthorizedError();
 
     ticket.set({ title: req.body.title, price: req.body.price });

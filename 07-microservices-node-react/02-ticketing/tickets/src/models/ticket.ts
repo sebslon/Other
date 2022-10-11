@@ -7,15 +7,16 @@ interface TicketAttrs {
   userId: string;
 }
 
-interface TickerDoc extends mongoose.Document {
+interface TicketDoc extends mongoose.Document {
   title: string;
   price: number;
   userId: string;
   version: number;
+  orderId?: string;
 }
 
-interface TicketModel extends mongoose.Model<TickerDoc> {
-  build(attrs: TicketAttrs): TickerDoc;
+interface TicketModel extends mongoose.Model<TicketDoc> {
+  build(attrs: TicketAttrs): TicketDoc;
 }
 
 const ticketSchema = new mongoose.Schema(
@@ -31,6 +32,9 @@ const ticketSchema = new mongoose.Schema(
     userId: {
       type: String,
       required: true,
+    },
+    orderId: {
+      type: String,
     },
   },
   {
@@ -50,6 +54,6 @@ ticketSchema.statics.build = (attrs: TicketAttrs) => {
   return new Ticket(attrs);
 };
 
-const Ticket = mongoose.model<TickerDoc, TicketModel>('Ticket', ticketSchema);
+const Ticket = mongoose.model<TicketDoc, TicketModel>('Ticket', ticketSchema);
 
 export { Ticket };
