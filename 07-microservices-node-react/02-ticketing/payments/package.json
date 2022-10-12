@@ -18,7 +18,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@msvcs/common": "^1.0.7",
+    "@msvcs/common": "^1.0.11",
     "cookie-session": "^2.0.0",
     "express": "^4.18.1",
     "express-async-errors": "^3.1.1",
@@ -27,6 +27,7 @@
     "mongoose": "^6.6.1",
     "mongoose-update-if-current": "^1.4.0",
     "node-nats-streaming": "^0.3.2",
+    "stripe": "^10.13.0",
     "ts-node-dev": "^2.0.0",
     "typescript": "^4.8.3"
   },
