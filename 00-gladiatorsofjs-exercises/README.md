@@ -34,3 +34,4 @@ For most of the exercises/projects in this area i have created a single project 
 Some of above exercises are not yet done (in progress). More details about solutions etc. are in exercises directories. :)
 
 #### https://gladiators-of-javascript.com/
+#### https://dev.to/santypk4/bulletproof-node-js-project-architecture-4epf#di etc.
