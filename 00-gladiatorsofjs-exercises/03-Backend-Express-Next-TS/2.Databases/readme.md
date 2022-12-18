@@ -13,9 +13,11 @@ Most popular databases - SQL and NoSQL (Postgres & MongoDB)
 
 ### Recommended order
 
-1. Mongo/Postgres CRUD
-2. MongoDB ODM
-3. Mongo With Populate
-4. TextSearch
-5. 4-dimensional data
-6. SQL Advanced Queries
+1. Mongo/Postgres CRUD **[DONE]**
+2. MongoDB ODM **[x]**
+3. Mongo With Populate **[x]**
+4. TextSearch **[x]**
+5. 4-dimensional data **[x]**
+6. SQL Advanced Queries **[x]**
+
+<h4 style="">STATUS: <span style="color: orange;">IN PROGRESS</span></h4>
