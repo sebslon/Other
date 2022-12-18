@@ -15,3 +15,6 @@ To download single directory you can use this:
 - 02 - Design Patterns
 - 03 - Frontend Masters - JS, Algorithms, Data Structures
 - 04 - Apollo/GraphQL - Documentation project
+- 05 - NFT Ticketing System with React dApp
+- 06 - Docker/k8s examples
+- 07 - Microservices with Node & React
