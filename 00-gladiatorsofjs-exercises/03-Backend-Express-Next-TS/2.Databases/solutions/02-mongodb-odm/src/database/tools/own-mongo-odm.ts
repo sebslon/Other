@@ -1,6 +1,6 @@
 import * as Mongo from 'mongodb';
 
-export class OwnMongoDBODM {
+export class OwnMongoDbODM {
   private _client!: Mongo.MongoClient;
 
   constructor(client: Mongo.MongoClient) {

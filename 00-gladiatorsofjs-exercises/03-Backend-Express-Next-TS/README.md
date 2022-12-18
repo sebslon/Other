@@ -8,3 +8,5 @@
 4. Cron Mail Sender - NextJS (FE) + handling cron actions
 5. Email Encryption - PGP email encryption
 6. Simple DOS - API Security
+
+In every folder you can find README.md file with description of the task.
