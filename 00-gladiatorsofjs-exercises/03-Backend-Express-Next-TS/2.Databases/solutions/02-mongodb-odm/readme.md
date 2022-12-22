@@ -8,12 +8,12 @@
 
 ## Main Goals 
 
-- [ ] Create a database containing data about users of your application
-- [ ] Each user should have a name, date of birth (DD-MM-YYYY), a list of things they like, and an array of friends, holding the id of other users
+- [ DONE ] Create a database containing data about users of your application
+- [ DONE ] Each user should have a name, date of birth (DD-MM-YYYY), a list of things they like, and an array of friends, holding the id of other users
 - [ ] Create a simple ODM that mimics the functionality of Mongoose:
-  - [ ] .create()
-  - [ ] .findById()
-  - [ ] .findByIdAndDelete()
+  - [ DONE ] .create()
+  - [ DONE ] .findById()
+  - [ DONE ] .findByIdAndDelete()
   - [ ] .findByIdAndUpdate()
   - [ ] Additionally, it should allow you to:
     - find all users who were born before a given date
