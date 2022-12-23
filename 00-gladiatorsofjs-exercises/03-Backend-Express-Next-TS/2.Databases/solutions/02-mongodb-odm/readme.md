@@ -1,5 +1,7 @@
 <h2 align="center">MongoDB ODM</h2>
 
+<p align="center" style="color:red; font-weight: bold;">Not finished</p>
+
 <br>
 
 - MongoODM is a simple ODM that mimics the functionality of Mongoose. It allows you to create, read, update and delete data from a MongoDB database.
