@@ -1,5 +1,7 @@
+require('dotenv').config();
 require('express-async-errors'); // Handling async errors in express (no need for try/catch)
 
+const Mongo = require('mongodb');
 import express, { Application } from 'express';
 
 import { logger } from './src/middlewares/logger';
@@ -8,6 +10,7 @@ import { errorMiddleware } from './src/middlewares/error-middleware';
 import { Server } from 'http';
 
 import { IRouter } from '@app-types/requests';
+import { runSeed } from './src/database/seeds/mongodb-seed';
 
 export class App {
   private _server!: Server;
@@ -17,10 +20,11 @@ export class App {
   constructor(controllers: IRouter[]) {
     this.app = express();
 
-    this.connectToTheDatabase();
-    this.initializeMiddlewares();
-    this.initializeControllers(controllers);
-    this.initializeErrorMiddleware();
+    this.connectToTheDatabase().then(() => {
+      this.initializeMiddlewares();
+      this.initializeControllers(controllers);
+      this.initializeErrorMiddleware();
+    });
   }
 
   listen() {
@@ -45,7 +49,20 @@ export class App {
     this.app.use(errorMiddleware);
   }
 
-  private async connectToTheDatabase() {}
+  private async connectToTheDatabase() {
+    const mongoClient = Mongo.MongoClient;
+    const client = new mongoClient(process.env.MONGODB_URI);
+
+    try {
+      await client.connect();
+
+      if (process.env.SHOULD_RUN_SEED) runSeed(client, 'users');
+
+      console.log('Connected to the database');
+    } catch (error) {
+      console.log('Error connecting to the database', error);
+    }
+  }
 
   get server() {
     return this._server;
