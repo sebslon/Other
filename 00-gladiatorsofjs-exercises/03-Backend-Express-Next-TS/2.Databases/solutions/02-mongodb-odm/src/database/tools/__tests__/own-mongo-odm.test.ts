@@ -1,5 +1,5 @@
 import { v4 as uuid } from 'uuid';
-import Mongo, { MongoClient } from 'mongodb';
+import Mongo, { MongoClient, WithId } from 'mongodb';
 
 import { MongoUserInterface } from '../../../database/models/User.model';
 import { OwnMongoDbODM } from '../own-mongo-odm';
@@ -39,7 +39,7 @@ describe('Own Mongo ODM', () => {
     const MongoClient = require('mongodb').MongoClient;
 
     client = new MongoClient();
-    mongoODM = new OwnMongoDbODM(client);
+    mongoODM = new OwnMongoDbODM(client, 'users');
 
     jest.mock('mongodb', () => ({
       MongoClient: jest.fn().mockImplementation(() => ({
@@ -56,15 +56,37 @@ describe('Own Mongo ODM', () => {
                 _id: data._id || uuid(),
               };
             }),
-            findOneAndDelete: jest.fn().mockImplementation((searchData: Mongo.Filter<Mongo.Document>) => {
-              const userIndex = users.findIndex((user) => user._id === searchData._id);
-              if (userIndex === -1) return;
+            findOneAndDelete: jest
+              .fn()
+              .mockImplementation((searchData: Mongo.Filter<Mongo.Document>) => {
+                const userIndex = users.findIndex((user) => user._id === searchData._id);
+                if (userIndex === -1) return;
 
-              const user = users[userIndex];
-              users.splice(userIndex, 1);
+                const user = users[userIndex];
+                users.splice(userIndex, 1);
 
-              return user;
-            }),
+                return user;
+              }),
+            findOneAndUpdate: jest
+              .fn()
+              .mockImplementation(
+                (searchData: Mongo.Filter<Mongo.Document>, data: Mongo.Document) => {
+                  const userIndex = users.findIndex((user) => user._id === searchData._id);
+                  if (userIndex === -1) return;
+
+                  users[userIndex] = {
+                    ...users[userIndex],
+                    ...data,
+                  };
+
+                  return users[userIndex];
+                }
+              ),
+            find: jest.fn().mockImplementation((condition: Mongo.Filter<Mongo.Document>) => ({
+              toArray: jest.fn().mockImplementation(() => {
+                if (!condition.$where) return users;
+              }),
+            })),
           })),
         })),
       })),
@@ -73,13 +95,13 @@ describe('Own Mongo ODM', () => {
 
   describe('.findById()', () => {
     it('Should return user by id', async () => {
-      const user = await mongoODM.findById('123', 'users');
+      const user = await mongoODM.findById('123');
 
       expect(user).toEqual(users[0]);
     });
 
     it('Should return undefined if user is not found', async () => {
-      const user = await mongoODM.findById('000', 'users');
+      const user = await mongoODM.findById('000');
 
       expect(user).toBeUndefined();
     });
@@ -88,15 +110,12 @@ describe('Own Mongo ODM', () => {
   describe('.save()', () => {
     it('Should create and save user data', async () => {
       const usersAmount = users.length;
-      const user = await mongoODM.save(
-        {
-          name: 'Bob',
-          dateOfBirth: new Date('1990-01-01'),
-          friends: ['123', '456 '],
-          likes: ['pizza', 'beer'],
-        },
-        'users',
-      );
+      const user = await mongoODM.save({
+        name: 'Bob',
+        dateOfBirth: new Date('1990-01-01'),
+        friends: ['123', '456 '],
+        likes: ['pizza', 'beer'],
+      });
 
       expect(user).toEqual({
         _id: expect.any(String),
@@ -115,7 +134,7 @@ describe('Own Mongo ODM', () => {
       const usersAmount = users.length;
 
       const user = users.find((user) => user._id === id);
-      const deletedUser = await mongoODM.findByIdAndDelete(id, 'users');
+      const deletedUser = await mongoODM.findByIdAndDelete(id);
 
       expect(deletedUser).toEqual(user);
       expect(users).toHaveLength(usersAmount - 1);
@@ -125,10 +144,44 @@ describe('Own Mongo ODM', () => {
       const id = 'test';
       const usersAmount = users.length;
 
-      const deletedUser = await mongoODM.findByIdAndDelete(id, 'users');
+      const deletedUser = await mongoODM.findByIdAndDelete(id);
 
       expect(deletedUser).toBeUndefined();
       expect(users).toHaveLength(usersAmount);
+    });
+  });
+
+  describe('.findByIdAndUpdate()', () => {
+    it('Should update user by id', async () => {
+      const id = '123';
+      const user = users.find((user) => user._id === id);
+
+      await mongoODM.findByIdAndUpdate(id, {
+        name: 'TEST',
+      });
+
+      const updatedUser = users.find((user) => user._id === id);
+
+      expect(updatedUser).toEqual({
+        ...user,
+        name: 'TEST',
+      });
+    });
+
+    it('Should return undefined if user is not found', async () => {
+      const id = 'test';
+
+      const updatedUser = await mongoODM.findByIdAndUpdate(id, {});
+
+      expect(updatedUser).toBeUndefined();
+    });
+  });
+
+  describe('.find()', () => {
+    it('Should return all users if no filter specified', async () => {
+      const foundUsers = await mongoODM.find({}).toArray();
+
+      expect(foundUsers).toEqual(users);
     });
   });
 });

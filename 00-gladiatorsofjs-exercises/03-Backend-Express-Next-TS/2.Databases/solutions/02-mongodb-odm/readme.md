@@ -2,6 +2,10 @@
 
 <br>
 
+- MongoODM is a simple ODM that mimics the functionality of Mongoose. It allows you to create, read, update and delete data from a MongoDB database.
+- MongoODM implementation: `src/database/tools/own-mongo-odm.ts`
+- Run tests with `yarn jest`
+
 ## Required Knowledge
 
 - MongoDB
@@ -14,7 +18,7 @@
   - [ DONE ] .create()
   - [ DONE ] .findById()
   - [ DONE ] .findByIdAndDelete()
-  - [ ] .findByIdAndUpdate()
+  - [ DONE ] .findByIdAndUpdate()
   - [ ] Additionally, it should allow you to:
     - find all users who were born before a given date
     - find all users who were born after a given date
